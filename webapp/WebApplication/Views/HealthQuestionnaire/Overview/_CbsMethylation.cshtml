@@ -1,0 +1,55 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Attributes
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+@{
+    var cbsColor = Model.GetColorFromScore(Model.GetCbsScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+}
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.CbsAndMethylation</h3>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        @Html.Partial("Controls/_Gauge", new GaugeOptions
+        {
+            MaxValue = 100,
+            Value = Model.GetCbsScore(),
+            Title = Dictionary.CbsAndMethylation,
+            BackgroundColor = $"rgb({cbsColor}, 0.33)",
+            StrokeColor = $"rgb({cbsColor})",
+            Units = $"{Model.GetCbsScore()}%",
+        })
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @foreach (var property in Model.GetCbsProperties())
+            {
+                var value = Model.GetProperty(property);
+                if (value != null)
+                {
+                    if (value.GetType() == typeof(bool))
+                    {
+                        if ((bool)value)
+                        {
+                            <span class="summary-item">@property.Name.SplitOnCapitalLetter()</span>
+                        }
+                    }
+                    else if ((EYesNo)value == EYesNo.Yes)
+                    {
+                        <span class="summary-item">@property.Name.SplitOnCapitalLetter()</span>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+

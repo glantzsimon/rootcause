@@ -1,0 +1,6 @@
+﻿@using K9.Base.WebApplication.Extensions
+@model DateTime?
+@{
+	var value = Model.HasValue ? Model.Value.ToLongLocalDateString() : "";
+}
+<input type="text" class="form-control text-muted bg-light" value="@value" readonly />

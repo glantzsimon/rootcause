@@ -1,0 +1,9 @@
+﻿@using K9.Base.WebApplication.Extensions
+@model int?
+
+@{
+    var data = this.GetDropdownData().GetDataSet<MembershipOption>(true, "Name", "Price", false, typeof(Dictionary))
+        .OrderBy(e => e.Id);
+    var selectList = new SelectList(data, "Id", "Name");
+}
+@Html.BootstrapDropdownFor(model => model, selectList)

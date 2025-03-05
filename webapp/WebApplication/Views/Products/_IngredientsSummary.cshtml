@@ -1,0 +1,46 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.SharedLibrary.Authentication
+@model Product
+
+@Html.HiddenFor(e => e.AmountPerServing)
+
+<div class="row">
+    <div class="col-sm-5">
+        @Html.LabelFor(e => Model.Ingredients[0].Name)
+    </div>
+    <div class="col-sm-4">
+        @Html.LabelFor(e => Model.Ingredients[0].AmountPer100Capsules)
+    </div>
+    <div class="col-sm-3">
+        @Html.LabelFor(e => Model.Ingredients[0].Cost)
+    </div>
+</div>
+<hr />
+@for (int i = 0; i < Model.Ingredients.Count; i++)
+{
+    <div class="row">
+        <div class="col-sm-5">
+            @if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+            {
+                <a target="_blank" href="@Url.Action("Edit", "Ingredients", new {id = Model.Ingredients[i].IngredientId})">
+                    @Html.DisplayFor(e => Model.Ingredients[i].Ingredient.Name)
+                </a>
+            }
+            else
+            {
+                @Html.DisplayFor(e => Model.Ingredients[i].Ingredient.Name)
+            }
+        </div>
+        <div class="col-sm-4">
+            @Html.DisplayFor(e => Model.Ingredients[i].FormattedLargeAmountPer100Capsules)
+        </div>
+        <div class="col-sm-3">
+            @Html.DisplayFor(e => Model.Ingredients[i].CostPer100Capsules)
+        </div>
+    </div>
+    if (i < Model.Ingredients.Count - 1)
+    {
+        <hr />
+    }
+}
+

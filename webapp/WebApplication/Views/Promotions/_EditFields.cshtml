@@ -1,0 +1,59 @@
+﻿@using K9.DataAccessLayer.Enums
+@model Promotion
+
+@Html.HiddenFor(model => model.Code)
+@Html.BootstrapDisplayFor(model => model.Code)
+@Html.BootstrapEditorFor(model => model.Name)
+@Html.BootstrapEditorFor(model => model.MembershipOptionId)
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Discount)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.SpecialPrice)
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+        let $membershipDropdown = $("#@(nameof(Promotion.MembershipOptionId))");
+        let $discountDropdown = $("#@(nameof(Promotion.Discount))");
+        let $totalPrice = $("#@(nameof(Promotion.SpecialPrice))");
+
+        function getDiscount() {
+            var discountIndex = $discountDropdown.val();
+            var selectedItem = datasetsHelper().getRowById('@nameof(EDiscount)', discountIndex);
+            var discountValue = selectedItem.Value === "0" ? 0 : parseInt(selectedItem.Value);
+            var discount = 1;
+
+            if (discountValue !== 0) {
+                discount = 1 - (1 * (discountValue / 100));
+            }
+
+            return discount;
+        }
+
+        function getPrice() {
+            var membershipId = $membershipDropdown.val();
+            var selectedItem = datasetsHelper().getRowById('@nameof(MembershipOption)', membershipId);
+
+            return selectedItem.Value == "" ? 0 : parseInt(selectedItem.Value);
+        }
+
+        function updatePrice() {
+            let discountedPrice = Math.round(getPrice() * getDiscount());
+            $totalPrice.val(discountedPrice);
+        }
+
+        $discountDropdown.change(function() {
+            updatePrice();
+        });
+
+        $membershipDropdown.change(function() {
+            updatePrice();
+        });
+    });
+
+</script>

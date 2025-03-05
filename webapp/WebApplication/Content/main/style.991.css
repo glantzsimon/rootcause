@@ -1,0 +1,104 @@
+﻿@media (max-width: 991px) {
+  html,
+  body {
+    font-size: 100%;
+  }
+  .top-nav ul li a {
+    font-size: 0.7em !important;
+  }
+  .top-nav ul li ul li {
+    z-index: 4000;
+    height: 54px;
+  }
+  .top-nav ul li ul.dropdown-menu li.sub-item {
+    display: table;
+  }
+  .top-nav ul li ul.dropdown-menu li.sub-item a {
+    padding: 0;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: #ffffff;
+    background-color: #000020;
+  }
+  .navbar-default .navbar-toggle:hover {
+    background-color: #FF9800;
+  }
+  #bs-navbar-collapse-1 {
+    overflow-y: visible;
+    font-size: 1em;
+  }
+  #bs-navbar-collapse-1.menu-small {
+    top: 100px !important;
+  }
+  #main-logo-container {
+    display: none !important;
+  }
+  #main-menu-container.menu-main,
+  #main-menu-container.menu-small {
+    height: 52px !important;
+    background-color: rgba(10, 10, 10, 0);
+  }
+  ul.main-navbar {
+    margin-top: -8px;
+    background-color: rgba(10, 10, 10, 0.85);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  .clear-on-device {
+    clear: both !important;
+  }
+  .picture-frame {
+    width: 100% !important;
+  }
+  .menu-main .container,
+  .menu-small .container {
+    width: auto !important;
+  }
+  ul.main-navbar {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 5px;
+  }
+  ul.main-navbar .open ul.dropdown-menu li {
+    height: 50px;
+  }
+  ul.main-navbar .open ul.dropdown-menu > li:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FF9800 !important;
+  }
+  ul.main-navbar .open ul.dropdown-menu > li:focus > a > a,
+  ul.main-navbar .open ul.dropdown-menu > li:hover > a > a {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FF9800 !important;
+    font-weight: bold !important;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+  ul.main-navbar .open ul.dropdown-menu > li > a {
+    width: 100%;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 13px;
+  }
+  ul.main-navbar .open ul.dropdown-menu > li .active > a {
+    color: #FF9800 !important;
+    font-weight: 600;
+  }
+  ul.main-navbar li.open a {
+    color: white !important;
+  }
+  .navbar-collapse {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  #bs-navbar-collapse-1 {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .footer div:not(:first-of-type) h4 {
+    margin-top: 20px !important;
+  }
+}

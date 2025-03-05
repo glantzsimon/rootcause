@@ -1,0 +1,79 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Models
+@model ParasiteCleanseViewModel
+
+<div class="row">
+    <div class="col-xs-1">
+        <strong>@Dictionary.Day</strong>
+    </div>
+    <div class="col-xs-4">
+        <strong>@Model.ParasiteCleanseProduct.Name</strong>
+    </div>
+    <div class="col-xs-4">
+        <strong>@Model.ParasiteCleanse2Product.Name</strong>
+    </div>
+    <div class="col-xs-3">
+        <strong>@Model.ParasiteCleanse3Product.Name</strong>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-xs-1">
+
+    </div>
+    <div class="col-xs-4">
+        <span class="italic">@Model.ParasiteCleanseProduct.Dosage</span>
+    </div>
+    <div class="col-xs-4">
+        <span class="italic">@Model.ParasiteCleanse2Product.Dosage</span>
+    </div>
+    <div class="col-xs-3">
+        <span class="italic">@Model.ParasiteCleanse3Product.Dosage</span>
+    </div>
+</div>
+
+<hr />
+
+@for (int i = 0; i < Model.NumberOfDays; i++)
+{
+    var parasite1Dosage = Model.ParasiteCleanseDosages[i];
+    var parasite2Dosage = Model.ParasiteCleanse2Dosages[i];
+    var parasite2SingleDose = parasite2Dosage / 3;
+    var parsite2BracketText = parasite2Dosage > 0 ? $"({parasite2SingleDose}-{parasite2SingleDose}-{parasite2SingleDose})" : "";
+    var parasite3Dosage = Model.ParasiteCleanse3Dosages[i];
+
+    var parasite1CapsuleText = parasite1Dosage == 1 ? Dictionary.Capsule : Dictionary.Capsules;
+    var parasite2CapsuleText = parasite2Dosage == 1 ? Dictionary.Capsule : Dictionary.Capsules;
+    var parasite3CapsuleText = parasite3Dosage == 1 ? Dictionary.Capsule : Dictionary.Capsules;
+
+    <div class="row">
+        <div class="col-xs-1">
+            @(i + 1)
+        </div>
+        <div class="col-xs-4">
+            @if (parasite1Dosage > 0)
+            {
+                @($"{parasite1Dosage} {parasite1CapsuleText}")
+            }
+        </div>
+        <div class="col-xs-4">
+            @if (parasite2Dosage > 0)
+            {
+                @($"{parasite2Dosage} {parasite2CapsuleText} {parsite2BracketText}")
+            }
+        </div>
+        <div class="col-xs-3">
+            @if (parasite3Dosage > 0)
+            {
+                @($"{parasite3Dosage} {parasite3CapsuleText}")
+            }
+        </div>
+    </div>
+    if (i < 17)
+    {
+        <hr />
+    }
+}

@@ -1,0 +1,20 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Attributes
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model Protocol
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.RecommendationsLabel</h3>
+        </div>
+    </div>
+
+    @Html.Partial("../Protocols/_SummaryPartial")
+</div>
+

@@ -1,0 +1,15 @@
+﻿@using K9.WebApplication.Models
+@model K9.WebApplication.Models.NineStarKiModel
+@{
+}
+<div class="inline-form">
+    @using (Html.BeginForm("Link", "Numerology", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => Model.PersonModel.Name)
+        @Html.HiddenFor(model => Model.PersonModel.DateOfBirth)
+        @Html.HiddenFor(model => Model.PersonModel.Gender)
+
+        @Html.BootstrapButton(Dictionary.KarmicNumerologyCalculator, EButtonType.Submit, "fa-sort-numeric-up", EButtonClass.Large)
+    }
+</div>

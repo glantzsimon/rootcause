@@ -1,0 +1,28 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model Ingredient
+
+<div class="row">
+    <div class="col-xs-6">
+        <h4>@Dictionary.Ingredient: @Model.Name</h4>
+    </div>
+    <div class="col-xs-6">
+        @Html.Partial("Controls/_SearchBox", new SearchBoxOptions
+        {
+            CssSelector = "div.checkbox"
+        })
+    </div>
+</div>
+
+<hr />
+
+@for (int i = 0; i < Model.SubstitutesSelectList.Count; i++)
+{
+    @Html.HiddenFor(e => Model.SubstitutesSelectList[i].Id)
+    @Html.HiddenFor(e => Model.SubstitutesSelectList[i].Name)
+
+    <div class="checkbox">
+        <label>@Html.CheckBoxFor(model => Model.SubstitutesSelectList[i].IsSelected)@Model.SubstitutesSelectList[i].Name</label>
+    </div>
+}

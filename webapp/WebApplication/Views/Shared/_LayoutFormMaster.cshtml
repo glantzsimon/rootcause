@@ -1,0 +1,45 @@
+﻿@using K9.WebApplication.Config
+@using K9.WebApplication.Helpers
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var background = ViewBag.Background == ViewBagHelper.EViewBackground.Jarallax ? "background-stars jarallax" : "";
+}
+
+@if (ViewBag.Background == ViewBagHelper.EViewBackground.Fixed)
+{
+    <div class="background-stars background-fixed">
+        &nbsp;
+    </div>
+}
+else 
+{
+    <div class="background-video">
+        <video autoplay muted loop playsinline preload="none" poster="@DefaultValuesConfiguration.Instance.BaseImagesPath/background/stars.jpg"> 
+            <source src="@DefaultValuesConfiguration.Instance.BaseVideosPath/Shared/stars-bg.webm" type="video/webm">
+            <source src="@DefaultValuesConfiguration.Instance.BaseVideosPath/Shared/stars-bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+}
+
+<div class="@background">
+    @Html.Partial("_Navbar")
+    <div class="mainContent">
+        <div class="container-fluid">
+            @RenderSection("formLayout")
+        </div>
+    </div>
+</div>
+
+@section headerscripts {
+    @RenderSection("headerscripts", false)
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            bootstrapControls().selectFirstFormInput();
+        });
+    </script>
+    @RenderSection("scripts", false)
+}

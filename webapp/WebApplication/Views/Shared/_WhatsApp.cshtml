@@ -1,0 +1,21 @@
+﻿@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@model K9.WebApplication.ViewModels.WhatsAppViewModel
+
+@{
+    var whatsAppTelephone = DefaultValuesConfiguration.Instance.WhatsAppSupportNumber;
+    var whatsAppQueryText = Url.Encode(Model.Message);
+    var whatsAppLink = ViewBag.DeviceType == EDeviceType.Desktop
+        ? $"https://web.whatsapp.com/send?phone={whatsAppTelephone}&text={whatsAppQueryText}"
+        : $"https://wa.me/{whatsAppTelephone}/?text={whatsAppQueryText}";
+}
+
+@if (!string.IsNullOrEmpty(Model.Title))
+{
+    <h5 class="margin-top-0">@Model.Title</h5>
+}
+
+<a class="btn btn btn-primary btn-lg" target="_blank" title="@Dictionary.MessageUs" href="@(whatsAppLink)">
+    <i class="fab fa-whatsapp"></i>
+    <span>@Model.ButtonText</span>
+</a>

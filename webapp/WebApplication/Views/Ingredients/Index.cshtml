@@ -1,0 +1,39 @@
+﻿@using K9.Base.WebApplication.Controllers
+@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Authentication
+@using EButtonType = K9.SharedLibrary.Models.EButtonType
+@model Ingredient
+@{
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+
+@Html.BootstrapTable(new DataTableOptions<Ingredient>
+{
+    AllowCreate = true,
+    AllowEdit = true,
+    AllowDelete = ((BaseController<Ingredient>)ViewContext.Controller).Roles.CurrentUserIsInRoles(RoleNames.Administrators),
+    SelectAllColumns = false,
+    VisibleColumns = new List<string>
+    {
+        "Name",
+        "ShortDescription",
+        "Cost"
+    },
+    CustomButtons =
+    {
+        new Button
+        {
+            Action = "EditIngredientSubstitutes",
+            Text = Dictionary.EditIngredientSubstitutes,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "EditIngredientSubstitutePriorities",
+            Text = Dictionary.EditIngredientSubstitutePriorities,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        }
+    }
+})

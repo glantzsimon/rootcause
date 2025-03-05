@@ -1,0 +1,126 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Authentication
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model Product
+
+@{
+    var lastCategory = ECategory.Undefined;
+}
+
+@Html.HiddenFor(e => e.AmountPerServing)
+
+@if (!Model.IngredientAmountsAreCorrect())
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="field-validation-error">
+                @Model.GetIngredientAmountIncorrectError()
+            </span>
+            <br />
+        </div>
+    </div>
+}
+<div class="row table-row">
+    <div class="col-xs-5">
+        @Html.LabelFor(e => Model.Ingredients[0].Name)
+    </div>
+    <div class="col-xs-3">
+        @Html.LabelFor(e => Model.Ingredients[0].AmountPer100Capsules)
+    </div>
+    <div class="col-xs-4">
+        @Html.LabelFor(e => Model.Ingredients[0].IsAdded)
+    </div>
+</div>
+
+@for (int i = 0; i < Model.IngredientsWithSubstitutes.Count; i++)
+{
+    @Html.HiddenFor(e => Model.IngredientsWithSubstitutes[i].Id)
+    @Html.HiddenFor(e => Model.IngredientsWithSubstitutes[i].IngredientId)
+
+    var productIngredient = Model.IngredientsWithSubstitutes[i];
+    var completeClass = productIngredient.IsSelected ? "complete-rows" : "";
+    var ingredientIsInStock = productIngredient.Ingredient.GetIsInStock();
+    var isInStockClass = ingredientIsInStock ? "" : "out-of-stock";
+    var ingredientCategory = productIngredient.Ingredient.Category;
+
+    if (lastCategory != productIngredient.Ingredient.Category)
+    {
+        lastCategory = ingredientCategory;
+
+        <div class="row table-row">
+            <div class="col-xs-12">
+                <h4>@productIngredient.Ingredient.CategoryText</h4>
+            </div>
+        </div>
+    }
+
+    <div class="row table-row @completeClass @isInStockClass">
+        <div class="col-xs-5">
+            <div><span class="bold">@productIngredient.Ingredient.ItemCode</span> - @productIngredient.Ingredient.Name</div>
+            @if (!ingredientIsInStock)
+            {
+                <span class="field-validation-error">@Dictionary.OutOfStock</span>
+            }
+        </div>
+        <div class="col-xs-3">
+            @Html.DisplayFor(e => productIngredient.FormattedLargeAmountPer100Capsules)
+        </div>
+        <div class="col-xs-1">
+            @if (ingredientIsInStock)
+            {
+                @Html.CheckBoxFor(e => productIngredient.IsSelected)
+            }
+        </div>
+        <div class="col-xs-3">
+            @if (ingredientIsInStock)
+            {
+                if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+                {
+                    <a data-id="@productIngredient.Ingredient.Id" href="#" class="btn btn-info out-of-stock">@Dictionary.MarkOutOfStock</a>
+                }
+            }
+        </div>
+    </div>
+}
+
+@Html.Partial("_AjaxPopup", new AjaxPopupOptions())
+
+<script type="text/javascript">
+
+    $(window).on("load",
+        function () {
+
+        $("input[type='checkbox'][name*=@nameof(ProductIngredient.IsSelected)]").click(function () {
+            var $el = $(this);
+            var isSelected = $el.is(":checked");
+
+            if (isSelected) {
+                $el.closest(".row").addClass("complete-rows");
+            } else {
+                $el.closest(".row").removeClass("complete-rows");
+            }
+        });
+
+        $("a.out-of-stock").click(function() {
+            var ingredientId = $(this).data("id");
+            var data = { ingredientId: ingredientId };
+
+            $("#pageSpinner").show();
+
+            ajaxcontroller().send("@Url.Action("MarkIngredientAsOutOfStock")", data, "POST").done(
+                function(result) {
+                    if (!result.success) {
+                        $.fn.processResultAndShowPopup(result);
+                        console.write(result.error);
+                    } else {
+                        $("#ProductId").closest("form").submit();
+                    }
+                });
+        });
+    })
+
+</script>

@@ -1,0 +1,51 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.Base.WebApplication.Helpers
+@model Product
+@{
+    Layout = "../Shared/_LayoutForm.cshtml";
+    ViewBag.SubTitle = $"{Model.Name} {Dictionary.LabSheet}";
+}
+@using (Html.BeginForm("LabSheet", "Products", FormMethod.Get))
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.Hidden("index", 0)
+        @Html.HiddenFor(e => Model.Id)
+
+        <div class="row">
+            <div class="col-xs-6">
+                @Html.BootstrapEditorFor(model => Model.ProductId)
+            </div>
+            <div class="col-xs-6">
+                @Html.BootstrapEditorFor(model => Model.BatchSize)
+            </div>
+        </div>
+    }
+}
+
+@using (Html.BeginForm("LabSheet", "Products", FormMethod.Post))
+{
+    using (Html.BeginBootstrapForm())
+    {
+
+        <hr />
+        @Html.Partial("_ProductLabSheet")
+        <hr />
+        @Html.BootstrapActionLinkButton(Dictionary.EditIngredients, "EditIngredients", null, new { id = Model.Id }, "fa-arrow-pencil")
+        @Html.BootstrapActionLinkButton(Dictionary.EditIngredientQuantities, "EditIngredientQuantities", null, new { id = Model.Id }, "fa-arrow-pencil")
+
+        <br />
+        @Html.BootstrapBackToListButton()
+        @Html.BootstrapActionLinkButton(K9.Base.Globalisation.Dictionary.Previous, "LabSheet", null, new { id = Model.Id, index = -1 }, "fa-arrow-left")
+        @Html.BootstrapActionLinkButton(K9.Base.Globalisation.Dictionary.Next, "LabSheet", null, new { Id = Model.Id, index = 1 }, "fa-arrow-right")
+    }
+}
+
+<script type="text/javascript">
+    $(window).on("load",
+        function () {
+            $("#ProductId, #BatchSize").change(function () {
+                $("#ProductId").closest("form").submit();
+            });
+        });
+</script>

@@ -1,0 +1,6 @@
+﻿@model Object
+
+<div class="input-group">
+    <span data-input-id="quantity" class="input-group-addon">@Dictionary.Every</span>
+    @Html.TextBoxFor(model => model, ViewData["viewDataDictionary"] as IDictionary<string, object>)
+</div>

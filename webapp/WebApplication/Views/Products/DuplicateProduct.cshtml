@@ -1,0 +1,19 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Product
+@{
+    Layout = "../Shared/_LayoutFormSmall.cshtml";
+    ViewBag.SubTitle = $"{Dictionary.DuplicateProduct}: {Model.Name}";
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Name)
+
+        <p>@Dictionary.DuplicateConfirm</p>
+        <hr />
+        @Html.BootstrapButton(Dictionary.Duplicate, EButtonType.Submit, "fa-copy")
+        @Html.BootstrapBackToListButton()
+    }
+}

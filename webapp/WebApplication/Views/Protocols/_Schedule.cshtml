@@ -1,0 +1,41 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@if (Model.Type == EProtocolType.ParasiteCleanse)
+{
+    @Html.Partial("../Protocols/_ParasiteCleanse")
+}
+else if (Model.Type == EProtocolType.ParasiteCleanseMaintenance)
+{
+    @Html.Partial("../Protocols/_ParasiteCleanseMaintenance")
+}
+else
+{
+    <div class="daily-schedule-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>@Dictionary.SupplementSchedule (@Model.DaysDurationTitle)</h3>
+            </div>
+        </div>
+        @switch (Model.ProtocolFrequency)
+        {
+            case EProtocolFrequency.Daily:
+                @Html.Partial("../Protocols/_DailySchedule")
+                break;
+
+            case EProtocolFrequency.Monthly:
+                @Html.Partial("../Protocols/_MonthlySchedule")
+                break;
+
+            case EProtocolFrequency.Fortnightly:
+                @Html.Partial("../Protocols/_FortnightlySchedule")
+                break;
+
+            default:
+                @Html.Partial("../Protocols/_CustomSchedule")
+                break;
+        }
+    </div>
+}

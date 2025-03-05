@@ -1,0 +1,74 @@
+﻿@using K9.Base.DataAccessLayer.Attributes
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Attributes
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+@{
+    var prakrutiDoshas = Model.GetPrakrutiDoshas();
+    var prakruti = prakrutiDoshas.GetDosha();
+    var prakrutiViewModel = new K9.WebApplication.ViewModels.DoshasViewModel(
+        Model,
+        prakruti,
+        prakrutiDoshas.GetVataDoshaPercentage(),
+        prakrutiDoshas.GetPittaDoshaPercentage(),
+        prakrutiDoshas.GetKaphaDoshaPercentage());
+
+    var vikrutiDoshas = Model.GetVikrutiDoshas();
+    var vikruti = vikrutiDoshas.GetDosha();
+    var vikrutiViewModel = new K9.WebApplication.ViewModels.DoshasViewModel(
+        Model,
+        vikruti,
+        vikrutiDoshas.GetVataDoshaPercentage(),
+        vikrutiDoshas.GetPittaDoshaPercentage(),
+        vikrutiDoshas.GetKaphaDoshaPercentage(),
+        false);
+}
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills">
+                @if (prakruti == EDosha.Vata || prakruti == EDosha.KaphaVata || prakruti == EDosha.VataPitta || prakruti == EDosha.Tridoshic)
+                {
+                    <li class="@prakrutiViewModel.VataActiveTabClass"><a data-toggle="pill" href="#vata-dosha">@Dictionary.VataDosha</a></li>
+                }
+                @if (prakruti == EDosha.Pitta || prakruti == EDosha.PittaKapha || prakruti == EDosha.VataPitta || prakruti == EDosha.Tridoshic)
+                {
+                    <li class="@prakrutiViewModel.PittaActiveTabClass"><a data-toggle="pill" href="#pitta-dosha">@Dictionary.PittaDosha</a></li>
+                }
+                @if (prakruti == EDosha.Kapha || prakruti == EDosha.PittaKapha || prakruti == EDosha.KaphaVata || prakruti == EDosha.Tridoshic)
+                {
+                    <li class="@prakrutiViewModel.KaphaActiveTabClass"><a data-toggle="pill" href="#kapha-dosha">@Dictionary.KaphaDosha</a></li>
+                }
+            </ul>
+
+            <div class="tab-content">
+
+                @if (prakruti == EDosha.Vata || prakruti == EDosha.KaphaVata || prakruti == EDosha.VataPitta || prakruti == EDosha.Tridoshic)
+                {
+                    <div id="vata-dosha" class="tab-pane fade @prakrutiViewModel.VataActivePaneClass padding-top-15">
+                        @Html.Raw(Dictionary.VataDoshaDetails)
+                    </div>
+                }
+                @if (prakruti == EDosha.Pitta || prakruti == EDosha.PittaKapha || prakruti == EDosha.VataPitta || prakruti == EDosha.Tridoshic)
+                {
+                    <div id="pitta-dosha" class="tab-pane fade @prakrutiViewModel.PittaActivePaneClass padding-top-15">
+                        @Html.Raw(Dictionary.PittaDoshaDetails)
+                    </div>
+                }
+                @if (prakruti == EDosha.Kapha || prakruti == EDosha.PittaKapha || prakruti == EDosha.KaphaVata || prakruti == EDosha.Tridoshic)
+                {
+                    <div id="kapha-dosha" class="tab-pane fade @prakrutiViewModel.KaphaActivePaneClass padding-top-15">
+                        @Html.Raw(Dictionary.KaphaDoshaDetails)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

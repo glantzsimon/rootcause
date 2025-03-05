@@ -1,0 +1,15 @@
+﻿@using System.Web.Mvc.Html
+@using K9.WebApplication.Helpers
+@model List<Product>
+
+@{
+    ViewBag.Title = Dictionary.Products;
+    Layout = "../Shared/_LayoutFormMedium.cshtml";
+    ViewBag.Background = ViewBagHelper.EViewBackground.Default;
+}
+
+<div class="container main-content">
+    <div class="well margin-bottom-0">
+        @Html.Partial("_ProductList", Model)
+    </div>
+</div>

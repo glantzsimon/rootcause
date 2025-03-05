@@ -1,0 +1,47 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Authentication
+@using K9.WebApplication.ViewModels
+@using K9.SharedLibrary.Extensions
+
+@model Protocol
+@{
+    Layout = "../Shared/_LayoutPrint.cshtml";
+    ViewBag.SubTitle = Dictionary.PrintableHealingActivities;
+    ViewBag.Title = Dictionary.PrintableHealingActivities;
+}
+
+<div class="print-container schedule-print-container">
+    <div class="row">
+        <div class="col-xs-12 center-block">
+            <img src="~/Images/company/logo-small.png" class="center-block" />
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Activities != null && Model.Activities.Any())
+    {
+        <div>
+            @using (Html.BeginForm())
+            {
+                using (Html.BeginBootstrapForm())
+                {
+                    <div class="row margin-top-0">
+                        <div class="col-xs-12">
+                            <h1 class="section-title margin-top-0">@Dictionary.RecommendedActivitties</h1>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            @Html.Partial("../Protocols/_ActivityPrintable")
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,12 @@
+﻿@using K9.Base.DataAccessLayer.Enums
+@using K9.Base.WebApplication.Extensions
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.WebApplication.Constants
+@model ECategory
+
+@Html.BootstrapDropdownFor(model => model, new SelectList(this.GetDropdownData().GetDataSetFromEnum<ECategory>(true)
+    .Where(i => Constants.ProductCategories.Select(e => (int)e).Contains(i.Id)).OrderBy(e => e.Name),
+    "Id", 
+    "Name", 
+    Model))

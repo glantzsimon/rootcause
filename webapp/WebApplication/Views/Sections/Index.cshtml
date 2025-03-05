@@ -1,0 +1,23 @@
+﻿@using K9.Base.WebApplication.Controllers
+@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Authentication
+@using K9.SharedLibrary.Models
+@using EButtonType = K9.SharedLibrary.Models.EButtonType
+@model Section
+@{
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+@Html.BootstrapTable(new DataTableOptions<Section>
+{
+    AllowCreate = true,
+    AllowEdit = true,
+    AllowDelete = ((BaseController<Section>)ViewContext.Controller).Roles.CurrentUserIsInRoles(RoleNames.Administrators),
+    Controller = "Sections",
+    VisibleColumns = new List<string>
+    {
+        "Name",
+        "ShortDescription",
+        "Recommendations",
+        "DisplayOrder",
+    }
+})

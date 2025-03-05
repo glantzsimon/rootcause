@@ -1,0 +1,43 @@
+﻿@using K9.Base.DataAccessLayer.Attributes;
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.DataAccessLayer.Helpers
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@for (int i = 0; i < Model.ProductPacks.Count; i++)
+{
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.LabelFor(e => Model.ProductPacks[i].ProductPack.Name)
+            
+            @if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+            {
+                <a target="_blank" href="@Url.Action("Edit", "ProductPacks", new {id = Model.ProductPacks[i].ProductPackId})">
+                    @Html.DisplayFor(e => Model.ProductPacks[i].ProductPack.Name)
+                </a>
+            }
+            else if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsUnicornUser())
+            {
+                <a target="_blank" href="@Url.Action("Link", "Product", new {id = Model.ProductPacks[i].ProductPack.ExternalId})">
+                    @Html.DisplayFor(e => Model.ProductPacks[i].ProductPack.Name)
+                </a>
+            }
+            else
+            {
+                <a target="_blank" href="@Url.Action("Details", "Product", new {seoFriendlyId = Model.ProductPacks[i].ProductPack.SeoFriendlyId})">
+                    @Html.DisplayFor(e => Model.ProductPacks[i].ProductPack.Name)
+                </a>
+            }
+        </div>
+        <div class="col-sm-8">
+            @Html.BootstrapDisplayFor(e => Model.ProductPacks[i].ProductPack.ShortDescription)
+        </div>
+    </div>
+    if (i < Model.Products.Count - 1)
+    {
+        <hr />
+    }
+}
+

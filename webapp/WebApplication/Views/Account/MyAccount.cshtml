@@ -1,0 +1,75 @@
+﻿@using SessionHelper = K9.WebApplication.Helpers.SessionHelper
+@model K9.WebApplication.ViewModels.MyAccountViewModel
+@{
+    ViewBag.Title = K9.Base.Globalisation.Dictionary.MyAccountTitle;
+    ViewBag.SubTitle = K9.Base.Globalisation.Dictionary.MyAccountTitle + $" <i class=\"fa fa-user-circle\"></i>";
+    Layout = "~/Views/Shared/_LayoutFormSmall.cshtml";
+}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#account">@Dictionary.UpdateYourDetails</a></li>
+    @if (Model.Membership != null)
+    {
+        <li><a data-toggle="tab" href="#membership">@Dictionary.YourCurrentMembership</a></li>
+    }
+
+    @if (Model.Consultations != null && Model.Consultations.Any())
+    {
+        if (SessionHelper.CurrentUserIsAdmin())
+        {
+            <li><a data-toggle="tab" href="#consultations">@Dictionary.MyConsultations</a></li>
+        }
+        else
+        {
+            <li><a data-toggle="tab" href="#consultations">@Dictionary.YourConsultations</a></li>
+        }
+    }
+</ul>
+
+<div class="tab-content">
+    <div id="account" class="tab-pane fade in active padding-top-20">
+        @Html.Partial("_AccountDetails")
+    </div>
+    <div id="membership" class="tab-pane fade padding-top-20 padding-bottom-0">
+        @if (Model.Membership != null)
+        {
+            @Html.Partial("../Membership/_MembershipDetails", Model.Membership)
+            if (Model.Membership.MembershipOption.IsFree)
+            {
+                <hr />
+                <div class="margin-top-15">
+                    @Html.BootstrapActionLinkButton(Dictionary.UnlockAllFeatures, "Index", "Membership", null, "fa-unlock", EButtonClass.Large)
+                </div>
+            }
+            else
+            {
+                if (Model.Membership.MembershipOption.IsUpgradable)
+                {
+                    <hr />
+                    <div class="margin-top-15">
+                        @Html.BootstrapActionLinkButton(Dictionary.UpgradeMembershipText, "Index", "Membership", null, "", EButtonClass.Large)
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <hr />
+            @Html.BootstrapActionLinkButton(Dictionary.UpgradeMembershipText, "Index", "Membership", null, "fa-unlock", EButtonClass.Large)
+        }
+    </div>
+
+    @if (Model.Consultations != null && Model.Consultations.Any())
+    {
+        <div id="consultations" class="tab-pane fade padding-top-20">
+            @if (SessionHelper.CurrentUserIsAdmin())
+            {
+                @Html.Partial("_UserConsultationsAdmin", Model.Consultations)
+            }
+            else
+            {
+                @Html.Partial("_UserConsultations", Model.Consultations)
+            }
+        </div>
+    }
+</div>

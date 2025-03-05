@@ -1,0 +1,27 @@
+﻿@using System.Web.Mvc.Html
+@using K9.Base.WebApplication.ViewModels
+
+<script type="text/javascript">
+    $(window).on("load", function() {
+
+        $("button.add-to-cart-button").click(function() {
+            $("#pageSpinner").show();
+            var id = $(this).data("id");
+            ajaxcontroller().send("@Url.Action("AddProductToCart", "ShoppingCart")",
+                {
+                    productId: id
+                },
+                "POST").done(
+                function(result) {
+                    $.fn.processResultAndShowPopup(result);
+
+                    var shoppingCartText = " @Dictionary.ShoppingCart";
+                    if (result.data.totalItems > 0) {
+                        shoppingCartText = shoppingCartText + " (" + result.data.totalItems + ")";
+                    }
+                    $("i.fa-shopping-cart").parent().find("span").text(shoppingCartText);
+                });
+        });
+
+    });
+</script>

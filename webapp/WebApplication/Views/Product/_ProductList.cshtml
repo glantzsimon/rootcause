@@ -1,0 +1,74 @@
+﻿@using System.Web.Mvc.Html
+@using K9.Base.DataAccessLayer.Attributes
+@using K9.Base.WebApplication.ViewModels
+@using K9.DataAccessLayer.Helpers
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Options
+@model List<Product>
+
+@Html.Partial("_AjaxPopup", new AjaxPopupOptions
+{
+    SuccessMessage = Dictionary.ItemAddedToCart,
+    FailureMessage = Dictionary.ItemAddedToCartError
+})
+
+<div class="row text-center">
+    <div class="col-md-12">
+        <h1 class="margin-top-5 goldenrod">
+            @Dictionary.Products
+        </h1>
+    </div>
+</div>
+
+<hr />
+
+<article>
+    @if (Model.Any())
+    {
+        var categoryIndex = 0;
+        var categories = Model.Select(e => e.Category).Distinct().OrderBy(e => e.ToString()).ToList();
+
+        <ul class="nav nav-pills">
+            @foreach (var category in categories)
+            {
+                var categoryText = category.ToString();
+                var categoryTitle = category.GetAttribute<EnumDescriptionAttribute>().GetDescription();
+
+                if (categoryIndex == 0)
+                {
+                    <li class="active"><a data-toggle="pill" href="#@categoryText">@categoryTitle</a></li>
+                }
+                else
+                {
+                    <li><a data-toggle="pill" href="#@categoryText">@categoryTitle</a></li>
+                }
+
+                categoryIndex++;
+            }
+
+        </ul>
+
+        <br />
+
+        <div class="tab-content">
+            @{
+                categoryIndex = 0;
+
+                foreach (var category in categories)
+                {
+                    var categoryText = category.ToString();
+                    var products = Model.Where(e => e.Category == category).ToList();
+                    var tabClass = categoryIndex == 0 ? "in active" : "";
+
+                    <div id="@categoryText" class="tab-pane fade @(tabClass) padding-top-15">
+                        @Html.Partial("../Product/_ProductsList", products)
+                    </div>
+
+                    categoryIndex++;
+                }
+            }
+        </div>
+    }
+</article>
+
+@Html.Partial("_DefaultAjax")

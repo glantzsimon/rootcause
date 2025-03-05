@@ -1,0 +1,36 @@
+﻿@using K9.WebApplication.Config
+@model K9.WebApplication.Models.NineStarKiModel
+
+@{
+    ViewBag.Title = K9.Base.Globalisation.Dictionary.Home;
+    ViewBag.SubTitle = Dictionary.AIAstrologer;
+    ViewBag.MetaDescription = Dictionary.AIMeta;
+    ViewBag.Keywodrs = Dictionary.AIKeywords;
+    Layout = "../Shared/_LayoutFormMedium.cshtml";
+}
+
+@Html.Partial("_BetaPopup")
+
+<div class="container main-content">
+    <article>
+        @using (Html.BeginBootstrapForm())
+        {
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="text-center gpt-example margin-bottom-20">
+                        <img loading="lazy" title="i-ching" alt="free i-ching hexagram generator" src="@DefaultValuesConfiguration.Instance.BaseImagesPath/home/gpt-example.png" />
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    @MvcHtmlString.Create(Dictionary.gptinfo)
+                    
+                    <hr/>
+                    @Html.Partial("ActionLinkButtons/_TryOurGpt")
+                </div>
+            </div>
+        }
+    </article>
+
+    <hr />
+    @Html.Partial("_ButtonsFooter")
+</div>

@@ -1,0 +1,38 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Product
+@{
+    Layout = "../Shared/_LayoutForm.cshtml";
+}
+@using (Html.BeginForm("View", "Products"))
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.BootstrapEditorFor(model => model.ProductId)
+    }
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        @Html.Partial("_DisplayFields")
+        @Html.AuditFieldsForModel(Model);
+
+        <hr />
+        @Html.BootstrapBackToListButton()
+        @Html.CrudButtonsForModel(Model)
+        @Html.BootstrapActionLinkButton(Dictionary.ExternalLink, "Link", "Product", new { id = Model.ExternalId }, "", EButtonClass.Success)
+
+        @Html.Partial("_CollectionsButtons")
+    }
+}
+
+<script type="text/javascript">
+    $(window).on("load",
+        function () {
+            $("#ProductId").change(function () {
+                $("#ProductId").closest("form").submit();
+            });
+        });
+</script>

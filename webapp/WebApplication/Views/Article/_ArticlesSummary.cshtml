@@ -1,0 +1,11 @@
+﻿@using K9.Base.WebApplication.Extensions
+@model List<Article>
+<h4>@Dictionary.Articles</h4>
+<div class="scroller-container">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li class="news-ticker-item"><a title="@item.Subject" href="@Url.Action("Index", "Articles", new {id = item.Id})">@item.PublishedOn.ToHumanReadableString() - @item.Subject</a></li>
+        }
+    </ul>
+</div>

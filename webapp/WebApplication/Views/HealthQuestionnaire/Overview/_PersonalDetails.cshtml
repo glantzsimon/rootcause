@@ -1,0 +1,32 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.PersonalDetails</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => e.Client.FullName)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => e.DateOfBirth)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => e.Gender)
+        </div>
+        @*@if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+        {
+            <div class="col-xs-4 col-sm-3 col-md-2">
+                @Html.BootstrapDisplayFor(e => e.IsIsLGBTQPlus)
+            </div>
+        }*@
+    </div>
+</div>

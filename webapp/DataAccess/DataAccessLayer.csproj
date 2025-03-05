@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{20948D36-2ABE-4429-B175-AF781A5F6CB3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>K9.DataAccessLayer</RootNamespace>
+    <AssemblyName>K9.DataAccessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Integration|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Integration\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production2|AnyCPU'">
+    <OutputPath>bin\Production2\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac, Version=6.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions, Version=5.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\DataAnnotationsExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.72.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.72\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="K9.Base.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\K9.Base.DataAccessLayer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="K9.Base.Globalisation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\K9.Base.Globalisation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="K9.Base.WebApplication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\K9.Base.WebApplication.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MailKit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\MailKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=4.5.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\MimeKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NodaTime, Version=3.2.1.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodaTime.3.2.1\lib\netstandard2.0\NodaTime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Formats.Asn1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.SharedLibrary.2.0.0.212\lib\net461\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\K9.Base.WebApplication.2.0.0.212\lib\net461\WebMatrix.WebData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\DiscountAttribute.cs" />
+    <Compile Include="Attributes\DoshaEnumMetaDataAttribute.cs" />
+    <Compile Include="Attributes\ECompatibilityEnumMetaDataAttribute.cs" />
+    <Compile Include="Attributes\EFoodGroupMetaDataAttribute.cs" />
+    <Compile Include="Attributes\ENineStarKiElementEnumMetaDataAttribute.cs" />
+    <Compile Include="Attributes\GenoTypeEnumMetaDataAttribute.cs" />
+    <Compile Include="Attributes\NineStarKiEnumMetaDataAttribute.cs" />
+    <Compile Include="Attributes\ProductLabelAttribute.cs" />
+    <Compile Include="Attributes\QuestionCategoryAttribute.cs" />
+    <Compile Include="Attributes\ScoreAttribute.cs" />
+    <Compile Include="Attributes\ZodiacEnumMetaDataAttribute.cs" />
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Database\DatabaseInitialiser.cs" />
+    <Compile Include="Database\Db.cs" />
+    <Compile Include="Database\Seeds\SystemSettingsSeeder.cs" />
+    <Compile Include="Database\Seeds\EmailTemplatesSeeder.cs" />
+    <Compile Include="Database\Seeds\MembershipOptionsSeeder.cs" />
+    <Compile Include="Database\Seeds\PermissionsSeeder.cs" />
+    <Compile Include="Enums\EBloodGroup.cs" />
+    <Compile Include="Enums\ECategory.cs" />
+    <Compile Include="Enums\ECompatibilityLevel.cs" />
+    <Compile Include="Enums\EConsultationDuration.cs" />
+    <Compile Include="Enums\EDietaryPreference.cs" />
+    <Compile Include="Enums\EDisplayColor.cs" />
+    <Compile Include="Enums\EDosha.cs" />
+    <Compile Include="Enums\EFingerprintType.cs" />
+    <Compile Include="Enums\EFoodCategory.cs" />
+    <Compile Include="Enums\EFoodFrequency.cs" />
+    <Compile Include="Enums\EFoodGroup.cs" />
+    <Compile Include="Enums\EFrequency.cs" />
+    <Compile Include="Enums\EGapSize.cs" />
+    <Compile Include="Enums\EGenoType.cs" />
+    <Compile Include="Enums\EGenoTypeStrategy.cs" />
+    <Compile Include="Enums\EGonialAngle.cs" />
+    <Compile Include="Enums\EHandedness.cs" />
+    <Compile Include="Enums\EHeadShape.cs" />
+    <Compile Include="Enums\EIngredientType.cs" />
+    <Compile Include="Enums\ENineStarKiElement.cs" />
+    <Compile Include="Enums\ENineStarKiEnergy.cs" />
+    <Compile Include="Enums\EOrderStatus.cs" />
+    <Compile Include="Enums\EOrderType.cs" />
+    <Compile Include="Enums\EOrgan.cs" />
+    <Compile Include="Enums\EPeriod.cs" />
+    <Compile Include="Enums\EPlantPart.cs" />
+    <Compile Include="Enums\EPriceTier.cs" />
+    <Compile Include="Enums\EProductRecommendation.cs" />
+    <Compile Include="Enums\EProductType.cs" />
+    <Compile Include="Enums\EPropTaste.cs" />
+    <Compile Include="Enums\EProtocolDuration.cs" />
+    <Compile Include="Enums\EProtocolFrequency.cs" />
+    <Compile Include="Enums\EProtocolType.cs" />
+    <Compile Include="Enums\EQuestionCategory.cs" />
+    <Compile Include="Enums\ERatio.cs" />
+    <Compile Include="Enums\ERhesusFactor.cs" />
+    <Compile Include="Enums\EScore.cs" />
+    <Compile Include="Enums\ESeason.cs" />
+    <Compile Include="Enums\ESeverity.cs" />
+    <Compile Include="Enums\ESomatoType.cs" />
+    <Compile Include="Enums\EStrength.cs" />
+    <Compile Include="Enums\ESystemEmailTemplate.cs" />
+    <Compile Include="Enums\EEmailType.cs" />
+    <Compile Include="Enums\EDiscount.cs" />
+    <Compile Include="Enums\ETaste.cs" />
+    <Compile Include="Enums\EWristCircumference.cs" />
+    <Compile Include="Enums\EYesNo.cs" />
+    <Compile Include="Enums\EZodiac.cs" />
+    <Compile Include="Enums\EZodiacElement.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Helpers\Methods.cs" />
+    <Compile Include="Interfaces\IGenoTypeBase.cs" />
+    <Compile Include="Interfaces\IScorableBase.cs" />
+    <Compile Include="Models\Activity.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\ArticleCategory.cs" />
+    <Compile Include="Models\ArticleSection.cs" />
+    <Compile Include="Models\CbsAndMethylationQuestionnaire.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientForbiddenFood.cs" />
+    <Compile Include="Models\ClientProduct.cs" />
+    <Compile Include="Models\DietaryRecommendation.cs" />
+    <Compile Include="Models\Doshas.cs" />
+    <Compile Include="Models\DoshasQuestionnaire.cs" />
+    <Compile Include="Models\FoodItem.cs" />
+    <Compile Include="Models\GenoTypeBase.cs" />
+    <Compile Include="Models\GenoTypeQuestionnaire.cs" />
+    <Compile Include="Models\GenoTypeStrengthTestResult.cs" />
+    <Compile Include="Models\GenoTypeStrengthTestResults.cs" />
+    <Compile Include="Models\HealthQuestionnaire.cs" />
+    <Compile Include="Models\HealthQuestionnaireFoodItem.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\MailingList.cs" />
+    <Compile Include="Models\EmailTemplate.cs" />
+    <Compile Include="Models\EmailQueueItem.cs" />
+    <Compile Include="Models\MailingListContact.cs" />
+    <Compile Include="Models\NineStarKiModel.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductIngredient.cs" />
+    <Compile Include="Models\PromoCode.cs" />
+    <Compile Include="Models\Protocol.cs" />
+    <Compile Include="Models\ProtocolActivity.cs" />
+    <Compile Include="Models\ProtocolDietaryRecommendation.cs" />
+    <Compile Include="Models\ProtocolFoods.cs" />
+    <Compile Include="Models\ProtocolProduct.cs" />
+    <Compile Include="Models\ProtocolProductPack.cs" />
+    <Compile Include="Models\ProtocolSection.cs" />
+    <Compile Include="Models\ProtocolSectionProduct.cs" />
+    <Compile Include="Models\ScorableBase.cs" />
+    <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\SystemSetting.cs" />
+    <Compile Include="Models\UserCreditPack.cs" />
+    <Compile Include="Models\UserOTP.cs" />
+    <Compile Include="Models\TimeZoneBase.cs" />
+    <Compile Include="Models\Slot.cs" />
+    <Compile Include="Models\Consultation.cs" />
+    <Compile Include="Models\Promotion.cs" />
+    <Compile Include="Models\MembershipOption.cs" />
+    <Compile Include="Models\UserConsultation.cs" />
+    <Compile Include="Models\MailingListUser.cs" />
+    <Compile Include="Models\UserPromoCode.cs" />
+    <Compile Include="Models\UserPromotion.cs" />
+    <Compile Include="Models\UserMembership.cs" />
+    <Compile Include="Models\Donation.cs" />
+    <Compile Include="Models\UserProtocol.cs" />
+    <Compile Include="Models\ZodiacModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Globalisation\Globalisation.csproj">
+      <Project>{37795dc6-45c9-458c-a3a5-48da6534c35c}</Project>
+      <Name>Globalisation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharedLibrary\K9.SharedLibrary.csproj">
+      <Project>{1030c285-fb19-4d76-8e0b-01eaca67bd31}</Project>
+      <Name>K9.SharedLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

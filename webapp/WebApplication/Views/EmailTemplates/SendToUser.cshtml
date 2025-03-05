@@ -1,0 +1,29 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model K9.WebApplication.ViewModels.SendEmailTemplateViewModel
+@{
+    ViewBag.Title = Dictionary.MailingLists;
+    ViewBag.SubTitle = Dictionary.SendToToUser;
+    Layout = "../Shared/_LayoutFormSmall.cshtml";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => Model.EmailTemplate.Id)
+        @Html.HiddenFor(model => Model.EmailTemplate.Name)
+        @Html.HiddenFor(model => Model.EmailTemplate.PromotionId)
+        @Html.HiddenFor(model => Model.EmailTemplate.MembershipOptionId)
+        @Html.HiddenFor(model => Model.EmailTemplate.SystemEmailTemplate)
+        @Html.HiddenFor(model => Model.EmailTemplate.Subject)
+        @Html.HiddenFor(model => Model.EmailTemplate.HtmlBody)
+
+        @Html.BootstrapDisplayFor(e => Model.EmailTemplate.Subject)
+        @Html.BootstrapDisplayFor(e => Model.EmailTemplate.HtmlBody)
+
+        @Html.BootstrapEditorFor(e => Model.UserId)
+
+        <hr />
+        @Html.BootstrapButton(K9.Globalisation.Dictionary.SendToToUser, EButtonType.Submit, "fa-save")
+        @Html.BootstrapBackToListButton()
+    }
+}

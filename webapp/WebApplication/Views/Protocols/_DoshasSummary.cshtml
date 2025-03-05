@@ -1,0 +1,40 @@
+﻿@using K9.DataAccessLayer.Enums
+@model Protocol
+
+@{
+    var doshas = Model.Prakruti;
+    var prakruti = doshas.GetDosha();
+    var doshasViewModel = new K9.WebApplication.ViewModels.DoshasViewModel(
+        null,
+        prakruti,
+        doshas.GetVataDoshaPercentage(),
+        doshas.GetPittaDoshaPercentage(),
+        doshas.GetKaphaDoshaPercentage(),
+        false);
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="section-title">@Dictionary.DoshasSummary</h1>
+        <br />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        @if (prakruti == EDosha.Vata || prakruti == EDosha.KaphaVata || prakruti == EDosha.VataPitta || prakruti == EDosha.Tridoshic)
+        {
+            @Html.Raw(Dictionary.VataDoshaDetails)
+            <hr />
+        }
+        @if (prakruti == EDosha.Pitta || prakruti == EDosha.PittaKapha || prakruti == EDosha.VataPitta || prakruti == EDosha.Tridoshic)
+        {
+            @Html.Raw(Dictionary.PittaDoshaDetails)
+            <hr />
+        }
+        @if (prakruti == EDosha.Kapha || prakruti == EDosha.PittaKapha || prakruti == EDosha.KaphaVata || prakruti == EDosha.Tridoshic)
+        {
+            @Html.Raw(Dictionary.KaphaDoshaDetails)
+        }
+    </div>
+</div>

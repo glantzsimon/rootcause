@@ -1,0 +1,219 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model FoodItem
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Name)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Category)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        @Html.BootstrapEditorFor(model => model.ShortDescription)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Benefits)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Recommendations)
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Colour</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsWhite)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsBeige)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsBlue)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsGreen)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsYellow)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsOrange)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsRed)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsPurple)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsBrown)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsBlack)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Flavour</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsBitter)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsSweet)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsPungent)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsSalty)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsSour)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsAstringent)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Season</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsSpring)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsSummer)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsLateSummer)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsAutumn)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsWinter)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.AyurvedicProperties</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsAggravatesVata)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsAggravatesPitta)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsAggravatesKapha)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsSattvic)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Properties</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.CanBeEatenRaw)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsLowCarb)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsNightshade)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighHistamine)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighLectin)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighMycotoxin)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighOmega6)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighOxalate)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighPhytate)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsBulletProof)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighSulphur)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsKeto)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapEditorFor(model => model.IsHighGoitrogen)
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.ImageFileSource)
+</div>
+
+<hr />
+
+@Html.Partial("_GenoTypeBaseEditFields")

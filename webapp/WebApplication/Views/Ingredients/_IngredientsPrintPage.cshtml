@@ -1,0 +1,25 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Models
+@model IngredientsLabelsViewModel
+
+<div class="well print-page-break">
+    <div class="row padding-0 margin-0">
+        @for (int i = 0; i < Model.SelectIngredients.Count; i++)
+        {
+            <div class="col-md-2 col-xs-4 padding-0 margin-0 print-page-break">
+                @Html.Partial("_IngredientLabel", Model.SelectIngredients[i])
+            </div>
+        }
+    </div>
+</div>
+
+<div class="well print-page-break">
+    <div class="row padding-0 margin-0">
+        @for (int i = 0; i < Model.SelectIngredients.Count; i++)
+        {
+        <div class="col-md-2 col-xs-4 padding-0 margin-0 print-page-break">
+            @Html.Partial("_IngredientApothecaryLabel", Model.SelectIngredients[i])
+        </div>
+        }
+    </div>
+</div>

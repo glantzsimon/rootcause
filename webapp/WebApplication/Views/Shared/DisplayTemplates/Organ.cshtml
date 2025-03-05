@@ -1,0 +1,16 @@
+﻿@using K9.Base.DataAccessLayer.Attributes
+@using K9.WebApplication.Attributes
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Config
+@model K9.WebApplication.Enums.EOrgan
+
+@{
+    var attribute = Model.GetAttribute<EnumDescriptionAttribute>();
+}
+
+<div class="text-center organs-container">
+    <div>
+        <img class="GetToTheRootki-image" loading="lazy" alt="@Dictionary.GetToTheRootKiAstrologyFreeCalculator" src="@DefaultValuesConfiguration.Instance.BaseImagesPath/GetToTheRoot/organs/@(Model.ToString().ToLower()).png" />
+    </div>
+    <h5>@attribute.GetDescription()</h5>
+</div>

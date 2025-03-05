@@ -1,0 +1,20 @@
+﻿@model UserMembership
+
+@{
+    ViewBag.Title = Dictionary.MembershipLabel;
+}
+
+<div class="shadow-light membership-option-container">
+    <div class="membership-option-title">
+        <h5><strong>@Model.MembershipOption.SubscriptionTypeNameLocal</strong></h5>
+    </div>
+    <div class="membership-option">
+        @Html.Partial("../Membership/_MembershipMedal", Model.MembershipOption)
+        <div class="membership-footer">
+            <div class="membership-selected-container">
+                @Html.Partial("_Selected")
+                @Html.Partial("../Membership/_MembershipFooter")
+            </div>
+        </div>
+    </div>
+</div>

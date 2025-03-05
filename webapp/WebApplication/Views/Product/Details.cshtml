@@ -1,0 +1,17 @@
+﻿@using System.Web.Mvc.Html
+@using K9.WebApplication.Helpers
+@model Product
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "../Shared/_LayoutForm.cshtml";
+    ViewBag.Background = ViewBagHelper.EViewBackground.Default;
+}
+
+<div class="container main-content">
+    <div class="well margin-bottom-0">
+        @Html.Partial("_Product", Model)
+    </div>
+</div>
+
+@Html.Partial("_DefaultAjax")

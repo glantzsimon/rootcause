@@ -1,0 +1,20 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Product
+@{
+    Layout = "../Shared/_LayoutForm.cshtml";
+    ViewBag.Title = Dictionary.DownloadProductsCsv;
+    ViewBag.SubTitle = Dictionary.DownloadProductsCsv;
+}
+
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.BootstrapActionLinkButton(Dictionary.DownloadProductsCsv, "DownloadProductsAll", "Products", null, "fa-download", EButtonClass.Success)
+        @Html.BootstrapActionLinkButton(Dictionary.DownloadProducts100CapsulesCsv, "DownloadProducts100Capsules", "Products", null, "fa-download", EButtonClass.Success)
+        @Html.BootstrapActionLinkButton(Dictionary.DownloadProducts200CapsulesCsv, "DownloadProducts200Capsules", "Products", null, "fa-download", EButtonClass.Success)
+        @Html.BootstrapActionLinkButton(Dictionary.DownloadProducts400CapsulesCsv, "DownloadProducts400Capsules", "Products", null, "fa-download", EButtonClass.Success)
+        @Html.BootstrapActionLinkButton(Dictionary.DownloadProductsLiquidsCsv, "DownloadProductsLiquids", "Products", null, "fa-download", EButtonClass.Success)
+        @Html.BootstrapActionLinkButton(Dictionary.DownloadProductsPowdersCsv, "DownloadProductsPowders", "Products", null, "fa-download", EButtonClass.Success)
+    }
+}

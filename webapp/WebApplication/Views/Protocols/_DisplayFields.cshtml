@@ -1,0 +1,84 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@{
+    var periodDisplayValue = Model.ProtocolFrequency == EProtocolFrequency.Custom ? "" : "none";
+    var daysOnOffDisplayValue = Model.ProtocolFrequency == EProtocolFrequency.Custom ? "none" : "";
+    var optionalFieldsDisplayValue = Model.Type == EProtocolType.Default ? "" : "none";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.Name)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.ClientId)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.Type)
+    </div>
+    <div class="col-sm-6" style="display: @optionalFieldsDisplayValue;">
+        @Html.BootstrapDisplayFor(model => model.ProtocolFrequency)
+    </div>
+</div>
+<div id="optional-fields-container" style="display: @optionalFieldsDisplayValue;">
+    <div id="days-container" class="row" style="display: @daysOnOffDisplayValue;">
+        <div id="daysOn-container" class="col-sm-6">
+            @Html.BootstrapDisplayFor(model => model.NumberOfPeriodsOn)
+        </div>
+        <div id="daysoff-container" class="col-sm-6">
+            @Html.BootstrapDisplayFor(model => model.NumberOfPeriodsOff)
+        </div>
+    </div>
+    <div id="period-container" class="row" style="display: @periodDisplayValue;">
+        <div class="col-sm-6">
+            @Html.BootstrapDisplayFor(model => model.PeriodValue)
+        </div>
+        <div class="col-sm-6">
+            @Html.BootstrapDisplayFor(model => model.Period)
+        </div>
+    </div>
+</div>
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            @Html.BootstrapDisplayFor(model => model.Duration)
+        </div>
+        <div class="col-sm-6">
+            @Html.BootstrapDisplayFor(model => model.DaysDuration)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            @Html.BootstrapDisplayFor(model => model.IsScheduleDisplayed)
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        @Html.BootstrapDisplayFor(model => model.ShortDescription)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        @Html.BootstrapDisplayFor(model => model.Body)
+    </div>
+</div>
+
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.ImageFileSource)
+</div>
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.VideoFileSource)
+</div>
+
+<hr />
+
+@Html.Partial("_GenoTypeBaseDisplayFields")

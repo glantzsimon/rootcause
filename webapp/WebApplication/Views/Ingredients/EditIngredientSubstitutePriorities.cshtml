@@ -1,0 +1,17 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Ingredient
+@{
+    ViewBag.SubTitle = $"{Dictionary.EditIngredientSubstitutePriorities} for {Model.Name}";
+    Layout = "../Shared/_LayoutForm.cshtml";
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.Partial("_EditIngredientSubstitutesPriorityFields")
+        
+        <hr />
+        @Html.BootstrapBackToListButton()
+    }
+}

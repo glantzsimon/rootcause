@@ -1,0 +1,35 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Section
+@{
+    Layout = "../Shared/_LayoutForm.cshtml";
+}
+@using (Html.BeginForm("View", "Sections"))
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.BootstrapEditorFor(model => model.ProtocolSectionId)
+    }
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        @Html.Partial("_DisplayFields")
+        @Html.AuditFieldsForModel(Model);
+
+        <hr />
+        @Html.BootstrapBackToListButton()
+        @Html.CrudButtonsForModel(Model)
+    }
+}
+
+<script type="text/javascript">
+    $(window).on("load",
+        function () {
+            $("#ProtocolSectionId").change(function () {
+                $("#ProtocolSectionId").closest("form").submit();
+            });
+        });
+</script>

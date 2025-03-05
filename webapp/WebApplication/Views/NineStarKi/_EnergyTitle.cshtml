@@ -1,0 +1,16 @@
+﻿@using K9.WebApplication.Config
+@using K9.WebApplication.Models
+@model NineStarKiEnergy
+
+@{
+    var label = Model.EnergyType == EGetToTheRootKiEnergyType.MainEnergy ? Model.AdultEnergyLabel
+        : Model.EnergyType == EGetToTheRootKiEnergyType.CharacterEnergy ? Model.CharacteEnergyLabel
+            : Model.EnergyType == EGetToTheRootKiEnergyType.SurfaceEnergy ? Dictionary.SurfaceEnergyShortLabel
+                : string.Empty;
+}
+
+<div class="GetToTheRoot-summary-container">
+    <h3 class="margin-bottom-0 padding-bottom-0">@label</h3>
+    <p>@Model.EnergyName</p>
+    <img loading="lazy" title="@Model.EnergyName" alt="@Dictionary.GetToTheRootKiAstrologyFreeCalculator @Model.EnergyName" class="auto-size center-block" src="@DefaultValuesConfiguration.Instance.BaseImagesPath/GetToTheRoot/energies/@(Model.Energy.ToString().ToLower()).png" />
+</div>

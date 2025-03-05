@@ -1,0 +1,37 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Protocol
+@{
+    Layout = "../Shared/_LayoutForm.cshtml";
+}
+@using (Html.BeginForm("View", "Protocols"))
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.BootstrapEditorFor(model => model.ProtocolId)
+    }
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        @Html.Partial("_DisplayFields")
+        @Html.AuditFieldsForModel(Model);
+
+        <hr />
+        @Html.BootstrapBackToListButton()
+        @Html.CrudButtonsForModel(Model)
+
+        @Html.Partial("_CollectionsButtons")
+    }
+}
+
+<script type="text/javascript">
+    $(window).on("load",
+        function () {
+            $("#ProtocolId").change(function () {
+                $("#ProtocolId").closest("form").submit();
+            });
+        });
+</script>

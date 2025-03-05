@@ -1,0 +1,659 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.GeneralHealth</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapEditorFor(e => e.CurrentHealthIssues)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapEditorFor(e => e.AllergiesAndSensitivitiesDetails)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapEditorFor(e => e.PrescriptionMedication)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapEditorFor(e => e.Supplements)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapEditorFor(e => e.SurgeryDetails)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapEditorFor(e => e.PhysicalTraumaDetails)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.EmotionalTrauma)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.EmotionalTrauma, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.InfectionSeverity)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.InfectionSeverity, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.CovidVaccine)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.CovidVaccine, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.LongCovid)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.LongCovid, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Smoke)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Smoke, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.DrinksAlcohol)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.DrinksAlcohol, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.CurrentHealthLevel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.CurrentHealthLevel, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.NutritionExpertiseLevel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.NutritionExpertiseLevel, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.EnjoysCooking)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.EnjoysCooking, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.CookingFrequency)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.CookingFrequency, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapEditorFor(e => e.HealthGoals)
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.SymptomCheckerTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.DigestiveHealth</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 padding-0">
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Bloating)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Gas)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IBS)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Hiccups)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.LooseStool)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Constipation)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.AbdominalPainOrCramping)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.CoatedTongue)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.SkinIssues)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.CandidaAndFungus)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Diverticulitis)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.LeakyGut)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.GrainyStools)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.LossOfAppetite)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Nauseas)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Vomiting)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.AbdominalDistention)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.RespiratoryHealth</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 padding-0">
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Asthma)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Bronchitis)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.PulmonaryFibrosis)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.COPD)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.CysticFibrosis)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Tuberculosis)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.LungCancer)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Pneumonia)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Dyspnea)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.MucusInLungs)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Wheezing)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.ChronicCough)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.TightnessInChest)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Inflammation</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 padding-0">
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.JointInflammation)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.CarpelTunnel)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.BackPain)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Autoimmunity)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.Cataracts)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EyePain)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.MusclePain)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.CardiovascularHealth</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.HighBloodPressure)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.LowBloodPressure)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Palpitations)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.EasilyOutOfBreath)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.ChestPain)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.HeartAttack)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Stroke)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.DentalHealth</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.AmalgamFillings)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.AmalgamFillingsHistory)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.ToothPain)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.TMJ)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.CrackedTeeth)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Cavities)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.RootCanals)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.DentalAbcsesses)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.OtherSymptoms</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.ColdIntolerant)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.ColdExtremities)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.BurningMouth)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.UTI)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.InterstitialCystitis)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.KidneyStones)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.DifficultyUrinating)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Osteoporosis)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.HairLoss)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Hemorrhoids)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.PCOS)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.SandyEye)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.HypoThyroidism)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Itching)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.VisionProblems)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.NasalCongestion)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.FlushingAndRedness)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.IrregularMenstruation)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.ADHD)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Hives)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Edema)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Allergies)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Dizziness)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Fatigue)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.LackOfCoordination)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Impotency)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.HormoneImbalance)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.MuscleWeakness)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Numbness)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.FrequentlySick)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.IncreasedThirst)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.MetalicTasteInMouth)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.MetabolicSyndroms)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Type2Diabetes)
+            </div>
+        </div>
+        <div class="col-xs-6 padding-0">
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Tinnitus)
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.BootstrapEditorFor(e => e.Rashes)
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<a id="backToPage10" class="btn btn-primary btn-lg" title="@Dictionary.Back" href="#">
+    <i class="fa fa-chevron-left"></i>
+    <span class="site-controls-text">
+        @Dictionary.Back
+    </span>
+</a>
+
+@Html.BootstrapButton(Dictionary.SaveAndContinue, EButtonType.Submit, "fa-chevron-right", EButtonClass.IconRight, EButtonClass.Large)
+
+<script type="text/javascript">
+
+    $(window).on("load",
+        function () {
+
+            $("#backToPage10").click(function () {
+                $.fn.activateTab("doshas");
+            });
+
+        });
+
+</script>

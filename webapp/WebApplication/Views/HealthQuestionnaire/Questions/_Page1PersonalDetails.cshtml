@@ -1,0 +1,161 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@model HealthQuestionnaire
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.PersonalDetails</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            @Html.BootstrapDisplayFor(e => e.Client.FullName)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            @Html.BootstrapEditorFor(e => e.DateOfBirth)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            @Html.BootstrapEditorFor(e => e.Gender)
+        </div>
+    </div>
+    @*@if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+    {
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                @Html.BootstrapEditorFor(e => e.IsIsLGBTQPlus)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>@Dictionary.WhyWeNeedGenderAndSexuality</h4>
+                @Dictionary.WhyWeNeedGenderAndSexualityAnswer
+            </div>
+        </div>
+    }*@
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.DietaryPreferences</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.FoodCategoriesQuestionTitle</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 padding-0">
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsRedMeat)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsPoultry)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsFishAndSeafood)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsDairy)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsVegetables)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsFungi)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsFruit)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.EatsGrains)
+                </div>
+            </div>
+            <div class="col-xs-12 padding-0">
+                <div class="col-xs-11">
+                    @Html.BootstrapEditorFor(e => e.EatsVegetableProtein)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.OtherDietaryPreferencesQuestionTitle</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-xs-12">
+                @Html.CollapsiblePanel(K9.Globalisation.Dictionary.MoreDetails, Html.Partial("_DietaryPreferenesMoreInfo").ToString())
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 padding-0">
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsLowOxalate)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsLowLectin)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsLowPhytate)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsLowHistamine)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsLowMycotoxin)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsLowOmega6)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsBulletProof)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsLowSulphur)
+                </div>
+            </div>
+            <div class="col-xs-6 padding-0">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsSattvic)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.BootstrapEditorFor(e => e.IsKeto)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+@Html.BootstrapButton(Dictionary.SaveAndContinue, EButtonType.Submit, "fa-chevron-right", EButtonClass.IconRight, EButtonClass.Large)

@@ -1,0 +1,11 @@
+﻿@using System.Web.Mvc.Html
+@model Article
+
+@Html.Partial("_ArticleHeader")
+<article>
+    @MvcHtmlString.Create(Model.Body)
+
+    <div class="buttons-container">
+        @Html.BootstrapActionLinkButton(Dictionary.SeeAllArticles, "Index", "Article", null, "", EButtonClass.Info, EButtonClass.Large)
+    </div>
+</article>

@@ -1,0 +1,8 @@
+﻿@using K9.WebApplication.Config
+@model K9.WebApplication.Models.NineStarKiEnergy
+
+<div class="GetToTheRoot-summary-container">
+    <h3 class="margin-bottom-0 padding-bottom-0">@Dictionary.Season</h3>
+    <p>@Model.SeasonDescription</p>
+    <img loading="lazy" title="@Model.SeasonDescription" alt="@Dictionary.GetToTheRootKiAstrologyFreeCalculator @Model.SeasonDescription" class="auto-size center-block" src="@DefaultValuesConfiguration.Instance.BaseImagesPath/GetToTheRoot/seasons/@(Model.Season.ToLower()).png" />
+</div>

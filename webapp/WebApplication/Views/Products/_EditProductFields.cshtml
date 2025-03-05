@@ -1,0 +1,90 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model List<Product>
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <a target="_blank" href="@Url.Action("DownloadProductsCsv", "Products")">
+            <h4>@Dictionary.DownloadAsCsv</h4>
+        </a>
+    </div>
+    <div class="col-sm-6">
+    </div>
+</div>
+
+<hr />
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    @Html.HiddenFor(e => Model[i].Id)
+    @Html.HiddenFor(e => Model[i].Name)
+
+    <div class="row margin-bottom-0 padding-bottom-0">
+        <div class="col-sm-9">
+            <a target="_blank" href="@Url.Action("Edit", "Products", new {id = Model[i].Id})">
+                @Html.DisplayFor(e => Model[i].Name)
+            </a>
+        </div>
+        <div class="col-sm-3">
+            @Html.LabelFor(e => Model[i].SuggestedRetailPrice) - @Html.ValueFor(e => Model[i].FormattedSuggestedRetailPrice)
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].SubTitleLabelText)
+        </div>
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].ItemCode)
+        </div>
+        <div class="col-sm-2">
+            @Html.HiddenFor(e => Model[i].ProductType, new { data_input_id = "product-type" })
+            @Html.BootstrapEditorFor(e => Model[i].Amount)
+        </div>
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].CostOfMaterials)
+        </div>
+        <div class="col-sm-1">
+            @Html.BootstrapEditorFor(e => Model[i].MinDosage)
+        </div>
+        <div class="col-sm-1">
+            @Html.BootstrapEditorFor(e => Model[i].MaxDosage)
+        </div>
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].Price)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.BootstrapEditorFor(e => Model[i].ShortDescription)
+        </div>
+        <div class="col-sm-4">
+            @Html.BootstrapEditorFor(e => Model[i].Body)
+        </div>
+        <div class="col-sm-4">
+            @Html.BootstrapEditorFor(e => Model[i].Benefits)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].Dosage)
+        </div>
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].Recommendations)
+        </div>
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].Category)
+        </div>
+        <div class="col-sm-2">
+            @Html.BootstrapEditorFor(e => Model[i].ItemCode)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            @Html.CollapsiblePanel(Dictionary.Ingredients, Html.Partial("../Products/_IngredientsSummary", Model[i]).ToString())
+        </div>
+    </div>
+    <hr />
+}
+

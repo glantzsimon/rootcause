@@ -1,0 +1,12 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Authentication
+@using K9.WebApplication.Helpers
+@model Protocol
+@{
+    Layout = "../Shared/_LayoutForm.cshtml";
+    ViewBag.SubTitle = Model.Name;
+}
+
+@Html.Partial("../Protocols/_SummaryPartial")

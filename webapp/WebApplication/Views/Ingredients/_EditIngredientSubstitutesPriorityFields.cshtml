@@ -1,0 +1,34 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model Ingredient
+
+<ul id="ingredients-list" class="list-group sortable">
+    @for (int i = 0; i < Model.Substitutes.Count; i++)
+    {
+        @Html.HiddenFor(e => Model.Substitutes[i].Id)
+        @Html.HiddenFor(e => Model.Substitutes[i].Ingredient.Id)
+        @Html.HiddenFor(e => Model.Substitutes[i].Ingredient.Name)
+        @Html.HiddenFor(e => Model.Substitutes[i].Priority)
+
+        <li data-id="@Model.Substitutes[i].Id" class="list-group-item">@Model.Substitutes[i].SubstituteIngredient.Name</li>
+    }
+</ul>
+
+@Html.Partial("_AjaxPopup", new AjaxPopupOptions())
+
+<script type="text/javascript">
+
+    $("#ingredients-list").on("indexChanged", function(e, data) {
+        $("#pageSpinner").show();
+
+        ajaxcontroller().send("@Url.Action("UpdateIngredientPriorities")", data, "POST").done(
+            function(result) {
+                if (!result.success) {
+                    console.log(result.error);
+                    $.fn.processResultAndShowPopup(result);
+                }
+            });
+    })
+
+</script>

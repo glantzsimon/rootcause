@@ -1,0 +1,257 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.WebApplication.Helpers
+@model GenoTypeBase
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.DietaryRecommendation</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Vegetarian)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Vegan)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Fruitarian)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Carnivore)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Pescatarian)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Doshas</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.VataDosha)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.PittaDosha)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.KaphaDosha)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.GenoTypes</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Hunter)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Gatherer)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Teacher)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Explorer)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Warrior)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Nomad)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.HunterCompatibilityLevel)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.GathererCompatibilityLevel)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.TeacherCompatibilityLevel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.ExplorerCompatibilityLevel)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.WarriorCompatibilityLevel)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.NomadCompatibilityLevel)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.HunterFrequency)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.GathererFrequency)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.TeacherFrequency)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.ExplorerFrequency)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.WarriorFrequency)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.NomadFrequency)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Elements</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Water)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Earth)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Tree)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Metal)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Fire)
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="section-title">@Dictionary.Treatment</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.AntiInflammatory)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.AntiOxidant)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.BloodBuilding)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.CardioVascularHealth)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Cbs)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.CellularHealth)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Cognition)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.DentalHealth)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Detoxification)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.DigestiveHealth)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.DNAIntegrity)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Fertility)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.HormoneBalance)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Immunity)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Longevity)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Mood)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.NeurologicalHealth)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Pregnancy)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Restorative)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Sleep)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.StressRelief)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.UrologicalHealth)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.Vitality)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.WeightLoss)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.MensHealth)
+        </div>
+        <div class="col-sm-4 col-xs-6">
+            @Html.BootstrapDisplayFor(model => model.WomensHealth)
+        </div>
+    </div>
+</div>

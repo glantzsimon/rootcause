@@ -1,0 +1,481 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.BiometricsTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Raw(Dictionary.Biometrics)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12">
+            <img title="Height Measurements" alt="Height Measurements" class="auto-size center-block" src="../Images/questionnaire/height-measurements.png" />
+        </div>
+    </div>
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.StandingHeightTitle</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.StandingHeight)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.StandingHeight, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToDetermineStandingHeight, Dictionary.StandingHeightInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.SittingHeightTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.SittingHeight)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.SittingHeight, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToDetermineSittingHeight, Dictionary.SittingHeightInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.ChairHeightTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.ChairHeight)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.ChairHeight, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToMeasureChairHeight, Dictionary.ChairHeightInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.LowerLegLengthTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.LowerLegLength)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.LowerLegLength, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToMeasureLowerLeg, Dictionary.LowerLegLengthInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.UpperLegLengthTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.UpperLegLength)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.UpperLegLength, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToMeasureUpperLeg, Dictionary.UpperLegLengthInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.FingerLength</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.IndexFingerLengthLeft)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.IndexFingerLengthLeft, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.IndexFingerLengthRight)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.IndexFingerLengthRight, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.RingFingerLengthLeft)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.RingFingerLengthLeft, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.RingFingerLengthRight)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.RingFingerLengthRight, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToMeasureLengthOfFingers, Dictionary.FingerLengthInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.SpaceBetweenThighsTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.SpaceBetweenThighs)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.SpaceBetweenThighs, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToMeasureSpaceBetweenThighs, Dictionary.LegGapMeasurementInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.WaistToHipRatio</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.WaistSize)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.WaistSize, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.HipSize)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.HipSize, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HowToMeasureYourWaistAndHips, Dictionary.WaistToHipRatioInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.HeadAndJawTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.GonialAngle)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.GonialAngle, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.GonialAngleLabel, Dictionary.GonialAngle, true)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.HeadWidth)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.HeadWidth, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.HeadLength)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.HeadLength, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.HeadShapeLabel, Dictionary.HeadShapeInstructions, true)
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.SomatoTypeTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.SomatoType)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.SomatoType, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.SomatoTypeTitle, Dictionary.SomatoTypeInstructions, true)
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.WristCircumference)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.WristCircumference, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.CollapsiblePanel(Dictionary.WristCircumferenceTest, Dictionary.WristCircumferenceTestInstructions, true)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.TendonsAndSinewsVisible)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.TendonsAndSinewsVisible, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.WristsAndAnklesLookPadded)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.WristsAndAnklesLookPadded, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.GainsMuscleEasily)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.GainsMuscleEasily, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<a id="backToPage3" class="btn btn-primary btn-lg" title="@Dictionary.Back" href="#">
+    <i class="fa fa-chevron-left"></i>
+    <span class="site-controls-text">
+        @Dictionary.Back
+    </span>
+</a>
+
+@Html.BootstrapButton(Dictionary.SaveAndContinue, EButtonType.Submit, "fa-chevron-right", EButtonClass.IconRight, EButtonClass.Large)
+
+<script type="text/javascript">
+
+    $(window).on("load",
+        function () {
+
+            $("#backToPage3").click(function () {
+                $.fn.activateTab("acetylation");
+            });
+
+        });
+
+</script>

@@ -1,0 +1,32 @@
+﻿@using System.Web.Mvc.Html
+@using K9.Base.DataAccessLayer.Enums
+@using K9.Base.WebApplication.ViewModels
+@using K9.WebApplication.Extensions
+@model Article
+
+@if (Model.ImageFileSource != null)
+{
+    @Html.Partial("_ImageFilesDisplay", new FileSourceViewModel(Model.ImageFileSource))
+}
+else if (Model.VideoFileSource != null)
+{
+    @Html.Partial("_VideoFilesDisplay", new FileSourceViewModel(Model.VideoFileSource))
+}
+else if (!string.IsNullOrEmpty(Model.VideoUrl))
+{
+    @Html.Partial("_EmbeddedVideo", Model.ImageUrl)
+}
+
+<div class="row text-center">
+    <div class="col-md-12" id="@Model.Id">
+        <h5 class="margin-top-0 goldenrod">
+            @Model.Subject
+        </h5>
+        <div class="news-item-title">
+            <p><strong>@K9.Base.Globalisation.Dictionary.PublishedOnLabel</strong>: @Model.PublishedOn.ToLongDateString()</p>
+            <div class="margin-top-5">
+                @Html.BootstrapActionLinkButton(Dictionary.FindOutMore, "Details", "Article", new { seoFriendlyId = Model.SeoFriendlyId }, "", EButtonClass.Primary, EButtonClass.Small)
+            </div>
+        </div>
+    </div>
+</div>

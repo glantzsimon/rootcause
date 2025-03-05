@@ -1,0 +1,58 @@
+﻿@using System.Web.Mvc.Html
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model K9.WebApplication.ViewModels.ProtocolsViewModel
+
+    @{
+        ViewBag.Title = Dictionary.Protocols;
+        ViewBag.SubTitle = Dictionary.Protocols;
+        Layout = "../Shared/_LayoutFormMedium.cshtml";
+        ViewBag.Background = ViewBagHelper.EViewBackground.Default;
+    }
+
+    <div class="container main-content">
+        <div class="well margin-bottom-0">
+            @Html.ImagePanel("", "~/Images/pages/protocols.png", EPanelImageSize.Medium)
+
+            <article>
+                <h2>Disclaimer:</h2>
+                <p>
+                    <strong>
+                        The following protocols as offered to you for educational purposes only. They should not be used to treat any medical condition. Anybody who uses the infomration provided below takes full responsibility for doing so.
+                    </strong>
+                </p>
+
+                <p>Not every protocol is appropriate for every person. Following a protocol that is not suitable could have unpredictable consequences and could make matters worse. Some protocols can be used individually, whereas others need to be used as part of a more comprehensive healing programme. The order in which some protocols are followed is very important.</p>
+
+                <p>
+                    <strong>
+                        We strongly encourage you to work with a qualified healthcare professional.
+                    </strong>
+                </p>
+
+                <hr />
+
+                <h4>
+                    @Dictionary.Protocols
+                </h4>
+
+                @if (Model.Recommended.Any())
+                {
+                    <div class="content-table well">
+                        <h4>@Dictionary.RecommendedForYou</h4>
+                        @foreach (var protocol in Model.Recommended)
+                        {
+                            @Html.Panel(protocol.Name, Html.Partial("_ProtocolSummary", protocol).ToString())
+                        }
+                    </div>
+                }
+                
+                <div class="content-table well">
+                    @foreach (var protocol in Model.Protocols)
+                    {
+                        @Html.Panel(protocol.Name, Html.Partial("_ProtocolSummary", protocol).ToString())
+                    }
+                </div>
+            </article>
+        </div>
+    </div>

@@ -1,0 +1,22 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Models
+@model List<Product>
+
+<div class="row padding-0 margin-0">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var selectedItem = Model[i];
+
+        for (int j = 0; j < selectedItem.DisplayAmount; j++)
+        {
+            <div class="col-xs-1 margin-0">
+                <img class="qr-code" src="@selectedItem.QrCodeUrl" />
+                <p class="text-center">@selectedItem.Name</p>
+                <div class="align-centre">
+                    <p class="text-center price-tag">@selectedItem.GetFormattedShopPrice()</p>
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -1,0 +1,38 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Activity
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Name)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.ShortDescription)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Benefits)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Recommendations)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        @Html.BootstrapEditorFor(model => model.Body)
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.ImageFileSource)
+</div>
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.VideoFileSource)
+</div>
+
+<hr />
+
+@Html.Partial("_GenoTypeBaseEditFields")

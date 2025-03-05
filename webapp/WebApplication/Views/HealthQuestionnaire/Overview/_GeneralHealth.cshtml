@@ -1,0 +1,182 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Attributes
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Extensions
+@using K9.Base.WebApplication.ViewModels
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.GeneralHealth</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @foreach (var property in Model.GeneralHealthProperties())
+            {
+                var value = Model.GetProperty(property);
+                if (value != null)
+                {
+                    if (value.GetType() == typeof(bool))
+                    {
+                        if ((bool)value == true)
+                        {
+                            <span class="summary-item">@property.Name.SplitOnCapitalLetter()</span>
+                        }
+                    }
+                    else if ((EYesNo)value == EYesNo.Yes)
+                    {
+                        <span class="summary-item">@property.Name.SplitOnCapitalLetter()</span>
+                    }
+                }
+            }
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.DietaryPreferences</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @foreach (var property in Model.GeneralDietaryPreferencesProperties())
+            {
+                var value = Model.GetProperty(property);
+                if (value != null)
+                {
+                    if (value.GetType() == typeof(bool))
+                    {
+                        if ((bool)value == true)
+                        {
+                            <span class="summary-item">@property.Name.SplitOnCapitalLetter()</span>
+                        }
+                    }
+                    else if ((EYesNo)value == EYesNo.Yes)
+                    {
+                        <span class="summary-item">@property.Name.SplitOnCapitalLetter()</span>
+                    }
+                }
+            }
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.CurrentHealthIssues, new EditorOptions
+            {
+                Label = Dictionary.CurrentHealthIssues
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.HealthGoals, new EditorOptions
+           {
+               Label = Dictionary.HealthGoals
+           })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.AllergiesAndSensitivitiesDetails, new EditorOptions
+            {
+                Label = Dictionary.AllergiesAndSensitivities
+            })
+        </div>
+    </div>
+
+    @if (Model.SkinIssues)
+    {
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                @Html.BootstrapDisplayFor(e => e.SkinIssuesDetails, new EditorOptions
+                {
+                    Label = Dictionary.SkinIssues
+                })
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.InfectionSeverity, new EditorOptions
+            {
+                Label = Dictionary.InfectionSeverity
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.SurgeryDetails, new EditorOptions
+            {
+                Label = Dictionary.SurgeryDetails
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.PhysicalTraumaDetails, new EditorOptions
+           {
+               Label = Dictionary.PhysicalTrauma
+           })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.DentalIssues, new EditorOptions
+            {
+                Label = Dictionary.DentalIssues
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.PrescriptionMedication, new EditorOptions
+            {
+                Label = Dictionary.PrescriptionMedication
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.Exercise, new EditorOptions
+           {
+               Label = Dictionary.Exercise
+           })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            @Html.BootstrapDisplayFor(e => e.Supplements, new EditorOptions
+            {
+                Label = Dictionary.Supplements
+            })
+        </div>
+    </div>
+
+    @if (Model.EyesFileSource != null)
+    {
+        @Html.Partial("_ImageFilesDisplay", new FileSourceViewModel(Model.EyesFileSource))
+    }
+</div>
+

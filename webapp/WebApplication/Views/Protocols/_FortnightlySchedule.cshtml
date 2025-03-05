@@ -1,0 +1,27 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Services
+@model Protocol
+
+@{
+    var schedule = ProtocolService.GetSchedule(Model);
+}
+
+@for (int i = 0; i < 1; i++)
+{
+    <div class="row">
+        @for (int j = 1; j <= 12; j++)
+        {
+            var dayNumber = j + (i * 12);
+            var dayText = $"{@Dictionary.Day} {dayNumber}";
+            var isChecked = schedule.Contains(dayNumber);
+
+            <div class="col-xs-2 col-xs-offset-1">
+                <div class="schedule-box">
+                    @dayText
+                    @Html.CheckBox("mon", isChecked)
+                </div>
+            </div>
+        }
+    </div>
+}

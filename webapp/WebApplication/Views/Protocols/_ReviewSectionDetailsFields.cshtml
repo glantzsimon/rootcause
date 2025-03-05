@@ -1,0 +1,110 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model K9.WebApplication.ViewModels.ProtocolReviewViewModel
+
+@{
+    var protocolReviewItems = Model.GetAllProducts();
+}
+
+@Html.HiddenFor(e => Model.Protocol.Id)
+
+<div class="row">
+    <div class="col-sm-2">
+        @Html.LabelFor(e => Model.Protocol.ProtocolSections[0].Section.Name)
+    </div>
+    <div class="col-sm-4">
+        @Html.LabelFor(e => Model.Protocol.ProtocolSections[0].Section.ShortDescription)
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-7">
+                @Html.LabelFor(e => Model.Protocol.ProtocolSections[0].ProtocolSectionProducts[0].ProductName)
+            </div>
+            <div class="col-sm-5">
+                @Html.LabelFor(e => Model.Protocol.ProtocolSections[0].ProtocolSectionProducts[0].Product.Dosage)
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+@for (int i = 0; i < Model.Protocol.ProtocolSections.Count; i++)
+{
+    @Html.HiddenFor(e => Model.Protocol.ProtocolSections[i].Id)
+    @Html.HiddenFor(e => Model.Protocol.ProtocolSections[i].SectionId)
+    @Html.HiddenFor(e => Model.Protocol.ProtocolSections[i].Section.Name)
+    var section = Model.Protocol.ProtocolSections[i];
+
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.DisplayFor(e => section.Section.Name)
+        </div>
+        <div class="col-sm-4">
+            @Html.DisplayFor(e => section.Section.ShortDescription)
+        </div>
+        <div class="col-sm-6">
+            @for (int j = 0; j < Model.Protocol.ProtocolSections[i].ProtocolSectionProducts.Count; j++)
+            {
+                var product = Model.Protocol.ProtocolSections[i].ProtocolSectionProducts[j];
+
+                @Html.HiddenFor(e => Model.Protocol.ProtocolSections[i].ProtocolSectionProducts[j].Id)
+                @Html.HiddenFor(e => Model.Protocol.ProtocolSections[i].ProtocolSectionProducts[j].Product.Id)
+                @Html.HiddenFor(e => Model.Protocol.ProtocolSections[i].ProtocolSectionProducts[j].Product.ProductType)
+                @Html.HiddenFor(e => Model.Protocol.ProtocolSections[i].ProtocolSectionProducts[j].Product.Amount)
+
+                if (product.IsVisible && product.Amount > 0)
+                {
+                    <div class="row">
+                        <div class="col-sm-7">
+                            @Html.Label(product.Product.Name)
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.BootstrapDisplayFor(e => Model.Protocol.ProtocolSections[i].ProtocolSectionProducts[j].Amount, new EditorOptions
+                            {
+                                Label = ""
+                            })
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <hr />
+}
+
+@if (Model.Protocol.ProductPacks.Any() || Model.Protocol.Products.Any())
+{
+    <div class="row">
+        <div class="col-sm-2">
+            <h4>@Dictionary.SummaryLabel</h4>
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-6">
+
+        
+            @for (int j = 0; j < protocolReviewItems.Count; j++)
+            {
+                var item = protocolReviewItems[j];
+            
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>@item.Product.Name</h4>
+                        @if (!item.GetAmountsAreEqual())
+                        {
+                            <span class="field-validation-error">@Dictionary.ProductAmountsAreNotEqualError</span>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        @Html.BootstrapDisplayFor(e => item.AmountRequired)
+                    </div>
+                    <div class="col-xs-6">
+                        @Html.BootstrapDisplayFor(e => item.ActualAmount)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

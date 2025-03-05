@@ -1,0 +1,18 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Product
+
+@if (Model.Id > 0)
+{
+    @Html.BootstrapActionLinkButton(Dictionary.EditIngredients, "EditIngredients", "Products", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+    if (Model.Ingredients != null && Model.Ingredients.Any())
+    {
+        @Html.BootstrapActionLinkButton(Dictionary.EditIngredientQuantities, "EditIngredientQuantities", "Products", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+
+        @Html.BootstrapActionLinkButton(Dictionary.EditIngredientSubstitutes, "EditIngredientSubstitutes", "Products", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+
+        @Html.BootstrapActionLinkButton(Dictionary.DuplicateProduct, "DuplicateProduct", "Products", new { id = Model.Id }, "fa fa-copy", EButtonClass.Primary)
+
+        @Html.BootstrapActionLinkButton(Dictionary.ViewLabSheet, "LabSheet", "Products", new { id = Model.Id }, "fa fa-file", EButtonClass.Success)
+    }
+}

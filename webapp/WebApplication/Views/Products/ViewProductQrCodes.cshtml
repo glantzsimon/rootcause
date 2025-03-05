@@ -1,0 +1,8 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model List<Product>
+@{
+    ViewBag.SubTitle = Dictionary.ViewProductQrCodes;
+    Layout = "../Shared/_LayoutPrint.cshtml";
+}
+
+@Html.Partial("_ViewQrCodes")

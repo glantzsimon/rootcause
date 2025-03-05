@@ -1,0 +1,28 @@
+﻿@using K9.Base.WebApplication.Controllers
+@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Authentication
+@using SessionHelper = K9.WebApplication.Helpers.SessionHelper
+@model UserConsultation
+@{
+	Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+
+<script language="javascript">
+    $(function () {
+        customOrder = [[0, "desc"]];
+    });
+</script>
+
+@Html.BootstrapTable(new DataTableOptions<UserConsultation>
+{
+    AllowCreate = false,
+    AllowEdit = false,
+    AllowDelete = SessionHelper.CurrentUserIsAdmin(),
+    VisibleColumns = new List<string>
+    {
+        "CreatedOn",
+        "UserName",
+        "DurationDescription",
+        "FormattedPrice",
+    }
+})

@@ -1,0 +1,84 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@Html.HiddenFor(e => Model.Id)
+
+@if (Model.ProtocolSections != null && Model.ProtocolSections.SelectMany(e => e.ProtocolSectionProducts).Any())
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>@Dictionary.Supplementation</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2">
+            @Html.LabelFor(e => Model.ProtocolSections[0].Section.Name)
+        </div>
+        <div class="col-xs-4">
+            @Html.LabelFor(e => Model.ProtocolSections[0].Section.ShortDescription)
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-7">
+                    @Html.LabelFor(e => Model.ProtocolSections[0].ProtocolSectionProducts[0].ProductName)
+                </div>
+                <div class="col-xs-5">
+                    @Html.LabelFor(e => Model.ProtocolSections[0].ProtocolSectionProducts[0].Product.Dosage)
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    for (int i = 0; i < Model.ProtocolSections.Count; i++)
+    {
+        @Html.HiddenFor(e => Model.ProtocolSections[i].Section.Id)
+
+        var section = Model.ProtocolSections[i];
+        var isVisible = section.ProtocolSectionProducts.Where(e => e.Amount > 0).Any();
+        var displayClass = isVisible ? "" : "none";
+        var isLast = i == Model.ProtocolSections.Count - 1;
+
+        <div class="row" style="display: @displayClass;">
+            <div class="col-xs-2">
+                @Html.DisplayFor(e => section.Section.Name)
+            </div>
+            <div class="col-xs-4">
+                @Html.DisplayFor(e => section.Section.ShortDescription)
+            </div>
+            <div class="col-xs-6">
+                @for (int j = 0; j < Model.ProtocolSections[i].ProtocolSectionProducts.Count; j++)
+                {
+                    var product = Model.ProtocolSections[i].ProtocolSectionProducts[j];
+
+                    @Html.HiddenFor(e => Model.ProtocolSections[i].ProtocolSectionProducts[j].Id)
+                    @Html.HiddenFor(e => Model.ProtocolSections[i].ProtocolSectionProducts[j].Product.Id)
+
+                    if (product.IsVisible && product.Amount > 0)
+                    {
+                        <div class="row">
+                            <div class="col-xs-7">
+                                @Html.Label(product.Product.Name)
+                            </div>
+                            <div class="col-xs-5">
+                                @if (!Model.ProtocolSections[i].Section.IsCustom)
+                                {
+                                    @Html.BootstrapDisplayFor(e => Model.ProtocolSections[i].ProtocolSectionProducts[j].FormattedAmount, new EditorOptions
+                                    {
+                                        Label = ""
+                                    })
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        if (isVisible && !isLast)
+        {
+            <hr />
+        }
+    }
+}

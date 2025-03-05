@@ -1,0 +1,154 @@
+﻿@using K9.Base.DataAccessLayer.Attributes;
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Attributes
+@using K9.DataAccessLayer.Enums
+@using K9.DataAccessLayer.Helpers
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Helpers
+@model K9.WebApplication.ViewModels.RecommendedFoodsViewModel
+
+
+@if (Model.RecommendedFoods.Any())
+{
+
+    <ul class="nav nav-pills">
+        @for (int i = 0; i < Model.FoodGroups.Count; i++)
+        {
+            var foodGroup = Model.FoodGroups[i];
+            var foodGroupName = foodGroup.ToString();
+            var foodGroupDescription = foodGroup.GetAttribute<EnumDescriptionAttribute>().GetDescription();
+            var activeClass = i == 0 ? "active" : "";
+
+            <li class="@activeClass"><a data-toggle="pill" href="#@foodGroupName">@foodGroupDescription</a></li>
+        }
+    </ul>
+
+    <div class="tab-content">
+        @for (int i = 0; i < Model.FoodGroups.Count; i++)
+        {
+            var foodGroup = Model.FoodGroups[i];
+            var foodGroupName = foodGroup.ToString();
+            var activeClass = i == 0 ? "active in" : "";
+
+            <div id="@foodGroupName" class="tab-pane fade @activeClass padding-top-15">
+                @if (foodGroup == EFoodGroup.Carbohydrates || foodGroup == EFoodGroup.Proteins)
+                {
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="alert alert-info">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <h4>@Dictionary.ImportacneOfSoaking</h4>
+                                <p>@Dictionary.SoakPulsesNutsAndSeeds</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var level in Model.Levels)
+                {
+                    var levelName = level.GetAttribute<EnumDescriptionAttribute>().GetDescription();
+                    var compatibilityEnumMetaDataAttribute = level.GetAttribute<ECompatibilityEnumMetaDataAttribute>();
+                    var levelDescription = compatibilityEnumMetaDataAttribute.GetDescription();
+                    var levelColor = compatibilityEnumMetaDataAttribute.Color;
+                    var filteredFoods = Model.GetRecommendedFoodsForLevelAndGroup(foodGroup, level);
+
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4>@levelName</h4>
+                                <p><i>@levelDescription</i></p>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @if (filteredFoods != null && filteredFoods.Any())
+                                {
+                                    for (int j = 0; j < filteredFoods.Count; j++)
+                                    {
+                                        var recommendedFood = filteredFoods[j];
+                                        var isShowInfo = recommendedFood.IsHighOxalate ||
+                                                         recommendedFood.IsHighLectin ||
+                                                         recommendedFood.IsHighPhytate ||
+                                                         recommendedFood.IsHighHistamine ||
+                                                         recommendedFood.IsHighMycotoxin ||
+                                                         recommendedFood.IsHighOmega6 ||
+                                                         recommendedFood.IsBulletProof ||
+                                                         recommendedFood.IsSattvic;
+
+                                <span data-id="@recommendedFood.Id" class="summary-item recommended-food" style="background-color: @levelColor !important;">
+
+                                    @if (level != ECompatibilityLevel.Suboptimal && level != ECompatibilityLevel.Unsuitable)
+                                    {
+                                        @Html.Raw(recommendedFood.GetRelativeScoreHtml())
+                                    }
+
+                                    <span>@recommendedFood.Name</span>
+
+                                    @if (Model.ClientId.HasValue)
+                                    {
+                                        if (level < ECompatibilityLevel.Suboptimal)
+                                        {
+                                            <i data-food-id="@recommendedFood.Id" data-toggle="tooltip" class="fa fa-thumbs-down food-item-icon demote-food-item" title="@Dictionary.FoodIsUnsuitableTitle"></i>
+                                        }
+
+                                        if (recommendedFood.IsDemoted)
+                                        {
+                                            <i data-food-id="@recommendedFood.Id" data-toggle="tooltip" class="fa fa-thumbs-up food-item-icon promote-food-item" title="@Dictionary.FoodIsSuitableTitle"></i>
+                                        }
+
+                                        if (isShowInfo)
+                                        {
+                                            <i data-food-id="@recommendedFood.Id" data-toggle="tooltip" class="fa fa-info-circle food-item-info" title="@recommendedFood.GetFoodAllergyInfo()"></i>
+                                        }
+                                    }
+                                </span>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+
+<script type="text/javascript">
+    $(window).on("load",
+        function () {
+        $("i.demote-food-item").click(function() {
+            $("#pageSpinner").show();
+            let $el = $(this);
+            var foodItemId = $el.data("food-id");
+            ajaxcontroller().send("@Url.Action("AddFoodItem", "ClientForbiddenFoods")",
+                {
+                    clientId: @Model.ClientId,
+                    foodItemId: foodItemId
+                }, "POST").done(
+                function(result) {
+                    $.fn.processResultAndShowPopup(result);
+                    $el.parent().fadeOut();
+                });
+        });
+
+        $("i.promote-food-item").click(function() {
+            $("#pageSpinner").show();
+            let $el = $(this);
+            var foodItemId = $el.data("food-id");
+            ajaxcontroller().send("@Url.Action("PromoteFoodItem", "ClientForbiddenFoods")",
+                {
+                    clientId: @Model.ClientId,
+                    foodItemId: foodItemId
+                }, "POST").done(
+                function(result) {
+                    $.fn.processResultAndShowPopup(result);
+                    $el.parent().fadeOut();
+                    window.setTimeout(function () {
+                            location.reload();
+                        },
+                        500);
+                });
+        });
+    })
+</script>

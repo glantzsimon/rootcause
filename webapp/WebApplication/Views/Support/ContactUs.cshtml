@@ -1,0 +1,9 @@
+﻿@model K9.Base.WebApplication.ViewModels.ContactUsViewModel
+@{
+    ViewBag.Title = K9.Base.Globalisation.Dictionary.GetInTouchTitle;
+    ViewBag.SubTitle = K9.Base.Globalisation.Dictionary.GetInTouchTitle;
+    Layout = "../Shared/_LayoutFormSmall.cshtml";
+}
+
+@Html.Action("_ContactUs")
+

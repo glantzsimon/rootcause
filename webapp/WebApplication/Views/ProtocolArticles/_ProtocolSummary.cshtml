@@ -1,0 +1,17 @@
+﻿@using System.Web.Mvc.Html
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model Protocol
+
+<div class="row">
+    <div class="col-sm-12">
+        @Html.Raw(Model.ShortDescription)
+        
+        @Html.CollapsibleDiv(Model.Body)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        @Html.BootstrapActionLinkButton($"{Dictionary.View} {Dictionary.Details}", "Summary", "Protocol", new { id = Model.ExternalId }, "", EButtonClass.Large)
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Protocol
+@{
+    Layout = "../Shared/_LayoutFormSmall.cshtml";
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(e => e.ExternalId)
+        @Html.HiddenFor(e => e.GenoType)
+        
+        @Html.Partial("_EditFields")
+        <hr />
+        @Html.BootstrapButton(K9.Base.Globalisation.Dictionary.Update, EButtonType.Submit, "fa-save")
+        @Html.BootstrapBackToListButton()
+
+        @Html.Partial("_CollectionsButtons")
+    }
+}

@@ -1,0 +1,22 @@
+﻿@using System.Web.Mvc.Html
+@using K9.Base.WebApplication.ViewModels
+@model Product
+
+
+<h5>@Dictionary.Ingredients</h5>
+<p><strong>@Dictionary.EachServingContains</strong></p>
+
+@foreach (var productIngredient in Model.ProductIngredients)
+{
+    <div clas="row">
+        <div class="col-sm-3"><strong>@productIngredient.Ingredient.Name</strong></div>
+        <div class="col-sm-2">
+            <p>@MvcHtmlString.Create(productIngredient.GetFormattedAmount())</p>
+        </div>
+        <div class="col-sm-5"><p class="small-text text-align-left">@MvcHtmlString.Create(productIngredient.Ingredient.ShortDescription)</p></div>
+        <div class="col-sm-2">@Html.BootstrapActionLinkButton(Dictionary.FindOutMore, "Details", "Ingredient", new { seoFriendlyId = productIngredient.Ingredient.SeoFriendlyId }, "", EButtonClass.Primary, EButtonClass.Small)</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">&nbsp;</div>
+    </div>
+}

@@ -1,0 +1,41 @@
+﻿.otp-container .well {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 12px !important;
+  padding-bottom: 2px !important;
+}
+.otp-container .verification-container {
+  border: 1px solid #8a8a8a;
+  border-radius: 8px;
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  text-align: center;
+}
+.otp-container .verification-container .form-group {
+  display: inline-block;
+  margin: 0;
+}
+.otp-container .verification-container input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #dddddd;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s;
+}
+.otp-container .verification-container input.input-validation-error {
+  border: 2px solid #a94442;
+}
+.otp-container .verification-container input.input-validation-error:focus {
+  border-color: #a94442;
+}
+.otp-container .verification-container input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}

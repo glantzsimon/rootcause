@@ -1,0 +1,43 @@
+﻿@model K9.WebApplication.Models.MembershipModel
+
+<div class="shadow-light @Model.MembershipHoverCssClass membership-option-container @Model.MembershipDisplayCssClass">
+    <div class="membership-option-title">
+        <h5 class="margin-0">@Model.MembershipOption.SubscriptionTypeNameLocal</h5>
+        <p class="margin-0"><strong>@Model.MembershipOption.FormattedPrice</strong></p>
+        @if (Model.Promotion != null)
+        {
+            <h5 class="special-promotion">@Model.MembershipOption.GetDiscountText()</h5>
+        }
+    </div>
+    <div class="membership-option">
+        @Html.Partial("_MembershipMedal", Model.MembershipOption)
+        <div class="membership-footer">
+            @if (Model.IsSubscribed || Model.IsSelected)
+            {
+                <div class="membership-selected-container">
+                    @Html.Partial("_Selected")
+                </div>
+            }
+            else if (Model.IsSelectable)
+            {
+                var buttonText = Model.ActiveUserMembershipId > 0
+                    ? Model.IsUpgrade && !Model.ActiveUserMembership.MembershipOption.IsFree
+                        ? Dictionary.Upgrade
+                        : Dictionary.Unlock
+                    : Dictionary.Select;
+                var iconClass = Model.ActiveUserMembershipId > 0
+                    ? Model.IsUpgrade
+                        ? "fa-unlock"
+                        : "fa-random"
+                    : Dictionary.Select;
+                <div style="padding-top: 1px;">
+                    @Html.BootstrapActionLinkButton(buttonText, Model.IsUpgrade && !Model.ActiveUserMembership.MembershipOption.IsFree ? "SwitchStart" : "PurchaseStart", "Membership", new { membershipOptionId = Model.MembershipOption.Id }, iconClass, EButtonClass.Large)
+                </div>
+            }
+            else
+            {
+                <p style="padding-top: 6px; padding-bottom: 5px;">@Dictionary.Unavailable</p>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@using K9.WebApplication.Config
+@model AlertOptions
+
+<div class="text-center">
+    @if (Model.AlertType != EAlertType.Unspecified)
+    {
+        <img loading="lazy" alt="@Model.AlertType.ToString()" src="@DefaultValuesConfiguration.Instance.BaseImagesPath/ui/@Model.GetAlertImage().ToLower()" />
+    }
+
+    <h3 style="margin-top: 20px !Important;">
+        <strong>@MvcHtmlString.Create(@Model.Message)</strong>
+    </h3>
+
+    @if (!string.IsNullOrEmpty(Model.OtherMessage))
+    {
+        <p>@MvcHtmlString.Create(@Model.OtherMessage)</p>
+    }
+</div>

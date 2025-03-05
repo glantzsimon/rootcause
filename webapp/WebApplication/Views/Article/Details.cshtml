@@ -1,0 +1,15 @@
+﻿@using System.Web.Mvc.Html
+@using K9.WebApplication.Helpers
+@model Article
+
+@{
+    ViewBag.Title = Model.Subject;
+    Layout = "../Shared/_LayoutForm.cshtml";
+    ViewBag.Background = ViewBagHelper.EViewBackground.Default;
+}
+
+<div class="container main-content">
+    <div class="well margin-bottom-0">
+        @Html.Partial("_Article", Model)
+    </div>
+</div>

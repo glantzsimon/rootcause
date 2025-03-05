@@ -1,0 +1,98 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Ingredient
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Name)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.IngredientType)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Category)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.ItemCode)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.IsHidden)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.IsHydroscopic)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Cost)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Quantity)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.QuantityInStock)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.StockLowWarningLevel)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Concentration)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.RecommendedDailyAllownace)
+    </div>
+</div>
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.PurchaseUrls)
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.ShortDescription)
+</div>
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.Body)
+</div>
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.Benefits)
+</div>
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.SubjectiveEffects)
+</div>
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.DeficiencySymptoms)
+</div>
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.SideEffects)
+</div>
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.Research)
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.ImageFileSource)
+</div>
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.VideoFileSource)
+</div>
+
+<hr />
+
+@Html.Partial("_GenoTypeBaseEditFields")

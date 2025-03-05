@@ -1,0 +1,196 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.SharedLibrary.Authentication
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Extensions
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Models
+@using SessionHelper = K9.WebApplication.Helpers.SessionHelper
+@{
+    var roles = this.GetRoles();
+    var isAuthenticated = WebSecurity.IsAuthenticated;
+    var membership = isAuthenticated ? this.GetActiveUserMembership() : null;
+    var deviceType = new BrowserInfo(Request.Headers["User-Agent"]).DeviceType;
+    var whatsAppLink = (deviceType == EDeviceType.Desktop ? "https://web.whatsapp.com/send?phone=" : "https://wa.me/") + DefaultValuesConfiguration.Instance.WhatsAppSupportNumber;
+}
+<div id="account-header">
+    <div id="account-controls">
+        @if (SessionHelper.CurrentUserIsAdmin())
+        {
+            <ul class="admin-menu ">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        @K9.Base.Globalisation.Dictionary.Admin
+                        <span class="caret"></span>
+                    </a>
+                    <ul id="admin-menu-items" class="dropdown-menu nav navbar-nav">
+                        <li class="@ViewContext.GetActiveClass("Index", "Clients") sub-item"><a href="@Url.Action("Index", "Clients")">@Dictionary.Clients</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Users") sub-item"><a href="@Url.Action("Index", "Users")">@K9.Base.Globalisation.Dictionary.Users</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "UserMemberships") sub-item"><a href="@Url.Action("Index", "UserMemberships")">@Dictionary.UserMemberships</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Promotions") sub-item"><a href="@Url.Action("Index", "Promotions")">@Dictionary.Promotions</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Articles") sub-item"><a href="@Url.Action("Index", "Articles")">@Dictionary.Articles</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "ArticleCategories") sub-item"><a href="@Url.Action("Index", "ArticleCategories")">@Dictionary.ArticleCategories</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "EmailTemplates") sub-item"><a href="@Url.Action("Index", "EmailTemplates")">@Dictionary.EmailTemplates</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "MailingLists") sub-item"><a href="@Url.Action("Index", "MailingLists")">@Dictionary.MailingLists</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "EmailQueue") sub-item"><a href="@Url.Action("Index", "EmailQueue")">@Dictionary.EmailQueue</a></li>
+
+                        <li class="divider"></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "DietaryRecommendations") sub-item"><a href="@Url.Action("Index", "DietaryRecommendations")">@Dictionary.DietaryRecommendations</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "FoodItems") sub-item"><a href="@Url.Action("Index", "FoodItems")">@Dictionary.FoodItems</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Protocols") sub-item"><a href="@Url.Action("Index", "Protocols")">@Dictionary.Protocols</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Sections") sub-item"><a href="@Url.Action("Index", "Sections")">@Dictionary.ProtocolSections</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Ingredients") sub-item"><a href="@Url.Action("Index", "Ingredients")">@Dictionary.Ingredients</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("EditList", "Ingredients") sub-item"><a href="@Url.Action("EditList", "Ingredients")">@Dictionary.IngredientsList</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Products") sub-item"><a href="@Url.Action("Index", "Products")">@Dictionary.Products</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("EditList", "Products") sub-item"><a href="@Url.Action("EditList", "Products")">@Dictionary.ProductsList</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("DownloadProducts", "Products") sub-item"><a target="_blank" target="_blank" href="@Url.Action("DownloadProducts", "Products")">@Dictionary.DownloadProductsCsv</a></li>
+
+                        <li class="divider"></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Consultations") sub-item"><a href="@Url.Action("Index", "Consultations")">@Dictionary.Consultations</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("CreateFreeSlots", "Consultation") sub-item"><a href="@Url.Action("CreateFreeSlots", "Consultation")">@Dictionary.CreateFreeSlots</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("ViewAvailableSlots", "Consultation") sub-item"><a href="@Url.Action("ViewAvailableSlots", "Consultation")">@Dictionary.ViewAvailableSlots</a></li>
+
+                        <li class="divider"></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Donations") sub-item"><a href="@Url.Action("Index", "Donations")">@Dictionary.Donations</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Roles") sub-item"><a href="@Url.Action("Index", "Roles")">@K9.Base.Globalisation.Dictionary.Roles</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "RolePermissions") sub-item"><a href="@Url.Action("Index", "RolePermissions")">@K9.Base.Globalisation.Dictionary.Role @K9.Base.Globalisation.Dictionary.Permissions</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "UserPromotions") sub-item"><a href="@Url.Action("Index", "UserPromotions")">@Dictionary.UserPromotions</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "UserProtocols") sub-item"><a href="@Url.Action("Index", "UserProtocols")">@Dictionary.UserProtocols</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "UserConsultations") sub-item"><a href="@Url.Action("Index", "UserConsultations")">@Dictionary.UserConsultations</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "UserRoles") sub-item"><a href="@Url.Action("Index", "UserRoles")">@K9.Base.Globalisation.Dictionary.UserRoles</a></li>
+
+                        <li class="divider"></li>
+
+                        @if (Current.IsImpersonating())
+                        {
+                            <li class="@ViewContext.GetActiveClass("ImpersonateStop", "Account") sub-item"><a href="@Url.Action("ImpersonateStop", "Account")">@K9.Globalisation.Dictionary.StopImpersonatingUser</a></li>
+                        }
+                        else
+                        {
+                            <li class="@ViewContext.GetActiveClass("Impersonate", "Account") sub-item"><a href="@Url.Action("Impersonate", "Account")">@K9.Globalisation.Dictionary.ImpersonateUser</a></li>
+                        }
+
+                        <li class="@ViewContext.GetActiveClass("LoginUser", "Account") sub-item"><a href="@Url.Action("LoginUser", "Account")">@K9.Globalisation.Dictionary.LoginUser</a></li>
+
+                        <li class="divider"></li>
+
+                        @*<li class="@ViewContext.GetActiveClass("DisplayCompleteGlobalisationContents", "Admin") sub-item"><a href="@Url.Action("DisplayCompleteGlobalisationContents", "Admin")">Display All Globalisation Content</a></li>*@
+
+                        <li class="sub-item"><a href="@Url.Action("Index", "Home")hangfire">@Dictionary.JobQueue</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Index", "Log") sub-item"><a href="@Url.Action("Index", "Log")">@Dictionary.ErrorLog</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("Edit", "SystemSettings") sub-item"><a href="@Url.Action("Index", "SystemSettings")">@Dictionary.SystemSettings</a></li>
+
+                        <li class="@ViewContext.GetActiveClass("RunMaintenanceScript", "Shared") sub-item"><a href="@Url.Action("RunMaintenanceScript", "Shared")">@Dictionary.RunMaintenanceScript</a></li>
+                    </ul>
+                </li>
+            </ul>
+        }
+            <ul class="site-controls">
+                @if (WebSecurity.IsAuthenticated)
+                {
+                    if (Current.IsImpersonating())
+                    {
+                        <li class="@ViewContext.GetActiveClass("ImpersonateStop", "Account")"><a title="@Dictionary.StopImpersonatingUser" href="@Url.Action("ImpersonateStop", "Account")"><i class="fa fa-user-alt-slash"></i><span class="site-controls-text"> @Dictionary.StopImpersonatingUser @Current.UserName</span></a></li>
+                    }
+                    else if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+                    {
+                        <li class="@ViewContext.GetActiveClass("Impersonate", "Account")"><a title="@Dictionary.ImpersonateUser" href="@Url.Action("Impersonate", "Account")"><i class="fa fa-user-alt"></i><span class="site-controls-text"> @Dictionary.ImpersonateUser</span></a></li>
+                    }
+                })
+
+                <li class="@ViewContext.GetActiveClass("BookConsultationStart", "Consultation")"><a title="@Dictionary.BookAConsultation" href="@Url.Action("BookConsultationStart", "Consultation")"><i class="fa fa-phone-alt"></i><span class="site-controls-text"> @Dictionary.BookAConsultation</span></a></li>
+
+                <li><a target="_blank" title="@Dictionary.ConsultOurAiHealthCoach" href="@ApiConfiguration.Instance.GetToTheRootKiAstrologerGptUrl"><i class="fa fa-magic"></i><span class="site-controls-text"> @Dictionary.AIHealthCoach</span></a></li>
+
+                @if (!isAuthenticated || (membership == null || (membership.MembershipOption != null && membership.MembershipOption.IsUpgradable)))
+                {
+                    <li class="@ViewContext.GetActiveClass("Index", "Membership")"><a title="@Dictionary.Pricing" href="@Url.Action("Index", "Membership")"><i class="fa fa-dollar-sign"></i><span class="site-controls-text"> @Dictionary.Pricing</span></a></li>
+                }
+
+                <li class="@ViewContext.GetActiveClass("DonateStart", "Support")"><a title="@Dictionary.Donate" href="@Url.Action("DonateStart", "Support")"><i class="fa fa-donate"></i><span class="site-controls-text"> @Dictionary.Donate</span></a></li>
+
+                <li class="@ViewContext.GetActiveClass("Index", "Support")"><a title="@Dictionary.Support" href="@Url.Action("Index", "Support")"><i class="fa fa-question-circle"></i><span class="site-controls-text"> @Dictionary.Support</span></a></li>
+
+                @if (isAuthenticated)
+                {
+                    if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsClientUser())
+                    {
+                        if (membership.MembershipOption.IsUnlimited)
+                        {
+                            <li>
+                                <a class="whatsapp-button" target="_blank" title="@Dictionary.MessageUs" href="@(whatsAppLink)">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span class="site-controls-text">
+                                        @Dictionary.MessageUs
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                    }
+                    
+                    <li class="@ViewContext.GetActiveClass("MyAccount", "Account")"><a title="@K9.Base.Globalisation.Dictionary.MyAccountTitle" href="@Url.Action("MyAccount", "Account")"><i class="fa fa-user-circle"></i><span class="site-controls-text"> @K9.Base.Globalisation.Dictionary.MyAccountTitle</span></a></li>
+                }
+                @Html.LoginLogout()
+            </ul>
+    </div>
+</div>
+<div id="main-menu-container" class="menu-main">
+    <div class="container">
+        <div class="top-nav">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse menu-main" id="bs-navbar-collapse-1">
+                    <ul class="nav navbar-nav main-navbar">
+                        <li class="desktop-only @ViewContext.GetActiveClass("Index", "Articles")"><a href="@Url.Action("Index", "Articles")"> <span>@Dictionary.Articles</span></a></li>
+
+                        <li class="desktop-only @ViewContext.GetActiveClass("Index", "ProtocolArticles")"><a href="@Url.Action("Index", "ProtocolArticles")"> <span>@Dictionary.Protocols</span></a></li>
+
+                        <li class="desktop-only @ViewContext.GetActiveClass("Index", "HealthQuestionnaire")"><a href="@Url.Action("Index", "HealthQuestionnaire")"> <span>@Dictionary.GeneticProfileTest</span></a></li>
+
+                        <li class="desktop-only @ViewContext.GetActiveClass("GptInfo", "Home")"><a href="@Url.Action("GptInfo", "Home")"> <span class="">@Dictionary.AIHealthCoach</span></a></li>
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="main-menu-spacer">
+    &nbsp;
+</div>

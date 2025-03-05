@@ -1,0 +1,110 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Ingredient
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.Name)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.IngredientType)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.Category)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.ItemCode)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.Cost)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.FormattedQuantity)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.FormattedQuantityInStock)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.IsStockLowWarning)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.StockLowWarningLevel)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.Concentration)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.RecommendedDailyAllownace)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.IsHydroscopic)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapDisplayFor(model => model.IsHidden)
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        @Html.CollapsiblePanel(Dictionary.IngredientSubstitutes, Html.Partial("../Ingredients/_SubstitutesSummary").ToString())
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.PurchaseUrls)
+</div>
+<hr />
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.ShortDescription)
+</div>
+<hr />
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.Body)
+</div>
+<hr />
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.Benefits)
+</div>
+<hr />
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.SubjectiveEffects)
+</div>
+<hr />
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.DeficiencySymptoms)
+</div>
+<hr />
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.SideEffects)
+</div>
+<hr />
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.Research)
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.ImageFileSource)
+    @Html.BootstrapDisplayFor(model => model.VideoFileSource)
+</div>
+
+<hr />
+
+@Html.Partial("_GenoTypeBaseDisplayFields")

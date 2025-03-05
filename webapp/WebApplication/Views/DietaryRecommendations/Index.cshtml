@@ -1,0 +1,21 @@
+﻿@using K9.Base.WebApplication.Controllers
+@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Authentication
+@model DietaryRecommendation
+@{
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+
+@Html.BootstrapTable(new DataTableOptions<DietaryRecommendation>
+{
+    AllowCreate = true,
+    AllowEdit = true,
+    AllowDelete = ((BaseController<DietaryRecommendation>)ViewContext.Controller).Roles.CurrentUserIsInRoles(RoleNames.Administrators),
+    SelectAllColumns = false,
+    VisibleColumns = new List<string>
+    {
+        "Name",
+        "ShortDescription",
+        "Recommendations"
+    }
+})

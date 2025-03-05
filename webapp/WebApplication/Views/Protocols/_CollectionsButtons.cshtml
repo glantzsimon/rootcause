@@ -1,0 +1,27 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@if (Model.Id > 0)
+{
+    @Html.BootstrapActionLinkButton(Dictionary.SummaryLink, "Summary", "Protocol", new { id = Model.ExternalId }, "fa fa-file", EButtonClass.Info)
+
+    @Html.BootstrapActionLinkButton(Dictionary.DuplicateProtocol, "DuplicateProtocol", "Protocols", new { id = Model.Id }, "fa fa-copy", EButtonClass.Primary)
+
+    <hr />
+
+    @Html.BootstrapActionLinkButton(Dictionary.EditActivities, "EditActivities", "Protocols", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+
+    @Html.BootstrapActionLinkButton(Dictionary.EditDietaryRecommendations, "EditDietaryRecommendations", "Protocols", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+
+    @Html.BootstrapActionLinkButton(Dictionary.EditSections, "EditSections", "Protocols", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+
+    @Html.BootstrapActionLinkButton(Dictionary.EditSectionDetails, "EditSectionDetails", "Protocols", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+    
+    @Html.BootstrapActionLinkButton(Dictionary.ReviewSectionDetails, "ReviewSectionDetails", "Protocols", new { id = Model.Id }, "fa fa-eye", EButtonClass.Success)
+
+    @Html.BootstrapActionLinkButton(Dictionary.EditProducts, "EditProducts", "Protocols", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+
+    @Html.BootstrapActionLinkButton(Dictionary.EditProductPacks, "EditProductPacks", "Protocols", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+
+}

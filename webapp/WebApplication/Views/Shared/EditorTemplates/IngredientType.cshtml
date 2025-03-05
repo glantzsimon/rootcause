@@ -1,0 +1,11 @@
+﻿@using K9.Base.DataAccessLayer.Enums
+@using K9.Base.WebApplication.Extensions
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Extensions
+@model K9.DataAccessLayer.Enums.EIngredientType
+@{
+    var dictionary = ViewData["viewDataDictionary"] as IDictionary<string, object>;
+    dictionary.MergeAttribute(K9.Base.WebApplication.Constants.Html.Attributes.DataInputId, "ingredient-type");
+}
+@Html.BootstrapDropdownFor(model => model, this.GetDropdownData().GetSelectListFromEnum<EIngredientType>(Convert.ToInt32(Model), true), false, dictionary as ViewDataDictionary)

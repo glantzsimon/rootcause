@@ -1,0 +1,7 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.SharedLibrary.Extensions
+@model int?
+@{
+    var value = this.GetDropdownData().GetName<MembershipOption>(Model, true, "Name").SplitOnCapitalLetter();
+}
+<input type="text" class="form-control text-muted bg-light" value="@value" readonly />

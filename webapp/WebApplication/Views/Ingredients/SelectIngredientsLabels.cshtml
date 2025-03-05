@@ -1,0 +1,17 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model K9.WebApplication.Models.IngredientsLabelsViewModel
+@{
+    ViewBag.SubTitle = $"{Dictionary.SelectIngredientLabels}";
+    Layout = "../Shared/_LayoutForm.cshtml";
+}
+@using (Html.BeginForm("ViewIngredientsLabels", "Ingredients"))
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.Partial("_SelectIngredients")
+        
+        <hr />
+        @Html.BootstrapButton(Dictionary.ViewLabels, EButtonType.Submit, "fa-save")
+        @Html.BootstrapBackToListButton()
+    }
+}

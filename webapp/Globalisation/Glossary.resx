@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AMPK" xml:space="preserve">
+    <value>The AMPK enzyme is the master metabolic switch in each of your cells. When AMPK levels increase you get an energy boost, blood glucose is regulated, insulin sensitivity improves, reduced triglycerides, and increased fat-burning in mitochondria. The metabolism of the whole organism becomes considerably more efficient</value>
+  </data>
+  <data name="Antioxidant" xml:space="preserve">
+    <value>A substance that is able to protect the body from oxidaitve stress (from free radicals) either by neutralising the radical or by protecting tissues, or both.</value>
+  </data>
+  <data name="Anxiolytic" xml:space="preserve">
+    <value>Reduces anxiety</value>
+  </data>
+  <data name="BloodBrainBarrier" xml:space="preserve">
+    <value>The blood–brain barrier protects against circulating toxins or pathogens that could cause brain infections, while at the same time allowing vital nutrients to reach the brain.</value>
+  </data>
+  <data name="Cortisol" xml:space="preserve">
+    <value>The major stress hormone of the body. In excess, cortisol can result int he breakdown of tissues, resulting in degenerative disease.</value>
+  </data>
+  <data name="CReactiveProtein" xml:space="preserve">
+    <value>CRP is a protein secreted mostly by cells in the liver in response to a variety of inflammatory cytokines. CRP plays important roles in inflammatory processes including by altering pathways involved in apoptosis, phagocytosis, nitric oxide release and production of cytokines. Elevated CRP is a reliable marker of chronic inflammation.</value>
+  </data>
+  <data name="FreeRadicals" xml:space="preserve">
+    <value>Free radicals result from oxidation in cells and damage tissues in the body. They are implicated in many types of age-related diseases.</value>
+  </data>
+  <data name="HumanGrowthHormone" xml:space="preserve">
+    <value>Peptide hormone that stimulates growth, cell reproduction, and cell regeneration in humans and other animals. It is thus important in human development. GH also stimulates production of IGF-1 and increases the concentration of glucose and free fatty acids.</value>
+  </data>
+  <data name="Mitochondria" xml:space="preserve">
+    <value>The organelles of cells responsible for producing all of our ATP (cellular energy)</value>
+  </data>
+  <data name="Mitochondrial" xml:space="preserve">
+    <value>Relating to the 'mitochondria':the organelles of cells responsible for producing all of our ATP (cellular energy)</value>
+  </data>
+  <data name="Mitochondriogenesis" xml:space="preserve">
+    <value>Stimulates the growth of new mitochondria and the repair of existing ones.</value>
+  </data>
+  <data name="NAD" xml:space="preserve">
+    <value>NAD+ mediates the production of the energy our cells need to function and survive, fueling enzymes key in repairing DNA damage. As we age, this indispensable molecule progressively declines.</value>
+  </data>
+  <data name="Neurogenesis" xml:space="preserve">
+    <value>The generation of new neurons</value>
+  </data>
+  <data name="Neuromelanins" xml:space="preserve">
+    <value>Pigments that form in the brain that are similar to the melanin pigment in the skin.</value>
+  </data>
+  <data name="Nootropic" xml:space="preserve">
+    <value>Nootropics can help to improve memory, boost learning ability, enhance mood and assist overall brain function and health.</value>
+  </data>
+  <data name="OxidativeStress" xml:space="preserve">
+    <value>Damage to tissues and cells caused by free radicals, which is implicated in many chronic, degenerative diseases.</value>
+  </data>
+  <data name="ATP" xml:space="preserve">
+    <value>Adenosine triphosphate, also known as ATP, is a molecule that carries energy within cells. It is the main energy currency of the cell.</value>
+  </data>
+  <data name="BDNF" xml:space="preserve">
+    <value>A potent neurotrophin that stimulates the genesis of new neurons in the brain is referred to as neurogenesis. BDNF is implicated in neuroplasticity, learning, memory and higher thinking.</value>
+  </data>
+  <data name="CBSMutation" xml:space="preserve">
+    <value>A genetic SNP or polymorphism (i.e. variant), which predisposes certain individual's to difficulties processing and detoxifying certain environmental chemicals as well as making them more susceptible to stress.</value>
+  </data>
+  <data name="Dopamine" xml:space="preserve">
+    <value>A major neurotransmitter of the catecholamine family, implicated in pleasure, focus, motivation, memory, movement, mood, blood vessel function, planning and more.</value>
+  </data>
+  <data name="GABA" xml:space="preserve">
+    <value>GABA is the main inhibitory neurotransmitter produced in the body. It helps to countr excessive neural excitement. GABA is implicated in mood, sleep, stress, anxiety, speech, cognition, memory, focus, blood pressure and more.</value>
+  </data>
+  <data name="Glutamate" xml:space="preserve">
+    <value>GABA is the main excitatory neurotransmitter produced in the body. It excites neurons and is implicated in memory, concentration, mood, cellular energy production, neuroplasticity and the growth and development of the brain.</value>
+  </data>
+  <data name="Homocysteine" xml:space="preserve">
+    <value>Homocysteine is a specific type of amino acid that’s created in the body during metabolic processes, as opposed to consumed in food. It’s produced in the body as a byproduct of methylation. Excessive homocysteine is often observed in chronic inflammatory diseases.</value>
+  </data>
+  <data name="Methylation" xml:space="preserve">
+    <value>The act of giving a methyl group to another compound altering its chemical structure thereby changing it to something else. This is a carefully orchestrated transfer from one compound to another which requires an enzymatic process. Methylation is an essential and major part of our metabolism and any imbalances in methylation produce varying degrees of pathology.</value>
+  </data>
+  <data name="MethylGroup" xml:space="preserve">
+    <value>A substance that is capable of donating a methyl group to another compound. </value>
+  </data>
+  <data name="Neuroplasticity" xml:space="preserve">
+    <value>Neuroplasticity or brain plasticity is the inherent ability of the brain to adapt and change in reaction to internal and external stimuli. Your brain can change its functions and even its physical structure to react to inputs coming in from events, experiences, thoughts, and even human emotions.</value>
+  </data>
+  <data name="Neurotransmitter" xml:space="preserve">
+    <value>A chemical messenger used by the nervous system to send messages between nerve cells. </value>
+  </data>
+  <data name="NitricOxide" xml:space="preserve">
+    <value>Nitric oxide is a key molecule in the cardiovascular system that helps keep blood vessels healthy and regulates blood pressure.</value>
+  </data>
+  <data name="NMDA" xml:space="preserve">
+    <value>NMDA receptor is a type of G protein-coupled ionotropic glutamate receptor that plays a crucial role in regulating a wide variety of neurological functions, including breathing, locomotion, learning, memory formation, and neuroplasticity.
+
+Accordingly, structural and functional impairment of the NMDA receptor can lead to neurodegenerative and cognitive disorders, including Alzheimer’s disease, Parkinson’s disease, Huntington disease, neuropathic pain, epilepsy, and psychiatric disorders.</value>
+  </data>
+  <data name="Norepinephrine" xml:space="preserve">
+    <value>A major neurotransmitter of the catecholamine family, implicated in focus, blood pressure, mood, sleep healthy stress response and more.</value>
+  </data>
+  <data name="Serotonin" xml:space="preserve">
+    <value>A neurotransmitter that plays a role in sleep, appetite, learning, memory, mood, sexual function and more.</value>
+  </data>
+  <data name="Teolmerase" xml:space="preserve">
+    <value>Telomerase is an enzyme found inside our cells, which may be related to the aging process. It adds short, repetitive "caps" to our DNA strands. These caps are called "telomeres."
+
+Each time our cells divide, they must replicate their DNA so that each daughter cell gets a full set of operating instructions. However, with each cell division, a small part of the DNA strand’s protective telomeres are lost.
+
+Scientists believe that the loss of telomeres leads to eventual loss of important, coding regions of DNA, and that this impairs cells’ ability to divide and produce healthy daughter cells over time.</value>
+  </data>
+  <data name="CBS" xml:space="preserve">
+    <value>A genetic SNP or polymorphism (i.e. variant), which predisposes certain individual's to difficulties processing and detoxifying certain environmental chemicals as well as making them more susceptible to stress.</value>
+  </data>
+</root>

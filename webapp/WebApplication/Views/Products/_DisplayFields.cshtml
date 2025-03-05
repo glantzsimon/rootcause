@@ -1,0 +1,173 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Product
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>@Dictionary.GeneralInfo</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.Name)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.Category)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ProductType)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ItemCode)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ClientId)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.FormattedAmount)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.FormattedAmountPerServing)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.QuantityInStock)
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <h3>@Dictionary.PricingInfo</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4><strong>@Html.ValueFor(model => model.FormattedAmount)</strong></h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.Price)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.PriceDiscount1)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.PriceDiscount2)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ProfitMargin)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ProfitMarginDiscount1)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ProfitMarginDiscount2)
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.SuggestedRetailPrice)
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4><strong>@Html.ValueFor(model => model.FormattedSmallPackAmount)</strong></h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.PriceSmallPack)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.PriceSmallPackDiscount1)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.PriceSmallPackDiscount2)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ProfitMarginSmallPack)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ProfitMarginSmallPackDiscount1)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.ProfitMarginSmallPackDiscount2)
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <h3>@Dictionary.CostInfo</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.CostOfMaterials)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.CostOfIngredients)
+    </div>
+    <div class="col-sm-4">
+        @Html.BootstrapDisplayFor(model => model.TotalCost)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        @Html.CollapsiblePanel(Dictionary.IngredientsSummary, Html.Partial("../Products/_IngredientsSummary").ToString())
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <h3>@Dictionary.OtherInfo</h3>
+    </div>
+</div>
+
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.ShortDescription)
+</div>
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.Body)
+</div>
+
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.Benefits)
+</div>
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.Dosage)
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.ImageFileSource)
+</div>
+<div class="row">
+    @Html.BootstrapDisplayFor(model => model.VideoFileSource)
+</div>
+
+<hr />
+
+@Html.Partial("_GenoTypeBaseDisplayFields")

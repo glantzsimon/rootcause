@@ -1,0 +1,32 @@
+﻿@using K9.SharedLibrary.Helpers
+@using K9.WebApplication.Options
+@model List<Slot>
+@{
+    ViewBag.Title = Dictionary.AvailableSlots;
+    ViewBag.SubTitle = Dictionary.AvailableSlots;
+    Layout = "../Shared/_LayoutFormMedium.cshtml";
+}
+
+<div class="container main-content margin-bottom-0">
+    <article>
+        <div class="time-slots">
+            <div class="row">
+                @foreach (var slot in Model)
+                {
+                    <div class="col-sm-2">
+                        <a href="#">
+                            <h4>@Dictionary.LocalTime</h4>
+                            <p class="bold">@slot.FormattedStartsOnLocalDate</p>
+                            <p>@slot.FormattedStartsOnLocalTimeOnly : @slot.FormattedEndsOnLocalTimeOnly</p>
+                            <p class="small">@slot.TimeZoneDisplayText</p>
+                            <hr />
+                            <h4>@Dictionary.MyTime</h4>
+                            <p class="bold">@slot.FormattedStartsOnMyDate</p>
+                            <p>@slot.FormattedStartsOnMyTime : @slot.FormattedEndsOnMyTime</p>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </article>
+</div>

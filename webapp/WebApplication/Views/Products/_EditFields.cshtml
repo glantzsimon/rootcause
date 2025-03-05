@@ -1,0 +1,110 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Product
+
+@Html.ValidationSummary(false)
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Name)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.SubTitleLabelText)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Category)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.ProductType)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.ItemCode)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.SeoFriendlyId)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.ClientId)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.AllowIngredientSubstitutes)
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.CostOfMaterials)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Price)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Amount)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.AmountPerServing)
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.MinDosage)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.MaxDosage)
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.QuantityInStock)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.StockLowWarningLevel)
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Dosage)
+    </div>
+    <div class="col-sm-6">
+        @Html.BootstrapEditorFor(model => model.Recommendations)
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.ShortDescription)
+</div>
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.Body)
+</div>
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.Benefits)
+</div>
+
+<hr />
+
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.ImageFileSource)
+</div>
+<div class="row">
+    @Html.BootstrapEditorFor(model => model.VideoFileSource)
+</div>
+
+<hr />
+
+@Html.Partial("_GenoTypeBaseEditFields")

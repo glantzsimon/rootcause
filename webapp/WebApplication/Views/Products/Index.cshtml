@@ -1,0 +1,60 @@
+﻿@using K9.Base.WebApplication.Controllers
+@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Authentication
+@using K9.SharedLibrary.Models
+@using EButtonType = K9.SharedLibrary.Models.EButtonType
+@model Product
+@{
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+@Html.BootstrapTable(new DataTableOptions<Product>
+{
+    AllowCreate = true,
+    AllowEdit = true,
+    AllowDelete = ((BaseController<Product>)ViewContext.Controller).Roles.CurrentUserIsInRoles(RoleNames.Administrators),
+    SelectAllColumns = false,
+    VisibleColumns = new List<string>
+    {
+        "Name",
+        "QuantityInStock",
+        "Price",
+    },
+    CustomButtons = new List<IButton>
+    {
+        new Button
+        {
+            Action = "EditIngredients",
+            Text = Dictionary.EditIngredients,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "EditIngredientQuantities",
+            Text = Dictionary.EditIngredientQuantities,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "EditIngredientSubstitutes",
+            Text = Dictionary.EditIngredientSubstitutes,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "DuplicateProduct",
+            Text = Dictionary.DuplicateProduct,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-copy"
+        },
+        new Button
+        {
+            Action = "LabSheet",
+            Text = Dictionary.ViewLabSheet,
+            ButtonType = EButtonType.Success,
+            IconCssClass = "fa fa-file"
+        }
+    }
+})

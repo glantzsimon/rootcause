@@ -1,0 +1,8 @@
+﻿@model Object
+@{
+    var quantitySymbol = "mg";
+}
+<div class="input-group">
+    <span data-input-id="quantity" class="input-group-addon">@quantitySymbol</span>
+    @Html.TextBoxFor(model => model, ViewData["viewDataDictionary"] as IDictionary<string, object>)
+</div>

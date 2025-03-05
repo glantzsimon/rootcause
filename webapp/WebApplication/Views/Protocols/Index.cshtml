@@ -1,0 +1,88 @@
+﻿@using K9.Base.WebApplication.Controllers
+@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Authentication
+@using K9.SharedLibrary.Models
+@using EButtonType = K9.SharedLibrary.Models.EButtonType
+@model Protocol
+@{
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+@Html.BootstrapTable(new DataTableOptions<Protocol>
+{
+    AllowCreate = true,
+    AllowEdit = true,
+    AllowDelete = ((BaseController<Protocol>)ViewContext.Controller).Roles.CurrentUserIsInRoles(RoleNames.Administrators),
+    SelectAllColumns = false,
+    VisibleColumns = new List<string>
+    {
+        "Name",
+        "ShortDescription",
+        "ClientId"
+    },
+    CustomButtons =
+    {
+        new Button
+        {
+            Action = "EditSections",
+            Text = Dictionary.EditSections,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "EditSectionDetails",
+            Text = Dictionary.EditSectionDetails,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "ReviewSectionDetails",
+            Text = Dictionary.ReviewSectionDetails,
+            ButtonType = EButtonType.Success,
+            IconCssClass = "fa fa-eye"
+        },
+        new Button
+        {
+            Action = "EditActivities",
+            Text = Dictionary.EditActivities,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "EditDietaryRecommendations",
+            Text = Dictionary.EditDietaryRecommendations,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "EditProducts",
+            Text = Dictionary.EditProducts,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "EditProductPacks",
+            Text = Dictionary.EditProductPacks,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-pencil"
+        },
+        new Button
+        {
+            Action = "DuplicateProtocol",
+            Text = Dictionary.DuplicateProtocol,
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-copy"
+        },
+        new Button
+        {
+            Action = "Summary",
+            Text = Dictionary.ViewSummary,
+            ButtonType = EButtonType.Info,
+            IconCssClass = "fa fa-file"
+        }
+    }
+})

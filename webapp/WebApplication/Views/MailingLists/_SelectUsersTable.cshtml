@@ -1,0 +1,35 @@
+﻿@using K9.SharedLibrary.Helpers.Html
+@model K9.WebApplication.Models.MailingListViewModel
+
+@if (Model != null && Model.MailingList != null && Model.MailingList.Users != null)
+{
+    <div class="row table-row">
+        <div class="col-xs-1">
+        </div>
+        <div class="col-xs-6">
+            <strong>@Html.LabelFor(e => Model.MailingList.Users[0].FullName)</strong>
+        </div>
+        <div class="col-xs-5">
+            <strong>@Html.LabelFor(e => Model.MailingList.Users[0].EmailAddress)</strong>
+        </div>
+    </div>
+
+    for (int i = 0; i < Model.MailingList.Users.Count; i++)
+    {
+        @Html.HiddenFor(e => Model.MailingList.Users[i].Id)
+        @Html.HiddenFor(e => Model.MailingList.Users[i].FullName)
+        @Html.HiddenFor(e => Model.MailingList.Users[i].EmailAddress)
+
+        <div class="row table-row data-row">
+            <div class="col-xs-1">
+                @Html.CheckBoxFor(e => Model.MailingList.Users[i].IsSelected)
+            </div>
+            <div class="col-xs-6">
+                @Html.ValueFor(e => Model.MailingList.Users[i].FullName)
+            </div>
+            <div class="col-xs-5">
+                @Html.ValueFor(e => Model.MailingList.Users[i].EmailAddress)
+            </div>
+        </div>
+    }
+}

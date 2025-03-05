@@ -1,0 +1,19 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.DataAccessLayer.Helpers
+@using K9.SharedLibrary.Authentication
+@using K9.WebApplication.Constants
+@model Protocol
+
+<div class="row table-row">
+    <div class="col-sm-12">
+        @if (Model.DietaryRecommendations != null && Model.DietaryRecommendations.Any())
+        {
+            <div class="summary-info-item">@Dictionary.ClickOnAnItemForMoreInfo</div>
+            for (int i = 0; i < Model.DietaryRecommendations?.Count; i++)
+            {
+                <a href="#@Model.DietaryRecommendations[i].DietaryRecommendation.GetBookMark()"><span class="summary-item">@Model.DietaryRecommendations[i].DietaryRecommendation.Name</span></a>
+            }
+        }
+
+    </div>
+</div>

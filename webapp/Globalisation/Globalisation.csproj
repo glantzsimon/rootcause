@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37795DC6-45C9-458C-A3A5-48DA6534C35C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>K9.Globalisation</RootNamespace>
+    <AssemblyName>K9.Globalisation</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
+    <CodeAnalysisRuleSet>Globalisation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>Globalisation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Integration|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Integration\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Globalisation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Globalisation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Globalisation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Globalisation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production2|AnyCPU'">
+    <OutputPath>bin\Production2\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Globalisation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dictionary.Designer.cs" />
+    <Compile Include="Glossary.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dictionary.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Dictionary1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Glossary.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Doshas\en-gb\KaphaDoshaDetails.htm" />
+    <Content Include="Doshas\en-gb\PittaDoshaDetails.htm" />
+    <Content Include="Doshas\en-gb\VataDoshaDetails.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\HealthQuestoinnaireComplete.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\InvoicePaidThankYouEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\InvoicePaidEmail.htm" />
+    <Content Include="GenoTypes\en-gb\ExplorerDetails.htm" />
+    <Content Include="GenoTypes\en-gb\GathererDetails.htm" />
+    <Content Include="GenoTypes\en-gb\HunterDetails.htm" />
+    <Content Include="GenoTypes\en-gb\NomadDetails.htm" />
+    <Content Include="GenoTypes\en-gb\TeacherDetails.htm" />
+    <Content Include="GenoTypes\en-gb\WarriorDetails.htm" />
+    <Content Include="EmailTemplates\en-gb\Promotions\SecondMembershipReminderEmail .htm" />
+    <Content Include="EmailTemplates\en-gb\Promotions\ThirdMembershipReminderEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\Promotions\SecondMembershipReminderSubject.htm" />
+    <Content Include="EmailTemplates\en-gb\Promotions\ThirdMembershipReminderSubject.htm" />
+    <Content Include="EmailTemplates\en-gb\Promotions\FirstMembershipReminderSubject.htm" />
+    <Content Include="EmailTemplates\en-gb\Promotions\FirstMembershipReminderEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\SupportQueryThankYouEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\DonationReceivedEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\GeneralErrorEmail.htm" />
+    <Content Include="General\en-gb\faq.htm" />
+    <Content Include="Membership\en-gb\lifetime-membership-description.htm" />
+    <Content Include="Membership\en-gb\full-feature-list.htm" />
+    <Content Include="Membership\en-gb\weekly-membership-description.htm" />
+    <Content Include="General\en-gb\HowToRemoveYourData.htm" />
+    <Content Include="General\en-gb\TermsOfService.htm" />
+    <Content Include="Membership\en-gb\what-you-get.htm" />
+    <Content Include="Membership\en-gb\why-upgrade.htm" />
+    <Content Include="Gpt\en-gb\gptinfo.htm" />
+    <Content Include="Nutrition\en-gb\flexible-foods.htm" />
+    <Content Include="Nutrition\en-gb\organicfood.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\SupportQueryReceivedEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\ComplimentaryConsultationBookedEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\BaseEmailTemplate.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\ConsultationScheduledThankYouEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\ConsultationScheduledEmail.htm" />
+    <Content Include="General\en-gb\AgreeToTerms.htm" />
+    <Content Include="Membership\en-gb\annual-membership-description.htm" />
+    <Content Include="Membership\en-gb\monthly-membership-description.htm" />
+    <Content Include="General\en-gb\PrivacyPolicy.htm" />
+    <Content Include="General\en-gb\book-consultation-blurb.htm" />
+    <Content Include="General\en-gb\support-blurb.htm" />
+    <Content Include="General\en-gb\welcome.htm" />
+    <Content Include="Membership\en-gb\free-membership-description.htm" />
+    <Content Include="NineStarKi\en-gb\coreearth-health.htm" />
+    <Content Include="NineStarKi\en-gb\fire-health.htm" />
+    <Content Include="NineStarKi\en-gb\heaven-health.htm" />
+    <Content Include="NineStarKi\en-gb\lake-health.htm" />
+    <Content Include="NineStarKi\en-gb\mountain-health.htm" />
+    <Content Include="NineStarKi\en-gb\yinyang.htm" />
+    <Content Include="NineStarKi\en-gb\soil-health.htm" />
+    <Content Include="NineStarKi\en-gb\thunder-health.htm" />
+    <Content Include="NineStarKi\en-gb\water-health.htm" />
+    <Content Include="NineStarKi\en-gb\wind-health.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\ConsultationBookedEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\ConsultationBookedThankYouEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\PromoCodeOfferedEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\NewSubscriptionErrorEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\NewSubscriptionThankYouEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToNineStar\NewSubscriptionEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\DonationThankYouEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\PasswordResetEmail.htm" />
+    <Content Include="EmailTemplates\en-gb\ToCustomer\AccountActivationEmail.htm" />
+    <Content Include="Questionnaires\en-gb\Acetylation.htm" />
+    <Content Include="Questionnaires\en-gb\Biometrics.htm" />
+    <Content Include="Questionnaires\en-gb\BiometricsRequirements.htm" />
+    <Content Include="Questionnaires\en-gb\BloodGroupDescription.htm" />
+    <Content Include="Questionnaires\en-gb\CBSMethylationDescription.htm" />
+    <Content Include="Questionnaires\en-gb\ChairHeightInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\Dentition.htm" />
+    <Content Include="Questionnaires\en-gb\Dermatoglyphics.htm" />
+    <Content Include="Questionnaires\en-gb\DietaryAdviceGuidelines.htm" />
+    <Content Include="Questionnaires\en-gb\DoshasDescription.htm" />
+    <Content Include="Questionnaires\en-gb\FingerLengthInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\FingerPrintsInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\GonialAngle.htm" />
+    <Content Include="Questionnaires\en-gb\HeadShapeInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\IndexAndRingFingerLengthDescription.htm" />
+    <Content Include="Questionnaires\en-gb\LegAndTorsoLengthDescription.htm" />
+    <Content Include="Questionnaires\en-gb\LegGapMeasurementInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\LowerLegLengthInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\ReactiveDescription.htm" />
+    <Content Include="Questionnaires\en-gb\SittingHeightInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\SomatoTypeInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\StandingHeightInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\ThriftyDescription.htm" />
+    <Content Include="Questionnaires\en-gb\TolerantDescription.htm" />
+    <Content Include="Questionnaires\en-gb\UpperLegLengthInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\WaistToHipRatioInstructions.htm" />
+    <Content Include="Questionnaires\en-gb\WristCircumferenceTestInstructions.htm" />
+    <Content Include="Text\en-gb\cookies-blurb.txt" />
+    <Content Include="Text\en-gb\Keywords.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Globalisation.ruleset" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

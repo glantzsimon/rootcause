@@ -1,0 +1,41 @@
+﻿@using K9.Base.WebApplication.Config
+@using K9.SharedLibrary.Helpers
+@using K9.WebApplication.Config
+@using TemplateParser = K9.SharedLibrary.Helpers.TemplateParser
+
+@{
+    var termsText = TemplateParser.Parse(Dictionary.AgreeToTerms, new
+    {
+        PrivacyPolicyUrl = Url.Action("PrivacyPolicy", "Home"),
+        TermsOfServiceUrl = Url.Action("TermsOfService", "Home")
+    });
+}
+
+<div class="footer">
+    <div class="container">
+        <div class="col-md-8 agile-footer-grid">
+            <h4>@Dictionary.GetToTheRoot</h4>
+            <p>
+                @Dictionary.CompanyBlurbFooter
+            </p>
+        </div>
+        <div class="col-md-4 agile-footer-grid">
+            <h4>@Dictionary.Navigation</h4>
+            <ul>
+                <li class="text"><a href="@Url.Action("Index", "Home")"> @K9.Base.Globalisation.Dictionary.Home</a></li>
+                <li class="text"><a href="@Url.Action("Index", "Article")"> @Dictionary.Articles</a></li>
+                <li class="text"><a href="@Url.Action("Index", "ProtocolArticles")"> @Dictionary.Protocols</a></li>
+                <li class="text"><a href="@Url.Action("GptInfo", "Home")"> @Dictionary.AIHealthCoach</a></li>
+                <li class="text"><a href="@Url.Action("HowToRemoveYourData", "Home")">@Dictionary.HowToRemoveYourDataTitle</a></li>
+                <li class="text"><a href="@Url.Action("FAQ", "Home")">@Dictionary.FAQTitle</a></li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<div class="footer-copyright">
+    <div class="container">
+        <p>@Html.Raw(termsText) </p>
+        <p>&copy; @Dictionary.GetToTheRoot @DateTime.Now.Year - @K9.Base.Globalisation.Dictionary.AllRightsReserved.</p>
+    </div>
+</div>

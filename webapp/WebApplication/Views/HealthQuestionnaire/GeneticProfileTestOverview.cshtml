@@ -1,0 +1,22 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.ViewModels
+@model HealthQuestionnaireViewModel
+@{
+    Layout = "../Shared/_LayoutFormWide.cshtml";
+    ViewBag.Title = Dictionary.GeneticProfileTestResults;
+    ViewBag.SubTitle = $"{Dictionary.GeneticProfileTestResults} <i class=\"fa fa-dna\"></i>";
+}
+
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.HealthQuestionnaire.Id)
+        @Html.HiddenFor(model => model.HealthQuestionnaire.ClientId)
+        @Html.HiddenFor(model => model.HealthQuestionnaire.ExternalId)
+
+        @Html.Partial("Overview/_Pills")
+    }
+}

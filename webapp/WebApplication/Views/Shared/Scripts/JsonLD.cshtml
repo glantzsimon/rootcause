@@ -1,0 +1,13 @@
+﻿<script type="application/ld+json">
+@Html.Raw(Json.Encode(new {
+    @context = "https://schema.org",
+    @type = "WebSite",
+    name = "Get To The Root",
+    url = "https://gettotheroot.net",
+    description = ViewBag.MetaDescription ?? Dictionary.GetToTheRootMetaDescriptionMain,
+    author = new {
+        @type = "Person",
+        name = "Simon Glantz"
+    }
+}))
+</script>

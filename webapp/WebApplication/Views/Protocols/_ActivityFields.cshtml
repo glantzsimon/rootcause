@@ -1,0 +1,42 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Helpers
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@if (Model.Activities.Any())
+{
+    for (int i = 0; i < Model.Activities.Count; i++)
+    {
+        var activity = Model.Activities[i].Activity;
+        var isLast = i == Model.Activities.Count - 1;
+        var bookmark = Model.Activities[i].Activity.GetBookMark();
+
+        <div id="@bookmark" class="well">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>@activity.Name</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.Raw(activity.ShortDescription)
+                </div>
+            </div>
+
+            <br />
+            
+            @if (!string.IsNullOrEmpty(activity.Recommendations) ||
+                 !string.IsNullOrEmpty(activity.Benefits) ||
+                 !string.IsNullOrEmpty(activity.Body))
+            {
+                @Html.CollapsiblePanel(Dictionary.MoreDetails, Html.Partial("../Protocols/_ActivityMoreInfo", activity).ToString())
+            }
+            
+            @if (!isLast)
+            {
+                <hr />
+            }
+        </div>
+    }
+}

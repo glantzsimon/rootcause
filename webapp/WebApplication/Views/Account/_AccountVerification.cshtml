@@ -1,0 +1,88 @@
+﻿@model K9.WebApplication.Models.AccountActivationModel
+
+@{
+    var returnUrl = TempData["ReturnUrl"] ?? "";
+}
+
+<div class="otp-container">
+    @using (Html.BeginForm("VerifySixDigitCode", "Account", new { returnUrl }))
+    {
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.UniqueIdentifier)
+        @Html.HiddenFor(model => model.IsCodeResent)
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6">
+                <div class="verification-container">
+                    @using (Html.BeginBootstrapForm())
+                    {
+                        <h4>@Dictionary.EnterVerificationCode</h4>
+
+                        <div class="code-input-container">
+                            <input id="@nameof(Model.Digit1)" name="@nameof(Model.Digit1)" type="text" maxlength="1" class="otp-input" data-val="true" data-val-required="This is a required field.">
+                            <input id="@nameof(Model.Digit2)" name="@nameof(Model.Digit2)" type="text" maxlength="1" class="otp-input" data-val="true" data-val-required="This is a required field.">
+                            <input id="@nameof(Model.Digit3)" name="@nameof(Model.Digit3)" type="text" maxlength="1" class="otp-input" data-val="true" data-val-required="This is a required field.">
+                            <input id="@nameof(Model.Digit4)" name="@nameof(Model.Digit4)" type="text" maxlength="1" class="otp-input" data-val="true" data-val-required="This is a required field.">
+                            <input id="@nameof(Model.Digit5)" name="@nameof(Model.Digit5)" type="text" maxlength="1" class="otp-input" data-val="true" data-val-required="This is a required field.">
+                            <input id="@nameof(Model.Digit6)" name="@nameof(Model.Digit6)" type="text" maxlength="1" class="otp-input" data-val="true" data-val-required="This is a required field.">
+                        </div>
+
+                        <hr />
+                        @Html.BootstrapButton(Dictionary.Verify, EButtonType.Submit, "", EButtonClass.Large)
+
+                        <p class="margin-top-5">
+                            @Dictionary.DidntReceiveCodePrompt <a href="@Url.Action("AccountCreated", new {Model.UniqueIdentifier, returnUrl, resendCode = 1})" class="">@Dictionary.Resend</a>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    $(function() {
+        $(document).on("paste", function(event) {
+            let pastedCode = (event.originalEvent.clipboardData || window.clipboardData).getData("text");
+            if (pastedCode.length === 6) {
+                $("#@nameof(Model.Digit1)").prop("value", pastedCode[0]);
+                $("#@nameof(Model.Digit2)").prop("value", pastedCode[1]);
+                $("#@nameof(Model.Digit3)").prop("value", pastedCode[2]);
+                $("#@nameof(Model.Digit4)").prop("value", pastedCode[3]);
+                $("#@nameof(Model.Digit5)").prop("value", pastedCode[4]);
+                $("#@nameof(Model.Digit6)").val(pastedCode[5]);
+            }
+        });
+
+        // Select OTP input fields
+        let $inputs = $(".otp-input");
+        console.log("Inputs count:", $inputs.length); // Fix typo in alert (was 'lengtj')
+
+        // Ensure form is correctly selected
+        let $form = $inputs.first().closest("form");
+
+        // Event listeners for OTP inputs
+        $inputs.each(function(index) {
+            $(this).on("input", function() {
+                if ($(this).val().length === 1 && index < $inputs.length - 1) {
+                    $inputs.eq(index + 1).focus(); // Move to next input
+                }
+                checkAndSubmit();
+            });
+
+            $(this).on("keydown", function(e) {
+                if (e.key === "Backspace" && !$(this).val() && index > 0) {
+                    $inputs.eq(index - 1).focus(); // Move to previous input on backspace
+                }
+            });
+        });
+
+        function checkAndSubmit() {
+            let allFilled = $inputs.toArray().every(input => $(input).val().length === 1);
+            if (allFilled) {
+                $form.submit();
+            }
+        }
+    })
+</script>
+

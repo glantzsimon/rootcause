@@ -1,0 +1,117 @@
+﻿@using K9.Base.DataAccessLayer.Attributes
+@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Attributes
+@using K9.DataAccessLayer.Enums
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+@{
+    var prakrutiDoshas = Model.GetPrakrutiDoshas(Model);
+    var prakruti = prakrutiDoshas.GetDosha();
+    var prakrutiViewModel = new K9.WebApplication.ViewModels.DoshasViewModel(
+        Model,
+        prakruti,
+        prakrutiDoshas.GetVataDoshaPercentage(),
+        prakrutiDoshas.GetPittaDoshaPercentage(),
+        prakrutiDoshas.GetKaphaDoshaPercentage());
+
+    var vikrutiDoshas = Model.GetVikrutiDoshas();
+    var vikruti = vikrutiDoshas.GetDosha();
+    var vikrutiViewModel = new K9.WebApplication.ViewModels.DoshasViewModel(
+        Model,
+        vikruti,
+        vikrutiDoshas.GetVataDoshaPercentage(),
+        vikrutiDoshas.GetPittaDoshaPercentage(),
+        vikrutiDoshas.GetKaphaDoshaPercentage(),
+        false);
+}
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.Doshas - @Dictionary.PrakrutiTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = prakrutiDoshas.GetVataDoshaPercentage(),
+                Title = Dictionary.VataDosha,
+                BackgroundColor = $"rgb({prakrutiViewModel.VataColor}, 0.33)",
+                StrokeColor = $"rgb({prakrutiViewModel.VataColor})",
+                Units = $"{prakrutiDoshas.GetVataDoshaPercentage()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = prakrutiDoshas.GetPittaDoshaPercentage(),
+                Title = Dictionary.PittaDosha,
+                BackgroundColor = $"rgb({prakrutiViewModel.PittaColor}, 0.33)",
+                StrokeColor = $"rgb({prakrutiViewModel.PittaColor})",
+                Units = $"{prakrutiDoshas.GetPittaDoshaPercentage()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = prakrutiDoshas.GetKaphaDoshaPercentage(),
+                Title = Dictionary.KaphaDosha,
+                BackgroundColor = $"rgb({prakrutiViewModel.KaphaColor}, 0.33)",
+                StrokeColor = $"rgb({prakrutiViewModel.KaphaColor})",
+                Units = $"{prakrutiDoshas.GetKaphaDoshaPercentage()}%",
+            })
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.Doshas - @Dictionary.VikrutiTitle</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = vikrutiDoshas.GetVataDoshaPercentage(),
+                Title = Dictionary.VataDosha,
+                BackgroundColor = $"rgb({vikrutiViewModel.VataColor}, 0.33)",
+                StrokeColor = $"rgb({vikrutiViewModel.VataColor})",
+                Units = $"{vikrutiDoshas.GetVataDoshaPercentage()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = vikrutiDoshas.GetPittaDoshaPercentage(),
+                Title = Dictionary.PittaDosha,
+                BackgroundColor = $"rgb({vikrutiViewModel.PittaColor}, 0.33)",
+                StrokeColor = $"rgb({vikrutiViewModel.PittaColor})",
+                Units = $"{vikrutiDoshas.GetPittaDoshaPercentage()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = vikrutiDoshas.GetKaphaDoshaPercentage(),
+                Title = Dictionary.KaphaDosha,
+                BackgroundColor = $"rgb({vikrutiViewModel.KaphaColor}, 0.33)",
+                StrokeColor = $"rgb({vikrutiViewModel.KaphaColor})",
+                Units = $"{vikrutiDoshas.GetKaphaDoshaPercentage()}%",
+            })
+        </div>
+    </div>
+</div>

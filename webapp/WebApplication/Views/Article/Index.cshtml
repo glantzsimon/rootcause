@@ -1,0 +1,13 @@
+﻿@using System.Web.Mvc.Html
+@model List<Article>
+@{
+    ViewBag.Title = Dictionary.Articles;
+    ViewBag.SubTitle = Dictionary.Articles;
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+
+<div class="container main-content">
+    <div class="well margin-bottom-0">
+        @Html.Partial("_ArticleList", Model)
+    </div>
+</div>

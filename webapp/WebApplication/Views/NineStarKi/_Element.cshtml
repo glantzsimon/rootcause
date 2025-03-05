@@ -1,0 +1,12 @@
+﻿@using K9.WebApplication.Config
+@using K9.WebApplication.Helpers
+@model K9.WebApplication.Models.NineStarKiEnergy
+
+<a target="_blank" href="@Url.ActionWithBookmark("Index", "KnowledgeBase", Model.ElementName.ToLower())">
+    <div class="GetToTheRoot-summary-container">
+        <h3 class="margin-bottom-0 padding-bottom-0">@Dictionary.Element</h3>
+        <p>@Model.ElementName</p>
+
+        <img loading="lazy" title="@Model.ElementName @Dictionary.Element" alt="@Dictionary.GetToTheRootKiAstrologyFreeCalculator @Model.ElementName @Dictionary.Element" class="auto-size center-block" src="@DefaultValuesConfiguration.Instance.BaseImagesPath/GetToTheRoot/elements/@(Model.ElementName.ToLower()).png" />
+    </div>
+</a>

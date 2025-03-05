@@ -1,0 +1,54 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.TasterStatus</h3>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.CruciferousVegetablesTasteVeryBitter)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.CruciferousVegetablesTasteVeryBitter, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<a id="backToPage6" class="btn btn-primary btn-lg" title="@Dictionary.Back" href="#">
+    <i class="fa fa-chevron-left"></i>
+    <span class="site-controls-text">
+        @Dictionary.Back
+    </span>
+</a>
+
+@Html.BootstrapButton(Dictionary.SaveAndContinue, EButtonType.Submit, "fa-chevron-right", EButtonClass.IconRight, EButtonClass.Large)
+
+<script type="text/javascript">
+
+    $(window).on("load",
+        function () {
+
+            $("#backToPage6").click(function () {
+                $.fn.activateTab("dentition");
+            });
+
+        });
+
+</script>

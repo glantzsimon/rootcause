@@ -1,0 +1,30 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model List<Product>
+
+@{
+    var firstItem = Model.First();
+}
+
+<div class="row">
+    <div class="col-xs-6">
+        <h4>@Dictionary.PleaseSelect</h4>
+    </div>
+    <div class="col-xs-6">
+        @Html.Partial("Controls/_SearchBox", new SearchBoxOptions
+        {
+            CssSelector = "div.checkbox"
+        })
+    </div>
+</div>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    @Html.HiddenFor(e => Model[i].Id)
+    @Html.HiddenFor(e => Model[i].Name)
+ 
+    <div class="checkbox">
+        <label>@Html.CheckBoxFor(model => Model[i].IsSelected)@Model[i].Name</label>
+    </div>
+}

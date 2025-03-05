@@ -1,0 +1,23 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Models
+@model Protocol
+
+@{
+    var parasiteCleanseViewModel = new ParasiteCleanseViewModel
+    {
+        ParasiteCleanseProduct = Model.GetProduct(35),
+        ParasiteCleanse2Product = Model.GetProduct(37),
+        ParasiteCleanse3Product = Model.GetProduct(39),
+        ParasiteCleanseDosages = new[] { 13, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0 },
+        ParasiteCleanse2Dosages = new[] { 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0 },
+        ParasiteCleanse3Dosages = new[] { 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        NumberOfDays = Model.DaysDuration
+    };
+}
+
+@Html.Partial("../Protocols/_ParasiteCleanseBody", parasiteCleanseViewModel)
+
+<hr />
+
+@Html.Partial("../Protocols/_ProductsSummary")

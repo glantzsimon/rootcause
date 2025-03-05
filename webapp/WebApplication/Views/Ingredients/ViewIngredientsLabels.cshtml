@@ -1,0 +1,10 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.Base.WebApplication.Helpers
+@model K9.WebApplication.Models.IngredientsLabelsViewModel
+
+@{
+    Layout = "../Shared/_LayoutPrint.cshtml";
+    ViewBag.SubTitle = $"{Dictionary.ClientAddressLabels}";
+}
+
+@Html.Partial("_IngredientsPrintPage")

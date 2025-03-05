@@ -1,0 +1,644 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.Doshas</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Raw(Dictionary.DoshasDescription)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(Dictionary.SkinType)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.DrySkin, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.OilySkin, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.ThickSkin, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(K9.Globalisation.Dictionary.SleepLabel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.LightSleep, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.ModerateSleep, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.DeepSleep, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(K9.Globalisation.Dictionary.WeightGainQuestionLabel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.WeightGainDifficult, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.WeightGainModerate, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            @Html.BootstrapEditorFor(e => e.WeightGainEasy, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(K9.Globalisation.Dictionary.BodyTemperatureQuestionLabel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.BodyCold, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.BodyHot, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.BodyColdMoist, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(K9.Globalisation.Dictionary.StressResponseQuestionLabel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.StressAnxious, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.StressIrritable, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.StressReclusive, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(K9.Globalisation.Dictionary.EyesTypeQuestionLabel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.SmallEyes, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.PenetratingEyes, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.LargeEyes, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(K9.Globalisation.Dictionary.DispositionQuestionLabel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.LivelyDisposition, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.DrivenDisposition, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.EvenDisposition, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Label(K9.Globalisation.Dictionary.HairTypeQuestionLabel)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.FrizzyHairType, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.FineHairType, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.FullHairType, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+</div>
+
+<div class="well">
+
+    @*Vata Dosha Imbalance*@
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Nervousness)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Nervousness, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Spasms)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Spasms, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.LowVigour)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.LowVigour, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.WeightLoss)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.WeightLoss, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.NeuropathicPain)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.NeuropathicPain, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.DryFlakySkin)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.DryFlakySkin, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.IrregularDigestion)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.IrregularDigestion, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.TroubleFallingAsleep)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.TroubleFallingAsleep, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Fretting)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Fretting, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    @*Pitta Dosha Imbalance*@
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.UlcersAcidReflux)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.UlcersAcidReflux, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Nausea)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Nausea, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Acne)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Acne, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.HyperMetabolism)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.HyperMetabolism, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.ExcessBodyHeat)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.ExcessBodyHeat, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.AngerFrustration)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.AngerFrustration, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.ImpatientIdealistic)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.ImpatientIdealistic, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.RedEyes)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.RedEyes, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.SensitiveToLight)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.SensitiveToLight, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.HighLibido)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.HighLibido, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    @*Kapha Dosha Imbalance*@
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.ExcessMucous)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.ExcessMucous, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.SlowInfrequentBowelMovements)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.SlowInfrequentBowelMovements, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.MoodDrivenEating)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.MoodDrivenEating, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.EasyWeightGain)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.EasyWeightGain, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.HardToWakeUp)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.HardToWakeUp, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Lethargic)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Lethargic, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Possessive)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Possessive, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.LabelFor(e => e.Obstinacy)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            @Html.BootstrapEditorFor(e => e.Obstinacy, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<a id="backToPage9" class="btn btn-primary btn-lg" title="@Dictionary.Back" href="#">
+    <i class="fa fa-chevron-left"></i>
+    <span class="site-controls-text">
+        @Dictionary.Back
+    </span>
+</a>
+
+@Html.BootstrapButton(Dictionary.SaveAndContinue, EButtonType.Submit, "fa-chevron-right", EButtonClass.IconRight, EButtonClass.Large)
+
+<script type="text/javascript">
+
+    $(window).on("load",
+        function () {
+
+            $("#backToPage9").click(function () {
+                $.fn.activateTab("cbs-methylation");
+            });
+
+        });
+
+</script>

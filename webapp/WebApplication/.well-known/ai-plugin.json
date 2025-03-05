@@ -1,0 +1,19 @@
+﻿{
+  "schema_version": "v1",
+  "name_for_human": "9 Star Ki Api",
+  "name_for_model": "nine_star_ki",
+  "description_for_human": "Access information about a person based on their birth chart in Get To The Root.",
+  "description_for_model": "Plugin to access information about a person based on Get To The Root. It requires an API key passed via the Authorization header.",
+  "auth": {
+    "type": "user_http",
+    "authorization_type": "bearer"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://gettotheroot.net/openapi.yaml",
+    "is_user_authenticated": true
+  },
+  "logo_url": "https://gettotheroot.net/images/company/logo.png",
+  "contact_email": "support@gettotheroot.net",
+  "legal_info_url": "https://gettotheroot.net/terms-of-service"
+}

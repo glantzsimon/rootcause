@@ -1,0 +1,9 @@
+﻿@using K9.Base.WebApplication.Helpers
+@{
+    ViewBag.Title = K9.Globalisation.Dictionary.ImpersonateUser;
+    ViewBag.SubTitle = K9.Globalisation.Dictionary.ImpersonateUser;
+    Layout = "~/Views/Shared/_LayoutFormSmall.cshtml";
+}
+<div class="margin-bottom-10">
+    @Html.Success("", K9.Globalisation.Dictionary.StoppedImpersonatingUser)
+</div>

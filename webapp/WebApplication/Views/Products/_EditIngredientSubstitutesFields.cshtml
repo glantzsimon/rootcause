@@ -1,0 +1,67 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Product
+
+@if (!Model.AllowIngredientSubstitutes)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="field-validation-error">
+                @Dictionary.ProductDoesNotAllowSubstitutes
+            </span>
+            <br />
+        </div>
+    </div>
+}
+else
+{
+    for (int i = 0; i < Model.Ingredients.Count; i++)
+    {
+        @Html.HiddenFor(e => Model.Ingredients[i].Id)
+        @Html.HiddenFor(e => Model.Ingredients[i].Name)
+        @Html.HiddenFor(e => Model.Ingredients[i].Ingredient.Id)
+
+        if (Model.Ingredients[i].Ingredient.Substitutes.Any())
+        {
+            <div class="row">
+                <div class="col-xs-3">
+                    @Html.BootstrapDisplayFor(e => Model.Ingredients[i].IngredientName)
+                </div>
+                <div class="col-xs-5">
+                    @Html.BootstrapEditorFor(e => Model.Ingredients[i].NumberOfSubstitutesToUse)
+                </div>
+                <div class="col-xs-4 substitutes-container">
+                    @Html.Label(Dictionary.IngredientSubstitutes)
+                    <ul data-displayIndexFieldName="Priority" class="substitutes-list list-group sortable">
+                        @for (int j = 0; j < Model.Ingredients[i].Ingredient.Substitutes.Count; j++)
+                        {
+                            @Html.HiddenFor(e => Model.Ingredients[i].Ingredient.Substitutes[j].Id)
+                            @Html.HiddenFor(e => Model.Ingredients[i].Ingredient.Substitutes[j].IngredientId)
+                            @Html.HiddenFor(e => Model.Ingredients[i].Ingredient.Substitutes[j].SubstituteIngredientId)
+                            @Html.HiddenFor(e => Model.Ingredients[i].Ingredient.Substitutes[j].Priority, new { data_id = Model.Ingredients[i].Ingredient.Substitutes[j].Id })
+
+                            <li data-parentid="@Model.Ingredients[i].Id" data-id="@Model.Ingredients[i].Ingredient.Substitutes[j].Id" class="list-group-item">
+                                <div class="checkbox substitute">
+                                    <label>@Html.CheckBoxFor(model => Model.Ingredients[i].Ingredient.Substitutes[j].IsSelected)@Model.Ingredients[i].Ingredient.Substitutes[j].SubstituteIngredient.Name</label>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <hr />
+        }
+    }
+
+    <script type="text/javascript">
+
+        $("div.substitute input[type='checkbox']").click(function () {
+            let $container = $(this).closest(".substitutes-container");
+            var numberSelected = $container.find("input[type='checkbox']:checked").length;
+            var $numberToUse = $container.parent().find("input[name*='NumberOfSubstitutesToUse']");
+
+            $numberToUse.val(numberSelected);
+        });
+
+    </script>
+}

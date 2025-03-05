@@ -1,0 +1,17 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model DietaryRecommendation
+@{
+	Layout = "../Shared/_LayoutFormSmall.cshtml";
+}
+@using (Html.BeginForm())
+{
+	using (Html.BeginBootstrapForm())
+	{
+		@Html.HiddenFor(model => model.Id)
+	    @Html.HiddenFor(model => model.ExternalId)
+		@Html.Partial("_EditFields")
+		<hr/>
+		@Html.BootstrapButton(K9.Base.Globalisation.Dictionary.Update, EButtonType.Submit, "fa-save")
+		@Html.BootstrapBackToListButton()
+	}
+}

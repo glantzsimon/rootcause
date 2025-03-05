@@ -1,0 +1,163 @@
+﻿@import "../config/colours.less";
+
+.datatable-container {
+    width: 100%;
+    overflow: auto;
+
+    div {
+        margin: 0;
+    }
+}
+
+.button-container {
+    margin-bottom: 9px;
+}
+
+.bootstraptable {
+    border-top-left-radius: 9px !important;
+    border-top-right-radius: 9px !important;
+    background-color: #f0f8ff; // AliceBlue
+    background: linear-gradient(to bottom, #f7fbff 0%, #f0f8ff 100%);
+
+    .btn, form .btn {
+        margin-right: 6px;
+    }
+
+    thead {
+        color: #333;
+    }
+
+    tbody tr:hover {
+        background: @primary-blue !important;
+        color: @snow-white !important;
+    }
+
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+form .pull-right .btn {
+    margin-right: 0;
+}
+
+.table-row {
+    border-bottom: 1px solid #d9d9d9;
+    padding-top: 11px;
+    padding-bottom: 6px;
+
+    button {
+        margin-top: -4px !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+.table-responsive {
+    margin-left: 0;
+    margin-right: 0;
+    border-top-left-radius: 9px !important;
+    border-top-right-radius: 9px !important;
+    background-color: #f0f8ff; // AliceBlue
+    background: linear-gradient(to bottom, #f7fbff 0%, #f0f8ff 100%);
+    border: 1px solid @border-grey;
+
+    table {
+        margin-bottom: 0 !important;
+
+        thead {
+
+            th {
+                padding-top: 12px !important;
+                padding-bottom: 12px !important;
+            }
+        }
+    }
+
+    &.table-left-nowrap {
+        table {
+            th:first-child, td:first-child {
+                white-space: nowrap !important;
+            }
+
+            th:not(:first-child), td:not(:first-child) {
+                white-space: normal !important;
+                word-wrap: break-word !important;
+                word-break: break-word !important;
+            }
+        }
+    }
+}
+
+/* Style the search input */
+/* Style the search input */
+.form-control.input-sm[type="search"] {
+    border-radius: 25px; /* Makes it round */
+    padding: 10px 40px 10px 15px; /* Add space for the icon */
+    border: 1px solid #ccc;
+    transition: all 0.3s ease-in-out;
+    font-size: 14px;
+
+    &:focus {
+        border-color: #007bff; /* Highlight on focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+    }
+    /* Beautiful magnifying glass icon */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') no-repeat;
+    background-size: 20px;
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+}
+
+
+.datatable-container .col-lg-1,
+.datatable-container .col-lg-10,
+.datatable-container .col-lg-11,
+.datatable-container .col-lg-12,
+.datatable-container .col-lg-2,
+.datatable-container .col-lg-3,
+.datatable-container .col-lg-4,
+.datatable-container .col-lg-5,
+.datatable-container .col-lg-6,
+.datatable-container .col-lg-7,
+.datatable-container .col-lg-8,
+.datatable-container .col-lg-9,
+.datatable-container .col-md-1,
+.datatable-container .col-md-10,
+.datatable-container .col-md-11,
+.datatable-container .col-md-12,
+.datatable-container .col-md-2,
+.datatable-container .col-md-3,
+.datatable-container .col-md-4,
+.datatable-container .col-md-5,
+.datatable-container .col-md-6,
+.datatable-container .col-md-7,
+.datatable-container .col-md-8,
+.datatable-container .col-md-9,
+.datatable-container .col-sm-1,
+.datatable-container .col-sm-10,
+.datatable-container .col-sm-11,
+.datatable-container .col-sm-12,
+.datatable-container .col-sm-2,
+.datatable-container .col-sm-3,
+.datatable-container .col-sm-4,
+.datatable-container .col-sm-5,
+.datatable-container .col-sm-6,
+.datatable-container .col-sm-7,
+.datatable-container .col-sm-8,
+.datatable-container .col-sm-9,
+.datatable-container .col-xs-1,
+.datatable-container .col-xs-10,
+.datatable-container .col-xs-11,
+.datatable-container .col-xs-12,
+.datatable-container .col-xs-2,
+.datatable-container .col-xs-3,
+.datatable-container .col-xs-4,
+.datatable-container .col-xs-5,
+.datatable-container .col-xs-6,
+.datatable-container .col-xs-7,
+.datatable-container .col-xs-8,
+.datatable-container .col-xs-9 {
+    padding-left: 0;
+    padding-right: 0;
+}

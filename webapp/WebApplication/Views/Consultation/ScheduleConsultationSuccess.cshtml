@@ -1,0 +1,41 @@
+﻿@using K9.SharedLibrary.Helpers
+@using TemplateParser = K9.SharedLibrary.Helpers.TemplateParser
+@model K9.WebApplication.ViewModels.ScheduleConsultationViewModel
+
+@{
+    ViewBag.Title = Dictionary.ScheduleConsultation;
+    ViewBag.SubTitle = Dictionary.ScheduleSuccess;
+    Layout = "../Shared/_LayoutForm.cshtml";
+    ViewBag.TitleTag = "text-center";
+}
+
+<div class="margin-bottom-30">
+    @Html.Success(
+        TemplateParser.Parse(Dictionary.ScheduleAConsultationSuccess, new
+        {
+            Duration = Model.SelectedSlot.DurationDescription.ToLower()
+        }))
+
+    <div class="text-center">
+        <h2 class="bold">@($"{Model.SelectedSlot.FormattedStartsOnLocalDate} {Dictionary.At} {Model.SelectedSlot.FormattedStartsOnLocalTime}")</h2>
+    </div>
+</div>
+
+<hr />
+
+<article>
+    <div class="text-center">
+        <h5 class="margin-top-5">@Dictionary.NeedToScheduleADifferentTime</h5>
+        @Html.BootstrapActionLinkButton(K9.Globalisation.Dictionary.RescheduleAppointment,
+            "ScheduleConsultation", "Consultation",
+            new { consultationId = Model.Consultation.Id },
+            "",
+            EButtonClass.Large)
+        
+        @Html.Partial("_WhatsApp", new K9.WebApplication.ViewModels.WhatsAppViewModel
+        {
+            Title = "",
+            Message = Dictionary.WhatsAppScheduleAppointmentText
+        })
+    </div>  
+</article>

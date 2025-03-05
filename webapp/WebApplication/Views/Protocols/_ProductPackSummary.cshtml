@@ -1,0 +1,36 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.SharedLibrary.Authentication
+@using K9.WebApplication.Constants
+@model Protocol
+
+<div class="row">
+    <div class="col-sm-12">
+        @Html.LabelFor(e => Model.ProductPacks[0].Name)
+    </div>
+</div>
+<hr />
+@for (int i = 0; i < Model.ProductPacks?.Count; i++)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            @if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+            {
+                <a target="_blank" href="@Url.Action("Edit", "ProductPacks", new {id = Model.ProductPacks[i].ProductPackId})">
+                    @Html.DisplayFor(e => Model.ProductPacks[i].ProductPack.Name)
+                </a>
+            }
+            else if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsUnicornUser())
+            {
+                <a target="_blank" href="@Url.Action("Link", "ProductPack", new {id = Model.ProductPacks[i].ProductPack.ExternalId})">
+                    @Html.DisplayFor(e => Model.ProductPacks[i].ProductPack.Name)
+                </a>
+            }
+            else
+            {
+                @Html.DisplayFor(e => Model.ProductPacks[i].ProductPack.Name)
+            }
+        </div>
+    </div>
+
+    <hr />
+}

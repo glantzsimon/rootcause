@@ -1,0 +1,89 @@
+﻿@using K9.Base.WebApplication.Extensions
+@using K9.SharedLibrary.Authentication
+@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@model HealthQuestionnaire
+
+<ul class="nav nav-pills">
+    <li>
+        <a data-toggle="pill" href="#requirements">
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="site-controls-text">
+                @Dictionary.Requirements
+            </span>
+        </a>
+    </li>
+
+    <li class="@(Model.GetPersonalDetailsActiveTabClass())"><a data-toggle="pill" href="#personal-details">@Dictionary.PersonalDetails @Html.Raw(Model.GetPersonalDetailsCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetBloodAnalysisActiveTabClass()} {Model.GetBloodAnalysisEnabledClass()}")"><a data-toggle="@Model.GetBloodAnalysisToggle()" href="#blood-analysis">@Dictionary.BloodAnalysis @Html.Raw(Model.GetBloodAnalysisCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetAcetylationActiveTabClass()} {Model.GetAcetylationEnabledClass()}")"><a data-toggle="@Model.GetAcetylationToggle()" href="#acetylation">@Dictionary.AcetylationTitle @Html.Raw(Model.GetAcetylationCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetBiometricsActiveTabClass()} {Model.GetBiometricsEnabledClass()}")"><a data-toggle="@Model.GetBiometricsToggle()" href="#biometrics">@Dictionary.BiometricsTitle @Html.Raw(Model.GetBiometricsCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetDermatoglyphicsActiveTabClass()} {Model.GetDermatoglyphicsEnabledClass()}")"><a data-toggle="@Model.GetDermatoglyphicsToggle()" href="#dermatoglyphics">@Dictionary.DermatoglyphicsTitle @Html.Raw(Model.GetDermatoglyphicsCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetDentitionActiveTabClass()} {Model.GetDentitionEnabledClass()}")"><a data-toggle="@Model.GetDentitionToggle()" href="#dentition">@Dictionary.DentitionTitle @Html.Raw(Model.GetDentitionCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetTasterStatusActiveTabClass()} {Model.GetTasterStatusEnabledClass()}")"><a data-toggle="@Model.GetTasterStatusToggle()" href="#taster-status">@Dictionary.TasterStatus @Html.Raw(Model.GetTasterStatusCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetFamilyHistoryActiveTabClass()} {Model.GetFamilyHistoryEnabledClass()}")"><a data-toggle="@Model.GetFamilyHistoryToggle()" href="#family-history">@Dictionary.FamilyHistory @Html.Raw(Model.GetFamilyHistoryCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetCbsAndMethylationActiveTabClass()} {Model.GetCbsAndMethylationEnabledClass()}")"><a data-toggle="@Model.GetCbsAndMethylationToggle()" href="#cbs-methylation">@Dictionary.CbsAndMethylation @Html.Raw(Model.GetCbsAndMethylationCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetDoshasActiveTabClass()} {Model.GetDoshasEnabledClass()}")"><a data-toggle="@Model.GetDoshasToggle()" href="#doshas">@Dictionary.Doshas @Html.Raw(Model.GetDoshasCompleteHtml())</a></li>
+
+    <li class="@($"{Model.GetGeneralHealthActiveTabClass()} {Model.GetGeneralHealthEnabledClass()}")"><a data-toggle="@Model.GetGeneralHealthToggle()" href="#general-health">@Dictionary.GeneralHealth @Html.Raw(Model.GetGeneralHealthCompleteHtml())</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="requirements" class="tab-pane fade padding-top-15">
+        @Html.Partial("Questions/_PageRequirements")
+    </div>
+
+    <div id="personal-details" class="tab-pane fade @(Model.GetPersonalDetailsActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page1PersonalDetails")
+    </div>
+
+    <div id="blood-analysis" class="tab-pane fade @(Model.GetBloodAnalysisActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page2BloodAnalysis")
+    </div>
+
+    <div id="acetylation" class="tab-pane fade @(Model.GetAcetylationActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page3Acetylation")
+    </div>
+
+    <div id="biometrics" class="tab-pane fade @(Model.GetBiometricsActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page4Biometrics")
+    </div>
+
+    <div id="dermatoglyphics" class="tab-pane @(Model.GetDermatoglyphicsActivePanelClass()) fade padding-top-15">
+        @Html.Partial("Questions/_Page5Dermatoglyphics")
+    </div>
+
+    <div id="dentition" class="tab-pane fade @(Model.GetDentitionActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page6Dentition")
+    </div>
+
+    <div id="taster-status" class="tab-pane fade @(Model.GetTasterStatusActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page7TasterStatus")
+    </div>
+
+    <div id="family-history" class="tab-pane fade @(Model.GetFamilyHistoryActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page8FamilyHistory")
+    </div>
+
+    <div id="cbs-methylation" class="tab-pane fade @(Model.GetCbsAndMethylationActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page9CbsMethylation")
+    </div>
+
+    <div id="doshas" class="tab-pane fade @(Model.GetDoshasActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page10Doshas")
+    </div>
+
+    <div id="general-health" class="tab-pane fade @(Model.GetGeneralHealthActivePanelClass()) padding-top-15">
+        @Html.Partial("Questions/_Page11General")
+    </div>
+</div>

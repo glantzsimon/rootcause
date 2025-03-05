@@ -1,0 +1,27 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Models
+@using EButtonType = K9.SharedLibrary.Models.EButtonType
+@model MailingList
+@{
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+}
+
+@Html.BootstrapTable(new DataTableOptions<MailingList>
+{
+    VisibleColumns = new List<string>
+    {
+        "Name",
+        "CreatedOn"
+    },
+    CustomButtons = new List<IButton>
+    {
+        new Button
+        {
+            Text = Dictionary.SelectUsers,
+            Controller = "",
+            Action = "select-users",
+            ButtonType = EButtonType.Primary,
+            IconCssClass = "fa fa-users"
+        }
+    }
+})

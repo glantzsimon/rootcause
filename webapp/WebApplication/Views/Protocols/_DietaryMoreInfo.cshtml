@@ -1,0 +1,46 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Helpers
+@using K9.WebApplication.Helpers
+@model DietaryRecommendation
+
+@if (!string.IsNullOrEmpty(Model.Recommendations))
+{
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>@Html.LabelFor(e => Model.Recommendations)</h4>
+            </div>
+            <div class="col-xs-12">
+                @Html.Raw(Model.Recommendations)
+            </div>
+        </div>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Benefits))
+{
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>@Html.LabelFor(e => Model.Benefits)</h4>
+            </div>
+            <div class="col-xs-12">
+                @Html.Raw(Model.Benefits)
+            </div>
+        </div>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Body))
+{
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>@Html.LabelFor(e => Model.Body)</h4>
+            </div>
+            <div class="col-xs-12">
+                @Html.Raw(Model.Body)
+            </div>
+        </div>
+    </div>
+}

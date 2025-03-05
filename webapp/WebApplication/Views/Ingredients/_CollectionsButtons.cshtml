@@ -1,0 +1,12 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@model Ingredient
+
+@if (Model.Id > 0)
+{
+    @Html.BootstrapActionLinkButton(Dictionary.EditIngredientSubstitutes, "EditIngredientSubstitutes", "Ingredients", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+    if (Model.Substitutes != null && Model.Substitutes.Any())
+    {
+        @Html.BootstrapActionLinkButton(Dictionary.EditIngredientSubstitutePriorities, "EditIngredientSubstitutePriorities", "Ingredients", new { id = Model.Id }, "fa fa-pencil", EButtonClass.Primary)
+    }
+}

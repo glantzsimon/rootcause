@@ -1,0 +1,73 @@
+﻿@using System.Web.Mvc.Html
+@using K9.Base.WebApplication.ViewModels
+@using K9.DataAccessLayer.Enums
+@model Product
+
+@if (Model.ImageFileSource != null)
+{
+    @Html.Partial("_ImageFilesDisplay", new FileSourceViewModel(Model.ImageFileSource))
+}
+
+<div class="row text-center">
+    <div class="col-md-12">
+        <h1 class="margin-top-5 goldenrod">
+            @Model.Name
+        </h1>
+        <h3 class="padding-horizontal-40 margin-top-0">
+            @MvcHtmlString.Create(Model.ShortDescription)
+        </h3>
+    </div>
+</div>
+
+<hr />
+
+<article>
+    @if (!string.IsNullOrEmpty(Model.Body))
+    {
+        <h5>@Dictionary.OverviewLabel</h5>
+        @MvcHtmlString.Create(Model.Body)
+
+        <br />
+    }
+
+    <h5>@Dictionary.PriceLabel</h5>
+    @Model.GetFormattedInternationalPrice()
+
+    <br />
+
+    @if (Model.ProductType != EProductType.Other)
+    {
+
+        <h5>@Dictionary.AmountLabel</h5>
+        @Model.FormattedAmount
+
+        <br />
+
+        <h5>@Dictionary.DosageLabel</h5>
+        @Model.GetRecommendationsText()
+
+        <br />
+    }
+
+    <br />
+
+    <h5>@Dictionary.BenefitsLabel</h5>
+    <div class="benefits">
+        @MvcHtmlString.Create(Model.Benefits)
+    </div>
+
+    <br />
+
+    @if (Model.ProductType != EProductType.Other)
+    {
+
+        @Html.Partial("_Ingredients", Model)
+
+        <hr />
+    }
+
+    <div class="buttons-container">
+        @Html.Partial("../Product/_AddToCart", Model)
+        @Html.BootstrapActionLinkButton(Dictionary.SeeAllProducts, "Index", "Ingredients", null, "", EButtonClass.Info, EButtonClass.Large)
+    </div>
+</article>

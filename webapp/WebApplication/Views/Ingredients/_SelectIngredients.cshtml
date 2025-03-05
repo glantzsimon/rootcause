@@ -1,0 +1,57 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model K9.WebApplication.Models.IngredientsLabelsViewModel
+
+@{
+    var firstItem = Model.Ingredients.First();
+    var category = firstItem.Category;
+    var categoryText = firstItem.CategoryText;
+}
+
+<div class="row">
+    <div class="col-xs-6">
+        <h4>@Dictionary.SelectIngredientLabels</h4>
+    </div>
+    <div class="col-xs-6">
+        @Html.Partial("Controls/_SearchBox", new SearchBoxOptions
+        {
+            CssSelector = "div.checkbox"
+        })
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-xs-12">
+        <h4>@categoryText</h4>
+    </div>
+</div>
+
+@for (int i = 0; i < Model.Ingredients.Count; i++)
+{
+    @Html.HiddenFor(e => Model.Ingredients[i].Id)
+    @Html.HiddenFor(e => Model.Ingredients[i].Name)
+    @Html.HiddenFor(e => Model.Ingredients[i].CategoryText)
+    @Html.HiddenFor(e => Model.Ingredients[i].ItemCode)
+
+    var itemCategory = Model.Ingredients[i].Category;
+    if (category != itemCategory)
+    {
+        category = itemCategory;
+
+        <hr />
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>@Model.Ingredients[i].CategoryText</h4>
+            </div>
+        </div>
+    }
+
+    <div class="checkbox" data-category="@Model.Ingredients[i].CategoryText" data-itemcode="@Model.Ingredients[i].ItemCode">
+        <label>
+            @Html.CheckBoxFor(model => Model.Ingredients[i].IsSelected)
+            @Model.Ingredients[i].Name
+        </label>
+    </div>
+}

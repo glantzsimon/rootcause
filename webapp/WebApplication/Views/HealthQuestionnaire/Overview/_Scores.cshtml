@@ -1,0 +1,361 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Attributes
+@using K9.DataAccessLayer.Enums
+@using K9.DataAccessLayer.Helpers
+@using K9.SharedLibrary.Extensions
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model HealthQuestionnaire
+
+@{
+    var acetylationColor = Model.GetColorFromScore(Model.GetAcetulationScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var familyHistoryColor = Model.GetColorFromScore(Model.GetFamilyHistoryScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var cbsColor = Model.GetColorFromScore(Model.GetCbsScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var digestionColor = Model.GetColorFromScore(Model.GetDigestionIssuesScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var immunityColor = Model.GetColorFromScore(Model.GetImmunityIssuesScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var yinColor = Model.GetColorFromScore(Model.GetYinImbalanceScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var yangColor = Model.GetColorFromScore(Model.GetYangImbalanceScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var dentalIssuesColor = Model.GetColorFromScore(Model.GetDentalHealthScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var neurologicalColor = Model.GetColorFromScore(Model.GetNeurologicalScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var respiratoryColor = Model.GetColorFromScore(Model.GetRespiratoryHealthScore).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var cardiovascularColor = Model.GetColorFromScore(Model.GetCardiovascularScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var inflammationColor = Model.GetColorFromScore(Model.GetInflammationScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+
+    var oxalateColor = Model.GetColorFromScore(Model.GetOxalateScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var histamineColor = Model.GetColorFromScore(Model.GetHistamineScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var phytateColor = Model.GetColorFromScore(Model.GetPhytateScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var lectinColor = Model.GetColorFromScore(Model.GetLectinsScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var mycotoxinColor = Model.GetColorFromScore(Model.GetMycotoxinScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var omega6Color = Model.GetColorFromScore(Model.GetOmega6Score()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+
+    var currentHealthColor = Model.GetColorFromScore(Model.GetCurrentHealthScore().InvertScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+    var expertiseColor = Model.GetColorFromScore(Model.GetNutritionExpertiseScore().InvertScore()).GetAttribute<GenoTypeEnumMetaDataAttribute>().Color;
+
+    var nineStarKiModel = Model.GetNineStarKiModel();
+
+    var genoType = Model.CalculateGenotype();
+    var strengthTestResults = Model.GetGroupedStrengthTestResults();
+}
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.OverviewLabel</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => nineStarKiModel.MainEnergy)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => nineStarKiModel.CharacterEnergy)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => nineStarKiModel.SurfaceEnergy)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => nineStarKiModel.YearlyCycleEnergy)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => nineStarKiModel.MonthlyCycleEnergy)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.GenoType</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => genoType.GenoType)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => genoType.Strength)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.BloodGroupDisplay)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.RhesusFactorDisplay)
+        </div>
+    </div>
+
+    @if (K9.WebApplication.Helpers.SessionHelper.CurrentUserIsAdmin())
+    {
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="section-title">@Dictionary.StrengthTestResults</h3>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var result in strengthTestResults.FilteredResults)
+            {
+
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    @Html.Partial("Controls/_Gauge", new GaugeOptions
+                    {
+                        MaxValue = 100,
+                        Value = (int) strengthTestResults.GetGaugaeValue(result),
+                        Title = result.GenoTypeName,
+                        BackgroundColor = $"rgb({result.Color}, 0.33)",
+                        StrokeColor = $"rgb({result.Color})",
+                        Units = $"{strengthTestResults.GetResultAsPercentage(result)}%",
+                    })
+                </div>
+            }
+        </div>
+    }
+
+    @Html.Partial("Overview/_Doshas")
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.Scores</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetCurrentHealthScore(),
+                Title = Dictionary.CurrentHealthLevel,
+                BackgroundColor = $"rgb({currentHealthColor}, 0.33)",
+                StrokeColor = $"rgb({currentHealthColor})",
+                Units = $"{Model.GetCurrentHealthScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetNutritionExpertiseScore(),
+                Title = Dictionary.NutritionExpertise,
+                BackgroundColor = $"rgb({expertiseColor}, 0.33)",
+                StrokeColor = $"rgb({expertiseColor})",
+                Units = $"{Model.GetNutritionExpertiseScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetAcetulationScore().InvertScore(),
+                Title = Dictionary.AcetylationTitle,
+                BackgroundColor = $"rgb({acetylationColor}, 0.33)",
+                StrokeColor = $"rgb({acetylationColor})",
+                Units = $"{Model.GetAcetulationScore().InvertScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetFamilyHistoryScore(),
+                Title = Dictionary.HereditaryRisk,
+                BackgroundColor = $"rgb({familyHistoryColor}, 0.33)",
+                StrokeColor = $"rgb({familyHistoryColor})",
+                Units = $"{Model.GetFamilyHistoryScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetCbsScore(),
+                Title = Dictionary.CbsAndMethylation,
+                BackgroundColor = $"rgb({cbsColor}, 0.33)",
+                StrokeColor = $"rgb({cbsColor})",
+                Units = $"{Model.GetCbsScore()}%",
+            })
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetDigestionIssuesScore().InvertScore(),
+                Title = Dictionary.Digestion,
+                BackgroundColor = $"rgb({digestionColor}, 0.33)",
+                StrokeColor = $"rgb({digestionColor})",
+                Units = $"{Model.GetDigestionIssuesScore().InvertScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetImmunityIssuesScore().InvertScore(),
+                Title = Dictionary.ImmuneSystem,
+                BackgroundColor = $"rgb({immunityColor}, 0.33)",
+                StrokeColor = $"rgb({immunityColor})",
+                Units = $"{Model.GetImmunityIssuesScore().InvertScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetDentalHealthScore().InvertScore(),
+                Title = Dictionary.DentalHealth,
+                BackgroundColor = $"rgb({dentalIssuesColor}, 0.33)",
+                StrokeColor = $"rgb({dentalIssuesColor})",
+                Units = $"{Model.GetDentalHealthScore().InvertScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetNeurologicalScore().InvertScore(),
+                Title = Dictionary.NeurologicalHealth,
+                BackgroundColor = $"rgb({neurologicalColor}, 0.33)",
+                StrokeColor = $"rgb({neurologicalColor})",
+                Units = $"{Model.GetNeurologicalScore().InvertScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetRespiratoryHealthScore.InvertScore(),
+                Title = Dictionary.RespiratoryHealth,
+                BackgroundColor = $"rgb({respiratoryColor}, 0.33)",
+                StrokeColor = $"rgb({respiratoryColor})",
+                Units = $"{Model.GetRespiratoryHealthScore.InvertScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetCardiovascularScore().InvertScore(),
+                Title = Dictionary.CardiovascularHealth,
+                BackgroundColor = $"rgb({cardiovascularColor}, 0.33)",
+                StrokeColor = $"rgb({cardiovascularColor})",
+                Units = $"{Model.GetCardiovascularScore().InvertScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetInflammationScore(),
+                Title = Dictionary.Inflammation,
+                BackgroundColor = $"rgb({inflammationColor}, 0.33)",
+                StrokeColor = $"rgb({inflammationColor})",
+                Units = $"{Model.GetInflammationScore()}%",
+            })
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetOxalateScore(),
+                Title = Dictionary.OxalateIntolerance,
+                BackgroundColor = $"rgb({oxalateColor}, 0.33)",
+                StrokeColor = $"rgb({oxalateColor})",
+                Units = $"{Model.GetOxalateScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetLectinsScore(),
+                Title = Dictionary.LectinIntolerance,
+                BackgroundColor = $"rgb({lectinColor}, 0.33)",
+                StrokeColor = $"rgb({lectinColor})",
+                Units = $"{Model.GetLectinsScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetPhytateScore(),
+                Title = Dictionary.PhytateIntolerance,
+                BackgroundColor = $"rgb({phytateColor}, 0.33)",
+                StrokeColor = $"rgb({phytateColor})",
+                Units = $"{Model.GetPhytateScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetHistamineScore(),
+                Title = Dictionary.HistamineIntolerance,
+                BackgroundColor = $"rgb({histamineColor}, 0.33)",
+                StrokeColor = $"rgb({histamineColor})",
+                Units = $"{Model.GetHistamineScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetMycotoxinScore(),
+                Title = Dictionary.MycotoxinIntolerance,
+                BackgroundColor = $"rgb({mycotoxinColor}, 0.33)",
+                StrokeColor = $"rgb({mycotoxinColor})",
+                Units = $"{Model.GetMycotoxinScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetOmega6Score(),
+                Title = Dictionary.Omega6Intolerance,
+                BackgroundColor = $"rgb({omega6Color}, 0.33)",
+                StrokeColor = $"rgb({omega6Color})",
+                Units = $"{Model.GetOmega6Score()}%",
+            })
+        </div>
+    </div>
+</div>
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetYinImbalanceScore(),
+                Title = Dictionary.YinImbalance,
+                BackgroundColor = $"rgb({yinColor}, 0.33)",
+                StrokeColor = $"rgb({yinColor})",
+                Units = $"{Model.GetYinImbalanceScore()}%",
+            })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.Partial("Controls/_Gauge", new GaugeOptions
+            {
+                MaxValue = 100,
+                Value = Model.GetYangImbalanceScore(),
+                Title = Dictionary.YangImbalance,
+                BackgroundColor = $"rgb({yangColor}, 0.33)",
+                StrokeColor = $"rgb({yangColor})",
+                Units = $"{Model.GetYangImbalanceScore()}%",
+            })
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,86 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Options
+@model NineStarKiModel
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="section-title">@Dictionary.NineStarKiSummary</h1>
+            <br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.MainEnergy)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.CharacterEnergy)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.SurfaceEnergy)
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.NineStarKiHealthAdvice</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.BootstrapDisplayFor(e => Model.HealthAdvice, new EditorOptions
+            {
+                Label = ""
+            })
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.StrongOrgans</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Raw(Dictionary.StrongOrgansDescription)
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.StrongYinOrgans)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.StrongYangOrgans)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="section-title">@Dictionary.WeakOrgans</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @Html.Raw(Dictionary.WeakOrgansDescription)
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.WeakYinOrgans)
+        </div>
+        <div class="col-xs-4 col-sm-3 col-md-2">
+            @Html.BootstrapDisplayFor(e => Model.WeakYangOrgans)
+        </div>
+    </div>

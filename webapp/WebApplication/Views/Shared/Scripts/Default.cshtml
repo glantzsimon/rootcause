@@ -1,0 +1,191 @@
+﻿@using System.Globalization
+@using K9.Base.WebApplication.Extensions
+@using K9.SharedLibrary.Extensions
+@using K9.SharedLibrary.Helpers
+@using K9.WebApplication.Config
+
+<script type="text/javascript">
+
+	$(function () {
+		$.fn.formatBytes = function (bytes, si) {
+			var thresh = si ? 1000 : 1024;
+			if (Math.abs(bytes) < thresh) {
+				return bytes + ' B';
+			}
+			var units = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+			var u = -1;
+			do {
+				bytes /= thresh;
+				++u;
+			} while (Math.abs(bytes) >= thresh && u < units.length - 1);
+			return bytes.toFixed(1) + ' ' + units[u];
+		};
+
+	    $.fn.activateTab = function(tabId) {
+	        $("ul.nav-tabs a[href='#" + tabId + "']").tab("show");
+	        $("ul.nav-pills a[href='#" + tabId + "']").tab("show");
+	    };
+
+		$.fn.createGuid = function () {
+			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+				var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+				return v.toString(16);
+			});
+		};
+
+		var entityMap = {
+			"&": "&amp;",
+			"<": "&lt;",
+			">": "&gt;",
+			'"': '&quot;',
+			"'": '&#39;',
+			"/": '&#x2F;'
+		};
+
+		$.fn.htmlEncode = function(text) {
+			return String(text).replace(/[&<>"'\/]/g, function (s) {
+				return entityMap[s];
+			});
+		};
+
+		$.fn.getFileExtension = function(filename) {
+			return '.' + filename.split('.').pop();
+		};
+
+		$.fn.isImage = function(filename) {
+			return @(MvcHtmlString.Create(Json.Encode(HelperMethods.GetImageFileExtensions().ToArray()))).indexOf($.fn.getFileExtension(filename)) >= 0;
+        };
+
+	    $.fn.isVideo = function(filename) {
+	        return @(MvcHtmlString.Create(Json.Encode(HelperMethods.GetVideoFileExtensions().ToArray()))).indexOf($.fn.getFileExtension(filename)) >= 0;
+        };
+
+	    $.fn.isAudio = function(filename) {
+	        return @(MvcHtmlString.Create(Json.Encode(HelperMethods.GetAudioFileExtensions().ToArray()))).indexOf($.fn.getFileExtension(filename)) >= 0;
+        };
+
+	    $.fn.getFileNameWithoutExtension = function(fileName) {
+	        return fileName.substring(0, fileName.lastIndexOf("."));
+	    };
+
+        $.fn.getShortFileName = function(fileName) {
+            var nameWithoutExt = $.fn.getFileNameWithoutExtension(fileName);
+            var nameLength = nameWithoutExt.length;
+            var maxLength = 15;
+            return nameWithoutExt.substring(0, nameLength < maxLength ? nameLength : maxLength) + '....' + $.fn.getFileExtension(fileName);
+        }
+
+	    $.fn.setAcceptedFileExtensions = function(fileInput, type) {
+	        var accepted;
+	        switch (type) {
+            case "@MvcHtmlString.Create(K9.Base.Globalisation.Dictionary.Videos)":
+	            accepted = "@HelperMethods.GetVideoFileExtensions().ToDelimitedString()";
+                break;
+
+            case "@MvcHtmlString.Create(K9.Base.Globalisation.Dictionary.Audio)":
+	            accepted = "@HelperMethods.GetAudioFileExtensions().ToDelimitedString()";
+                break;
+
+            case "@MvcHtmlString.Create(K9.Base.Globalisation.Dictionary.Photos)":
+	            accepted = "@HelperMethods.GetImageFileExtensions().ToDelimitedString()";
+	            break;
+
+	        default:
+	            accepted = "*";
+	            break;
+	        }
+	        fileInput.attr("accept", accepted);
+        };
+        
+	    $.fn.scrollToTopOf = function(el, adjustment) {
+	        var offset = $(el).offset();
+	        $("html, body").animate({
+	            scrollTop: offset.top + (adjustment || 0)
+	        }, 600, "swing"); // 600ms duration, 'swing' easing for smooth transition
+	    };
+
+	    $.fn.formatNumberWithCommas = function(value) {
+	        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    }
+
+	    $.fn.displayValidationWarningFor = function(field, validationMessage) {
+	        var validationSpan = $("span[data-valmsg-for='" + field + "']");
+	        validationSpan.html("<span for='" + field + "' generated='true'>" + validationMessage + ".</span>");
+	        validationSpan.removeClass("field-validation-valid");
+	        validationSpan.addClass("field-validation-error warning");
+        };
+
+	    $.fn.hideValidationWarningFor = function(field) {
+	        var validationSpan = $("span[data-valmsg-for='" + field + "']");
+            validationSpan.removeClass("warning");
+        };
+
+        $.fn.preloadImages =  function (imageArray) {
+            for (var i = 0; i < imageArray.length; i++) {
+                var img = new Image();
+                img.src = imageArray[i];
+            }
+        }
+
+	    $.fn.showSuccessPopup = function() {
+	        $("#pageSpinner").fadeOut();
+	        $("div#success-popup").show();
+	        window.setTimeout(function() {
+	                $("div#success-popup").fadeOut();
+	            },
+	            5000);
+	    };
+
+	    $.fn.showFailPopup = function() {
+	        $("#pageSpinner").fadeOut();
+	        $("div#fail-popup").show();
+	        window.setTimeout(function() {
+	                $("div#fail-popup").fadeOut();
+	            },
+	            5000);
+	    };
+
+	    $.fn.processResultAndShowPopup = function(result, fn) {
+	        if (!result.success) {
+	            $.fn.showFailPopup();
+	        } else {
+	            $.fn.showSuccessPopup();
+	            window.setTimeout(fn, 3000);
+	        }
+	    };
+
+		bootstrapControls({
+			language: "@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToLower()",
+            dateFormat: "@CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern.ToUpper()",
+			whatsAppNumber: "@(DefaultValuesConfiguration.Instance.WhatsAppSupportNumber)"
+		}).init();
+
+	    datasetsHelper({
+            datasets: @Html.Raw(this.GetDropdownData().GetAllDataSetsJson())
+        }).init();
+
+		buttonBehaviours().init();
+
+		fadePageIn({
+		    isFirstLoad: @SessionHelper.GetBoolValue("SessionConstants.IsFirstLoad").ToString().ToLower()
+		}).init();
+
+		scroller().init();
+
+		fileUploader({
+			deleteText: "@MvcHtmlString.Create(K9.Base.Globalisation.Dictionary.Delete)",
+			filesSelectedText: "@MvcHtmlString.Create(K9.Base.Globalisation.Dictionary.FilesSelected)"
+        }).init();
+
+        navbar().init();
+
+	    payWall().init();
+        
+        var userLocaleSet = userLocaleSet === null ? @((!string.IsNullOrEmpty(K9.WebApplication.Helpers.SessionHelper.GetCurrentUserTimeZone())).ToString().ToLower()) : userLocaleSet;
+        if (!userLocaleSet)
+        {
+            userLocale().init("@Url.Action("SetCurrentUserTimeZone", "Account")");
+        }
+	});
+
+</script>

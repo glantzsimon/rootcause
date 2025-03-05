@@ -1,0 +1,42 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Helpers
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@if (Model.DietaryRecommendations.Any())
+{
+    for (int i = 0; i < Model.DietaryRecommendations.Count; i++)
+    {
+        var dietaryRecommendation = Model.DietaryRecommendations[i].DietaryRecommendation;
+        var isLast = i == Model.DietaryRecommendations.Count - 1;
+        var bookmark = Model.DietaryRecommendations[i].DietaryRecommendation.GetBookMark();
+
+        <div id="@bookmark" class="well">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>@dietaryRecommendation.Name</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.Raw(dietaryRecommendation.ShortDescription)
+                </div>
+            </div>
+
+            <br />
+
+            @if (!string.IsNullOrEmpty(dietaryRecommendation.Recommendations) ||
+                 !string.IsNullOrEmpty(dietaryRecommendation.Benefits) ||
+                 !string.IsNullOrEmpty(dietaryRecommendation.Body))
+            {
+                @Html.CollapsiblePanel(Dictionary.MoreDetails, Html.Partial("../Protocols/_DietaryMoreInfo", dietaryRecommendation).ToString())
+            }
+
+            @if (!isLast)
+            {
+                <hr />
+            }
+        </div>
+    }
+}

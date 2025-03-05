@@ -1,0 +1,701 @@
+﻿openapi: 3.1.0
+info:
+  title: 9 Star Ki API
+  description: API that returns information about a person using Get To The Root.
+  version: "1.0"
+servers:
+  - url: https://gettotheroot.net
+paths:
+  /api/personal-chart/get/{accountNumber}/{dateOfBirth}/{gender}:
+    get:
+      operationId: getPersonalChart
+      summary: Retrieve information about a person using Get To The Root.
+      description: Returns JSON data about a person based on birth date and gender.
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          description: The user's 9-digit account number
+          schema:
+            type: string
+            example: "123456789"
+        - name: dateOfBirth
+          in: path
+          required: true
+          description: Date of birth in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+            example: "1985-06-16"
+        - name: gender
+          in: path
+          required: true
+          description: Gender of the person.
+          schema:
+            type: string
+            enum: ["Male", "Female", "Other"]
+            example: "Male"
+      responses:
+        "200":
+          description: Successful response with personal chart data.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonalChartResponse"
+        "400":
+          description: Bad request. Invalid or missing parameters.
+        "401":
+          description: Unauthorized. API key missing or invalid.
+        "404":
+          description: Unauthorized. Invalid account number.
+        "422":
+          description: Unauthorized. Valid account number but membership requires upgrade.
+        "500":
+          description: Internal server error.
+      security:
+        - apiKeyAuth: []
+
+  /api/predictions/get/{accountNumber}/{dateOfBirth}/{gender}/{selectedDate}:
+    get:
+      operationId: getPredictions
+      summary: Retrieve information about a person's 9 star ki monthly and yearly predictions.
+      description: Returns JSON data about a person's 9 Star Ki monthly and yearly predictions based on birth date and gender.
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          description: The user's 9-digit account number
+          schema:
+            type: string
+            example: "123456789"
+        - name: dateOfBirth
+          in: path
+          required: true
+          description: Date of birth in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+            example: "1985-06-16"
+        - name: gender
+          in: path
+          required: true
+          description: Gender of the person.
+          schema:
+            type: string
+            enum: ["Male", "Female", "Other"]
+            example: "Male"
+        - name: selectedDate
+          in: path
+          required: true
+          description: selected date in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+            example: "1985-06-16"
+
+      responses:
+        "200":
+          description: Successful response with predictions data.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PredictionsResponse"
+        "400":
+          description: Bad request. Invalid or missing parameters.
+        "401":
+          description: Unauthorized. API key missing or invalid.
+        "404":
+          description: Unauthorized. Invalid account number.
+        "422":
+          description: Unauthorized. Valid account number but membership requires upgrade.
+        "500":
+          description: Internal server error.
+      security:
+        - apiKeyAuth: []
+
+  /api/compatibility/get/{accountNumber}/{firstPersonName}/{firstPersonDateOfBirth}/{firstPersonGender}/{secondPersonName}/{secondPersonDateOfBirth}/{secondPersonGender}/{displaySexualChemistry}:
+    get:
+      operationId: getCompatibility
+      summary: Retrieve information about the compatibility of two people using Get To The Root.
+      description: Returns JSON data about the compatibility of two people based on their birth dates and gender.
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          description: The user's 9-digit account number
+          schema:
+            type: string
+            example: "123456789"
+        - name: firstPersonName
+          in: path
+          required: true
+          description: Name of the first person
+          schema:
+            type: string
+            example: "John"
+        - name: firstPersonDateOfBirth
+          in: path
+          required: true
+          description: Date of birth of the first person in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+            example: "1985-06-16"
+        - name: firstPersonGender
+          in: path
+          required: true
+          description: Gender of the first person.
+          schema:
+            type: string
+            enum: ["Male", "Female", "Other"]
+            example: "Male"
+        - name: secondPersonName
+          in: path
+          required: true
+          description: Name of the second person
+          schema:
+            type: string
+            example: "Jenny"
+        - name: secondPersonDateOfBirth
+          in: path
+          required: true
+          description: Date of birth of the second person in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+            example: "1985-06-16"
+        - name: secondPersonGender
+          in: path
+          required: true
+          description: Gender of the second person.
+          schema:
+            type: string
+            enum: ["Male", "Female", "Other"]
+            example: "Female"
+        - name: displaySexualChemistry
+          in: path
+          required: true
+          description: Whether or not to return information about the sexual chemistry between the first person and the second person
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Successful response with compatibility data.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompatibilityResponse"
+        "400":
+          description: Bad request. Invalid or missing parameters.
+        "401":
+          description: Unauthorized. API key missing or invalid.
+        "404":
+          description: Unauthorized. Invalid account number.
+        "422":
+          description: Unauthorized. Valid account number but membership requires upgrade.
+        "500":
+          description: Internal server error.
+      security:
+        - apiKeyAuth: []
+
+  /api/knowledgebase/get/{accountNumber}:
+    get:
+      operationId: getKnowledgeBase
+      summary: Retrieve general information about 9 star ki.
+      description: Returns JSON data about Get To The Root.
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          description: The user's 9-digit account number
+          schema:
+            type: string
+            example: "123456789"
+      responses:
+        "200":
+          description: Successful response with knowledge base data.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeBaseResponse"
+        "400":
+          description: Bad request. Invalid or missing parameters.
+        "401":
+          description: Unauthorized. API key missing or invalid.
+        "404":
+          description: Unauthorized. Invalid account number.
+        "422":
+          description: Unauthorized. Valid account number but membership requires upgrade.
+        "500":
+          description: Internal server error.
+      security:
+        - apiKeyAuth: []
+
+  /api/iching/get:
+    get:
+      operationId: getIChing
+      summary: Generates an I Ching hexagram and returns information about it and its interpretation
+      description: Returns JSON data about I Ching 
+      responses:
+        "200":
+          description: Successful response with I Ching hexagram data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IChingResponse"
+        "400":
+          description: Bad request. Invalid or missing parameters.
+        "401":
+          description: Unauthorized. API key missing or invalid.
+        "500":
+          description: Internal server error.
+      security:
+        - apiKeyAuth: []
+
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: ApiKey
+
+  schemas:
+    PersonalChartResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: "#/components/schemas/GetToTheRootKiModel"
+
+    PredictionsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            PredictionsSummaryModel:
+              $ref: "#/components/schemas/GetToTheRootKiPredictionsSummaryModel"
+
+    CompatibilityResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            GetToTheRootKiSummaryModel1:
+              $ref: "#/components/schemas/GetToTheRootKiSummaryModel"
+            GetToTheRootKiSummaryModel2:
+              $ref: "#/components/schemas/GetToTheRootKiSummaryModel"
+            FundamentalEnergiesCompatibility:
+              type: string
+              description: A textual summary of the compatibility between the first and second person's fundamental nature.
+              example: "You are very compatible."
+            SexualChemistryDetails:
+              type: string
+              description: A textual summary of the sexual chemistry between the first and second person.
+              example: "There is great sexual chemistry."
+            CompatibilityDetails:
+              $ref: "#/components/schemas/CompatibilityDetailsModel"
+
+    KnowledgeBaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            PredictionsSummaryModel:
+              $ref: "#/components/schemas/GetToTheRootKiSummaryKbViewModel"
+
+    IChingResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            Hexagram:
+              $ref: "#/components/schemas/Hexagram"
+            TransformedHexagram:
+              $ref: "#/components/schemas/Hexagram"
+            HexagramInfo:
+              $ref: "#/components/schemas/HexagramInfo"
+            TransformedHexagramInfo:
+              $ref: "#/components/schemas/HexagramInfo"
+
+    CompatibilityDetailsModel:
+      type: object
+      properties:
+        ElementCompatibility:
+          $ref: "#/components/schemas/ElementCompatibility"
+        GenderCompatibility:
+          $ref: "#/components/schemas/GenderCompatibility"
+        ModalityCompatibility:
+          $ref: "#/components/schemas/ModalityCompatibility"
+        Score:
+          $ref: "#/components/schemas/CompatibilityScoreModel"
+
+    ElementCompatibility:
+      type: object
+      properties:
+        Score:
+          $ref: "#/components/schemas/CompatibilityScoreModel"
+        FundamentalElementsTransformationDetails:
+          type: string
+          description: A textual summary of the first and second person's fundamental element interaction according to The 5 Transformations.
+          example: "Both of your energies are the same element"
+        CharacterElementsTransformationDetails:
+          type: string
+          description: A textual summary of the first and second person's emotional element interaction according to The 5 Transformations.
+          example: "Both of your energies are the same element"
+        FundamentalElementsCompatibilityDetails:
+          type: string
+          description: A textual summary of the first and second person's fundamental element compatibility.
+          example: "Both of your energies are the same element"
+        CharacterElementsCompatibilityDetails:
+          type: string
+          description: A textual summary of the first and second person's emotional element compatibility.
+          example: "Both of your energies are the same element"
+        AllOtherElementsCompatibility:
+          type: string
+          description: A textual summary of the first and second person's other elements compatibility.
+          example: "Both of your energies are the same element"
+
+    GenderCompatibility:
+      type: object
+      properties:
+        Score:
+          $ref: "#/components/schemas/CompatibilityScoreModel"
+
+    ModalityCompatibility:
+      type: object
+      properties:
+        Score:
+          $ref: "#/components/schemas/CompatibilityScoreModel"
+
+    ECompatibilityScore:
+      type: string
+      enum:
+        - Unspecified
+        - ExtremelyLow
+        - VeryLow
+        - Low
+        - LowToMedium
+        - Medium
+        - MediumToHigh
+        - High
+        - VeryHigh
+        - ExtremelyHigh
+
+    CompatibilityScoreModel:
+      type: object
+      properties:
+        HarmonyScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+        ConflictScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+        SupportScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+        MutualUnderstandingScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+        ComplementarityScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+        SexualChemistryScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+        SparkScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+        LearningPotentialScore:
+          $ref: "#/components/schemas/ECompatibilityScore"
+
+    GetToTheRootKiPredictionsSummaryModel:
+      type: object
+      properties:
+        PersonalChartModel:
+          $ref: "#/components/schemas/GetToTheRootKiSummaryModel"
+        YearlyPrediction:
+          $ref: "#/components/schemas/GetToTheRootKiEnergyCycleSummary"
+        MonthlyPrediction:
+          $ref: "#/components/schemas/GetToTheRootKiEnergyCycleSummary"
+
+    GetToTheRootKiModel:
+      type: object
+      properties:
+        PersonModel:
+          $ref: "#/components/schemas/PersonModel"
+        MainEnergy:
+          $ref: "#/components/schemas/Energy"
+        CharacterEnergy:
+          $ref: "#/components/schemas/Energy"
+        SurfaceEnergy:
+          $ref: "#/components/schemas/Energy"
+        YearlyCycleEnergy:
+          $ref: "#/components/schemas/Energy"
+        MonthlyCycleEnergy:
+          $ref: "#/components/schemas/Energy"
+        Summary:
+          type: string
+          description: A textual summary of the person's characteristics.
+          example: "You have a lot of energy and vitality and are not afraid to take on plenty of hard work and commitments."
+        Overview:
+          type: string
+          description: A general overview of the person's characteristics.
+        Health:
+          type: string
+          description: Health-related insights for this person.
+        Occupations:
+          type: string
+          description: Suggested occupations based on the 9 Star Ki system.
+        PersonalDevelopment:
+          type: string
+          description: Advice for personal growth based on the person's energy.
+
+    GetToTheRootKiSummaryModel:
+      type: object
+      properties:
+        PersonModel:
+          $ref: "#/components/schemas/PersonModel"
+        MainEnergy:
+          $ref: "#/components/schemas/EnergySummary"
+        CharacterEnergy:
+          $ref: "#/components/schemas/EnergySummary"
+        SurfaceEnergy:
+          $ref: "#/components/schemas/EnergySummary"
+        Summary:
+          type: string
+          description: A textual summary of the person's characteristics.
+          example: "You have a lot of energy and vitality and are not afraid to take on plenty of hard work and commitments."
+        Overview:
+          type: string
+          description: A general overview of the person's characteristics.
+
+    GetToTheRootKiSummaryKbViewModel:
+      type: object
+      properties:
+        CharacterEnergies:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnergySummary"
+        MainEnergies:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnergySummary"
+        DynamicEnergies:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModalitySummary"
+        StableEnergies:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModalitySummary"
+        FlexibleEnergies:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModalitySummary"
+
+    PersonModel:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: the person's name
+          example: "Simon"
+        Gender:
+          type: integer
+          description: Gender represented as an integer.
+          example: 2
+        GenderName:
+          type: string
+          description: Name of the gender.
+          example: "Male"
+        DateOfBirth:
+          type: string
+          format: date
+          description: Date of birth in milliseconds since epoch.
+          example: "/Date(298310400000)/"
+        YearsOld:
+          type: integer
+          description: Age of the person.
+          example: 45
+        IsAdult:
+          type: boolean
+          description: If the person is over 18
+          example: true
+
+    Energy:
+      type: object
+      properties:
+        ChildDescription:
+          type: string
+          description: A detailed description of the energy if the person is younger than 18 years old.
+          example: "Thunder Energies embody the power of spring and have plenty of vitality and energy."
+        EnergyName:
+          type: string
+          description: Name of the energy.
+          example: "Thunder"
+        EnergyNumber:
+          type: integer
+          example: 0
+        EnergyDescription:
+          type: string
+          description: A detailed description of the energy.
+          example: "Thunder Energies embody the power of spring and have plenty of vitality and energy."
+        ElementName:
+          type: string
+          description: The element associated with the energy.
+          example: "Tree"
+        ElementDescription:
+          type: string
+          description: A detailed explanation of the element's characteristics.
+        FamilyMember:
+          type: string
+          description: The member of the family associated with the Energy
+        ModalityName:
+          type: string
+          example: "Dynamic"
+        ModalityDescription:
+          type: string
+          description: A detailed description of the Modality
+          example: "Dynamic"
+        Direction:
+          type: string
+          example: "East"
+        Season:
+          type: string
+          example: "Early Spring"
+        SeasonDescription:
+          type: string
+          description: A detailed description of the season
+          example: "Early Spring bla bla"
+        CycleDescription:
+          type: string
+          example: "Early Spring bla bla"
+        Trigram:
+          type: string
+          description: The name of the Trigram associated with this Energy
+          example: "Khun"
+        TrigramDescription:
+          type: string
+          example: "Early Spring bla bla"
+        YinYangName:
+          type: string
+          example: "Yin"
+
+    GetToTheRootKiEnergyCycleSummary:
+      type: object
+      properties:
+        Energy:
+          type: string
+          description: Name of the energy.
+          example: "Thunder"
+        EnergyNumber:
+          type: integer
+          example: 0
+        Direction:
+          type: string
+          description: A detailed description of the direction.
+          example: "North"
+        Element:
+          type: string
+          description: The element associated with the energy.
+          example: "Tree"
+        Season:
+          type: string
+          example: "Spring"
+        SeasonDescription:
+          type: string
+          description: A detailed description of the qualities of the season associated with this energy.
+          example: "Spring is a time for..."
+        PredictionDetails:
+          type: string
+          description: A detailed description of the predictions / forecast for this energy.
+          example: "For this period, you will have more energy..."
+
+    EnergySummary:
+      type: object
+      properties:
+        Energy:
+          type: string
+          description: Name of the energy.
+          example: "Thunder"
+        EnergyNumber:
+          type: integer
+          example: 0
+        EnergyDescription:
+          type: string
+          description: A detailed description of the energy.
+          example: "Thunder Energies embody the power of spring and have plenty of vitality and energy."
+        YinYang:
+          type: string
+          example: "Yin"
+        Element:
+          type: string
+          description: The element associated with the energy.
+          example: "Tree"
+        Modality:
+          type: string
+          description: The modality type.
+          example: "Fixed"
+
+    ModalitySummary:
+      type: object
+      properties:
+        Title:
+          type: string
+          description: The Modality name / title.
+          example: "Fixed"
+        Body:
+          type: string
+          description: A detailed description about the Modality.
+          example: "Fixed energies are very stable and..."
+
+    Hexagram:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: The name of the hexagram.
+          example: "Growth and Stability"
+        Number:
+          type: integer
+          description: The number of the hexagram 1 - 64.
+          example: 3
+
+    HexagramInfo:
+      type: object
+      properties:
+        Stage:
+          type: string
+          description: The stage of the hexagram.
+          example: "Growth and Stability"
+        Name:
+          type: string
+          description: The original I Ching name of the hexagram
+          example: "Gathering Together"
+        Title:
+          type: string
+          description: Title of the hexagram
+          example: "Community and connection bring strength"
+        Summary:
+          type: string
+          description: Summary of the hexagram meaning
+          example: "Community and connection bring strength"
+        Details:
+          type: string
+          description: Detailed interpretation of the hexagram meaning
+          example: "Community and connection bring strength"
+        ChangingLinesInterpretation:
+          type: string
+          description: Interpretation of the hexagram's changing lines
+          example: "Community and connection bring strength"

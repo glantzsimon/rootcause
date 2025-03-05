@@ -1,0 +1,41 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.WebApplication.Config
+@using K9.WebApplication.Enums
+@model HealthQuestionnaire
+@{
+    Layout = "../Shared/_LayoutFormWide.cshtml";
+    ViewBag.Title = Dictionary.GeneticProfileTest;
+    ViewBag.SubTitle = $"{Dictionary.GeneticProfileTest} <i class=\"fa fa-dna\"></i>";
+
+    var whatsAppTelephone = DefaultValuesConfiguration.Instance.WhatsAppSupportNumber;
+    var whatsAppQueryText = Url.Encode($"Hi. I have a query regarding the genetic profile test.");
+    var whatsAppLink = ViewBag.DeviceType == EDeviceType.Desktop
+        ? $"https://web.whatsapp.com/send?phone={whatsAppTelephone}&text={whatsAppQueryText}"
+        : $"https://wa.me/{whatsAppTelephone}/?text={whatsAppQueryText}";
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ClientId)
+        @Html.HiddenFor(model => model.ExternalId)
+
+        @Html.Partial("Questions/_Pills")
+
+        <hr />
+
+        <h4>@Dictionary.DoYouHaveAQuestion</h4>
+
+        <a class="btn btn btn-primary" target="_blank" title="@Dictionary.WhatsAppUs" href="@(whatsAppLink)">
+            <i class="fab fa-whatsapp"></i>
+            <span class="site-controls-text">
+                @Dictionary.WhatsAppUs
+            </span>
+        </a>
+
+        <hr/>
+
+        <h4><strong>@Dictionary.ThisWillTakeTime</strong></h4>
+    }
+}

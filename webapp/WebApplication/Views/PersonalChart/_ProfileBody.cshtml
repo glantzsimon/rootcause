@@ -1,0 +1,23 @@
+﻿@using K9.WebApplication.Config
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Models
+@using K9.WebApplication.Options
+@model NineStarKiEnergy
+
+@if (Model != null)
+{
+    <div class="container main-content clear-both">
+        <article>
+            <div>
+                @Html.CollapsiblePanel(Model.EnergyTitle, Model.EnergyDescription, true)
+
+                @if (Model.EnergyType == EGetToTheRootKiEnergyType.CharacterEnergy)
+                {
+                    @Html.CollapsiblePanel(Html.GetEnergySpecificDisplayNameFor(m => Model.ChildDescription, Model.EnergyNameAndNumber), Model.ChildDescription, true)
+                }
+
+                @Html.CollapsiblePanel(Html.GetEnergySpecificDisplayNameFor(m => Model.Trigram, Model.EnergyNameAndNumber), Model.TrigramDescription, true, "", Model.TrigramUIName, $"{DefaultValuesConfiguration.Instance.BaseImagesPath}/GetToTheRoot/trigrams/trigram-{Model.EnergyLowerCase}-square.png", EPanelImageSize.Default, EPanelImageLayout.Contain)
+            </div>
+        </article>
+    </div>
+}

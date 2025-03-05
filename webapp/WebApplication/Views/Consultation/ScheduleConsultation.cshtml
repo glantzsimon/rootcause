@@ -1,0 +1,58 @@
+﻿@using K9.SharedLibrary.Helpers
+@using K9.WebApplication.Options
+@using TemplateParser = K9.SharedLibrary.Helpers.TemplateParser
+@model K9.WebApplication.ViewModels.ScheduleConsultationViewModel
+@{
+    ViewBag.Title = Dictionary.ScheduleConsultation;
+    ViewBag.SubTitle = Dictionary.ScheduleConsultation;
+    Layout = "../Shared/_LayoutFormSmall.cshtml";
+}
+
+<div class="container main-content margin-bottom-0">
+    <article>
+        <div class="well">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5 class="margin-0">
+                        @Html.Raw(TemplateParser.Parse(Dictionary.PleaseSelectATimeSlot, new
+                        {
+                            ConsultationDuration = Model.Consultation.DurationDescription.ToLower()
+                        }))
+                    </h5>
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="time-slots">
+                    @foreach (var slot in Model.AvailableSlots)
+                    {
+                        <div class="col-sm-6">
+                            <a href="@Url.Action("ConfirmSlot", "Consultation",
+                                         new
+                                         {
+                                             consultationId = Model.Consultation.Id,
+                                             slotId = slot.Id
+                                         })">
+                                <p class="bold">@slot.FormattedStartsOnLocalDate</p>
+                                <p>@slot.FormattedStartsOnLocalTimeOnly : @slot.FormattedEndsOnLocalTimeOnly</p>
+                                <p class="timezone">@slot.TimeZoneDisplayText</p>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-12 margin-0">
+                @Html.Partial("_WhatsApp", new K9.WebApplication.ViewModels.WhatsAppViewModel
+                {
+                    Title = Dictionary.NeedToScheduleADifferentTime,
+                    Message = Dictionary.WhatsAppScheduleAppointmentText
+                })
+            </div>
+        </div>
+    </article>
+</div>

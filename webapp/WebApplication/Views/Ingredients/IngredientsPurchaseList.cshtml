@@ -1,0 +1,25 @@
+﻿@using K9.Base.WebApplication.Controllers
+@using K9.Base.WebApplication.Helpers
+@using K9.SharedLibrary.Authentication
+@using K9.SharedLibrary.Helpers.Html
+@model List<K9.WebApplication.Models.IngredientViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutFormWide.cshtml";
+    ViewBag.SubTitle = Dictionary.IngredientsPurchaseList;
+}
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        @Html.Raw(Model.ToHtmlTable(new List<ColumnInfo>
+        {
+            new ColumnInfo("IngredientName", "Ingredient"),
+            new ColumnInfo("TotalAmountUsed"),
+            new ColumnInfo("TotalProductsUsedIn"),
+            new ColumnInfo("TotalOrdersUsedIn")
+        }, "width-100"))
+
+        <hr />
+        @Html.BootstrapBackToListButton()
+    }
+}

@@ -1,0 +1,64 @@
+﻿@using K9.Base.WebApplication.Helpers
+@using K9.DataAccessLayer.Helpers
+@using K9.WebApplication.Helpers
+@model Protocol
+
+@if (Model.DietaryRecommendations.Any())
+{
+    for (int i = 0; i < Model.DietaryRecommendations.Count; i++)
+    {
+        var dietaryRecommendation = Model.DietaryRecommendations[i].DietaryRecommendation;
+        var isLast = i == Model.DietaryRecommendations.Count - 1;
+
+        <div class="well">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="section-title">@dietaryRecommendation.Name</h1>
+                    <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.Raw(dietaryRecommendation.ShortDescription)
+                </div>
+            </div>
+
+            <br />
+
+            @if (!string.IsNullOrEmpty(dietaryRecommendation.Recommendations))
+            {
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>@Dictionary.RecommendationsLabel</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.Raw(dietaryRecommendation.Recommendations)
+                    </div>
+                </div>
+
+                <br />
+            }
+
+            @if (!string.IsNullOrEmpty(dietaryRecommendation.Benefits))
+            {
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>@Dictionary.BenefitsLabel</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.Raw(dietaryRecommendation.Benefits)
+                    </div>
+                </div>
+            }
+
+            @if (!isLast)
+            {
+                <hr />
+            }
+        </div>
+    }
+}

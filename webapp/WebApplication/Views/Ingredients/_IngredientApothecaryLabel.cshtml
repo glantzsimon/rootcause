@@ -1,0 +1,8 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model Ingredient
+
+<div class="apothecary-ingredient-label">
+    <p class="text-center">@Model.ItemCode</p>
+    <h4 style="font-size: @Model.GetDyamicFontLabelSize();">@Model.Name.ToUpper()</h4>
+</div>
+

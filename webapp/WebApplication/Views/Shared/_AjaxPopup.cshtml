@@ -1,0 +1,14 @@
+﻿@model K9.WebApplication.Options.AjaxPopupOptions
+
+<div class="ajaxpopup">
+    <div id="success-popup" class="display-none">
+        <div class="alert alert-@EAlertType.Success.ToString().ToLower() fade in">
+            @Model.SuccessMessage <i class="fa fa-check-circle green"></i>
+        </div>
+    </div>
+    <div id="fail-popup" class="display-none">
+        <div class="alert alert-@EAlertType.Fail.ToString().ToLower() fade in">
+            @Model.FailureMessage <i class="fa fa-warning red"></i>
+        </div>
+    </div>
+</div>

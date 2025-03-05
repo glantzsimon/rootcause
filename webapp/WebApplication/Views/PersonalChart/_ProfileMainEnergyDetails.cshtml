@@ -1,0 +1,64 @@
+﻿@using K9.WebApplication.Config
+@using K9.WebApplication.Helpers
+@using K9.WebApplication.Models
+@using K9.WebApplication.Options
+@model K9.WebApplication.Models.NineStarKiModel
+
+@if (Model != null)
+{
+    <div class="container main-content clear-both">
+        <div>
+            <ul class="nav nav-pills nav-justified image-pill" data-autoscroll="true">
+                <li class="active">
+                    <a data-toggle="tab" href="#details">
+                        @Model.MainEnergy.DescriptiveTitle
+                        <div class="img-rounded image-pill" style="background-image: url('@($"{DefaultValuesConfiguration.Instance.BaseImagesPath}/GetToTheRoot/energies/{Model.MainEnergy.EnergyLowerCase}.png")');"></div>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#element">
+                        @Model.MainEnergy.ElementTitle
+                        <div class="img-rounded image-pill" style="background-image: url('@($"{DefaultValuesConfiguration.Instance.BaseImagesPath}/GetToTheRoot/elements/{Model.MainEnergy.ElementName.ToLower()}.png")');"></div>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#modality">
+                        @Model.MainEnergy.ModalityTitle
+                        <div class="img-rounded image-pill" style="background-image: url('@($"{DefaultValuesConfiguration.Instance.BaseImagesPath}/GetToTheRoot/modalities/{Model.MainEnergy.ModalityName.ToLower()}.png")');"></div>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#trigram">
+                        @Dictionary.Trigram
+                        <div class="img-rounded image-pill" style="background-image: url('@($"{DefaultValuesConfiguration.Instance.BaseImagesPath}/GetToTheRoot/trigrams/trigram-{Model.MainEnergy.EnergyLowerCase}-square.png")');"></div>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#yinyang">
+                        @Model.MainEnergy.YinYangName
+                        <div class="img-rounded image-pill" style="background-image: url('@($"{DefaultValuesConfiguration.Instance.BaseImagesPath}/GetToTheRoot/yinyang/{Model.MainEnergy.YinYangName.ToLower()}.png")');"></div>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="details" class="tab-pane fade in active">
+                    @Html.Panel(Model.MainEnergy.EnergyTitle, Model.MainEnergy.EnergyDescription, "", "", EPanelImageSize.Default, EPanelImageLayout.Contain)
+
+                    @Html.Panel(Dictionary.OverviewLabel, Model.Overview, "", "", EPanelImageSize.Default, EPanelImageLayout.Contain)
+                </div>
+                <div id="element" class="tab-pane fade">
+                    @Html.Panel(Model.MainEnergy.ElementTitle, Model.MainEnergy.ElementDescription, "", "", EPanelImageSize.Default, EPanelImageLayout.Contain)
+                </div>
+                <div id="modality" class="tab-pane fade">
+                    @Html.Panel(Model.MainEnergy.ModalityTitle, Model.MainEnergy.ModalityDescription, "", "", EPanelImageSize.Default, EPanelImageLayout.Contain)
+                </div>
+                <div id="trigram" class="tab-pane fade">
+                    @Html.Panel(Model.MainEnergy.TrigramTitle, Model.MainEnergy.TrigramDescription, "", "", EPanelImageSize.Default, EPanelImageLayout.Contain)
+                </div>
+                <div id="yinyang" class="tab-pane fade">
+                    @Html.Panel(Dictionary.YinAndYang, Dictionary.yinyang, "", "", EPanelImageSize.Default, EPanelImageLayout.Contain)
+                </div>
+            </div>
+        </div>
+    </div>
+}

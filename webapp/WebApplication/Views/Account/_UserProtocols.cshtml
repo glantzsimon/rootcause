@@ -1,0 +1,31 @@
+﻿@using K9.Base.WebApplication.Helpers
+@model List<Protocol>
+@using (Html.BeginForm())
+{
+    using (Html.BeginBootstrapForm())
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                @Html.Label(Dictionary.Protocol)
+            </div>
+        </div>
+
+        <hr />
+
+        if (Model != null)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a target="_blank" href="@Url.Action("Summary", "Protocol", new {id = Model[i].ExternalId})">
+                            @Html.DisplayFor(e => Model[i].Name)
+                        </a>
+                    </div>
+                </div>
+
+                <hr />
+            }
+        }
+    }
+}
